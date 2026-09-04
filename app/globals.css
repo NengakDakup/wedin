@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0A0A0A;
+  --surface: #161412;
+  --border: #2B2620;
+  --gold: #E8B94D;
+  --ink: #F5F2EA;
+  --muted: #948E7E;
+
+  --success: #4EAA78;
+  --danger: #E05A47;
+  --warning: #E5953C;
+  --info: #5EA5C6;
+
+  --shadow-glow: 0 0 40px rgba(232, 185, 77, 0.25);
+  --shadow-glow-success: 0 0 40px rgba(78, 170, 120, 0.25);
+  --shadow-glow-danger: 0 0 40px rgba(224, 90, 71, 0.25);
+  --shadow-glow-warning: 0 0 40px rgba(229, 149, 60, 0.25);
+  --shadow-glow-info: 0 0 40px rgba(94, 165, 198, 0.25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.light {
+  --bg: #F8F6F0;
+  --surface: #FFFFFF;
+  --border: #E2DDD4;
+  --gold: #C28E1D;
+  --ink: #151311;
+  --muted: #7A7365;
+
+  --success: #2E7D56;
+  --danger: #C9402E;
+  --warning: #BF6E16;
+  --info: #357796;
+
+  --shadow-glow: 0 0 35px rgba(194, 142, 29, 0.2);
+  --shadow-glow-success: 0 0 35px rgba(46, 125, 86, 0.2);
+  --shadow-glow-danger: 0 0 35px rgba(201, 64, 46, 0.2);
+  --shadow-glow-warning: 0 0 35px rgba(191, 110, 22, 0.2);
+  --shadow-glow-info: 0 0 35px rgba(53, 119, 150, 0.2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+
+  --font-display: var(--font-display), sans-serif;
+  --font-body: var(--font-body), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+
+  --radius-pill: 9999px;
+  --radius-card: 20px;
+  --radius-input: 14px;
+
+  --shadow-glow: var(--shadow-glow);
+  --shadow-glow-success: var(--shadow-glow-success);
+  --shadow-glow-danger: var(--shadow-glow-danger);
+  --shadow-glow-warning: var(--shadow-glow-warning);
+  --shadow-glow-info: var(--shadow-glow-info);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(232, 185, 77, 0);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(232, 185, 77, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(232, 185, 77, 0.25);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpSheet {
+  from {
+    transform: translateY(100%);
+    opacity: 0.9;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-sheet-up {
+  animation: slideUpSheet 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
