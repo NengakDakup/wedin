@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LearnerProvider } from "@/lib/learner-context";
 import "./globals.css";
 
 const display = Space_Grotesk({
@@ -54,7 +55,9 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col bg-bg text-ink font-body selection:bg-gold selection:text-black">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LearnerProvider>{children}</LearnerProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
