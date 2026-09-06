@@ -18,6 +18,9 @@
   --shadow-glow-danger: 0 0 40px rgba(224, 90, 71, 0.25);
   --shadow-glow-warning: 0 0 40px rgba(229, 149, 60, 0.25);
   --shadow-glow-info: 0 0 40px rgba(94, 165, 198, 0.25);
+
+  --hero-card-from: rgba(22, 20, 18, 0.96);
+  --hero-card-via: rgba(16, 14, 12, 0.65);
 }
 
 html.light {
@@ -38,6 +41,9 @@ html.light {
   --shadow-glow-danger: 0 0 35px rgba(201, 64, 46, 0.2);
   --shadow-glow-warning: 0 0 35px rgba(191, 110, 22, 0.2);
   --shadow-glow-info: 0 0 35px rgba(53, 119, 150, 0.2);
+
+  --hero-card-from: rgba(235, 227, 214, 0.9);
+  --hero-card-via: rgba(246, 241, 233, 0.5);
 }
 
 @theme {
@@ -53,9 +59,9 @@ html.light {
   --color-warning: var(--warning);
   --color-info: var(--info);
 
-  --font-display: var(--font-display), sans-serif;
-  --font-body: var(--font-body), sans-serif;
-  --font-mono: var(--font-mono), monospace;
+  --font-display: var(--font-display), "Fraunces", Georgia, serif;
+  --font-body: var(--font-body), "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: var(--font-mono), "JetBrains Mono", monospace;
 
   --radius-pill: 9999px;
   --radius-card: 20px;
