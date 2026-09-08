@@ -77,7 +77,7 @@ export default function AssessmentPage() {
     if (currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1)
     } else {
-      router.push('/onboarding/assessment-intro')
+      router.push('/onboarding')
     }
   }
 

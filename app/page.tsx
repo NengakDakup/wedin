@@ -356,7 +356,7 @@ export default function MarketingLandingPage() {
                 <br />
                 Get{' '}
                 <Link
-                  href="/onboarding/assessment-intro"
+                  href="/onboarding"
                   className="inline-flex items-center gap-2 bg-surface/90 border border-border/90 px-3 py-1 align-middle mx-1 rounded-full shadow-xs hover:border-gold/70 transition-all group"
                 >
                   <Search className="w-3.5 h-3.5 text-gold group-hover:scale-110 transition-transform" />
