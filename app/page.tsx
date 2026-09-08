@@ -22,6 +22,7 @@ import {
   Terminal,
   ExternalLink,
   ChevronRight,
+  ChevronLeft,
   Sliders,
   Send,
   UserCheck,
@@ -31,6 +32,10 @@ import {
   Database,
   Search,
   ArrowUpRight,
+  GitPullRequest,
+  GitMerge,
+  Copy,
+  RotateCcw,
 } from 'lucide-react'
 import { MarketingNav } from '@/components/marketing/marketing-nav'
 import { MarketingFooter } from '@/components/marketing/marketing-footer'
@@ -56,6 +61,16 @@ import {
 export default function MarketingLandingPage() {
   // Interactive Loop Stage State
   const [activeStage, setActiveStage] = React.useState<number>(0)
+  const [copiedProof, setCopiedProof] = React.useState<boolean>(false)
+  const [acceptedInterview, setAcceptedInterview] = React.useState<boolean>(false)
+
+  const handleCopyProof = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText('https://wedin.io/p/amara-okonjo')
+      setCopiedProof(true)
+      setTimeout(() => setCopiedProof(false), 2200)
+    }
+  }
   // Interactive ATS Comparison State
   const [atsComparisonMode, setAtsComparisonMode] = React.useState<'generic' | 'wedin'>('wedin')
   // Interactive Track Selector
@@ -70,73 +85,58 @@ export default function MarketingLandingPage() {
     {
       step: '01',
       title: 'Train & Build Real Code',
-      subtitle: 'Live Cohort & Capstones',
+      subtitle: '16-Week Flagship Cohort',
       desc: '16 weeks of live engineering masterclasses and four production-grade capstone labs. No toy tutorials: you architect real state machines, streaming APIs, and vector search pipelines with daily code review.',
-      artifact: {
-        type: 'CODE CAPSTONE',
-        title: 'react-agent-loop.ts (Production Repo)',
-        meta: 'Evaluated by Senior Staff TA · Grade: 98/100',
-        content: `// ReAct decision cycle with token budgeting
-export async function executeAgentCycle(task: AgentTask): Promise<CycleResult> {
-  const plan = await planner.decompose(task.objective, {
-    model: "claude-3-5-sonnet",
-    maxTokens: 4096,
-    strictSchema: true
-  });
-  const execution = await executor.runDeterministic(plan.tools);
-  return memory.checkpoint({ state: execution.state, passed: true });
-}`,
-        stat: '1,420 lines verified TypeScript / Python',
-      },
+      highlights: [
+        'Live masterclasses led by Principal Engineers',
+        'Daily pull request reviews on GitHub',
+        'Production token budgeting & vector indexing',
+      ],
+      tag: 'CAPSTONE LAB',
+      statsLabel: 'TEST SUITE INTEGRITY',
+      statsValue: '14/14 Tests Passed · 98/100 TA Score',
     },
     {
       step: '02',
       title: 'Virtual Internship',
       subtitle: '8 Weeks of Enterprise Sprints',
-      desc: 'You transition from student to practitioner. Embedded into simulated enterprise engineering squads, you receive real sprint tickets, submit pull requests, resolve merge conflicts, and get rated by industry engineering leads.',
-      artifact: {
-        type: 'SUPERVISOR EVALUATION',
-        title: 'Sprint 04: Vector Hybrid Search Engine',
-        meta: 'Evaluated by Lead Architect (ex-Paystack)',
-        content: `✓ PR #84: Implemented Cosine Distance Filter on pgvector
-✓ Benchmark: Reduced p99 query latency from 240ms → 38ms
-✓ Architecture: Handled edge cases on sparse keyword fallback
-★ Supervisor Comment: "Amara demonstrated senior-level systems thinking. Ready for junior-to-mid tier placement without handholding."`,
-        stat: 'Supervisor Score: 9.8 / 10 · Verified',
-      },
+      desc: 'You transition from student to practitioner. Embedded into simulated enterprise engineering squads at companies like Paystack & Moniepoint, you receive real sprint briefs, submit pull requests, resolve merge conflicts, and get rated by industry leads.',
+      highlights: [
+        'Simulated sprint boards on enterprise repos',
+        'Sub-50ms database benchmarks & pgvector migrations',
+        '1-on-1 code reviews from ex-Paystack / Flutterwave Leads',
+      ],
+      tag: 'ENTERPRISE SPRINT',
+      statsLabel: 'SUPERVISOR EVALUATION',
+      statsValue: '9.8 / 10 Lead TA Score · Merged #84',
     },
     {
       step: '03',
       title: 'Auto-Generated ATS Proof',
-      subtitle: '1-Click Unforgeable CV',
-      desc: 'Unlike generic AI tools that hallucinate bullet points, Wedin compiles your ATS-optimized CV directly from your completed GitHub repositories, supervisor ratings, and test benchmarks. Zero fluff.',
-      artifact: {
-        type: 'ATS PARSER SCORE',
-        title: 'Verified International Resume',
-        meta: 'Tested across Greenhouse, Lever & Workday algorithms',
-        content: `✦ ATS Compatibility Score: 98/100 (Passes Tier-1 Filter)
-✦ Experience Source: Verified Wedin Platform Database
-✦ Skills Matched: Next.js 16, Python, LangChain, pgvector, Docker
-✦ Proof Link: wedin.io/p/amara-okonjo (Cryptographic QR & Live Repos)`,
-        stat: '100% Verifiable Proof-of-Work',
-      },
+      subtitle: 'Cryptographic Proof-of-Work CV',
+      desc: 'Unlike generic AI resume builders that hallucinate skills, Wedin compiles your ATS-optimized CV directly from your completed GitHub repositories, supervisor ratings, and test benchmarks. Every bullet point links to verified proof.',
+      highlights: [
+        'Passes Greenhouse, Lever & Workday algorithms',
+        'Cryptographic verification URL with SHA-256 seal',
+        '100% verifiable code commits — zero AI fluff',
+      ],
+      tag: 'ATS REPUTATION PARSER',
+      statsLabel: 'ATS FILTER COMPATIBILITY',
+      statsValue: '98/100 · Top 1% Global ATS Match',
     },
     {
       step: '04',
       title: 'Automated Placement Engine',
-      subtitle: 'Direct Partner Routing',
-      desc: 'The engine actively analyzes hiring manager criteria at partner tech companies, matches your verified skills, auto-submits tailored applications, and delivers interview invitations directly to your dashboard.',
-      artifact: {
-        type: 'PLACEMENT NOTIFICATION',
-        title: 'Anthropic AI Systems Cohort Pipeline',
-        meta: 'Direct Placement Match · Candidate Fast-Track',
-        content: `⚡ Direct Interview Request Received:
-Company: Anthropic Partner Network (Remote / Lagos)
-Role: Junior AI Systems Engineer ($48,000 / ₦38M/yr)
-Status: Recruiter Technical Screen Scheduled
-Match Confidence: 98% based on Capstone Lab 03 performance`,
-        stat: 'Time to Interview: 18 Days post-graduation',
-      },
+      subtitle: 'Direct Partner Pipeline Routing',
+      desc: 'The engine actively analyzes hiring manager criteria at Nigeria & global tech unicorns, matches your verified skills, auto-submits tailored applications, and delivers pre-screened technical interview invitations directly to your dashboard.',
+      highlights: [
+        'Direct recruiter routing with zero agency markup',
+        '98% algorithmic calibration match on capstones',
+        '18-day average placement post-graduation',
+      ],
+      tag: 'PARTNER ROUTING',
+      statsLabel: 'TIME TO OFFER DISPATCH',
+      statsValue: '18 Days Average Post-Graduation',
     },
   ]
 
@@ -212,6 +212,54 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
       hires: '8 Hired',
       logo: CowrywiseLogo,
       accent: 'text-[#0066F5]',
+    },
+  ]
+
+  const enrichedTracks = [
+    {
+      id: 'full-stack-ai',
+      title: 'Full-Stack AI Systems Engineer',
+      subtitle: 'Autonomous Agents · Vector Retrieval · Next.js 15',
+      description: 'Architect deterministic multi-agent workflows, fine-tune LLM routing, and deploy high-throughput pgvector pipelines with real-time Next.js streaming interfaces.',
+      duration: '16 Weeks Intensive',
+      cohortStatus: 'Cohort 04 Enrolling',
+      spotsLeft: '8 Spots Left',
+      isFeatured: true,
+      salaryRange: '₦22M – ₦36M',
+      avgPlacement: '18 Days to Offer',
+      matchScore: '98% Placement Rate',
+      icon: Sparkles,
+      keySkills: ['TypeScript', 'Next.js 15', 'Python', 'LangChain', 'Vector DBs', 'Agent Swarms', 'PostgreSQL'],
+    },
+    {
+      id: 'cloud-infrastructure',
+      title: 'Distributed Cloud Architect',
+      subtitle: 'High-Scale Kubernetes · Kafka · Financial Ledgers',
+      description: 'Design fault-tolerant distributed infrastructure, automate multi-cloud Kubernetes clusters with ArgoCD, and engineer high-throughput financial message queues.',
+      duration: '14 Weeks Intensive',
+      cohortStatus: 'Cohort 04 Enrolling',
+      spotsLeft: '11 Spots Left',
+      isFeatured: false,
+      salaryRange: '₦20M – ₦34M',
+      avgPlacement: '21 Days to Offer',
+      matchScore: '94% Placement Rate',
+      icon: Database,
+      keySkills: ['Kubernetes', 'Go', 'Terraform', 'Kafka', 'PostgreSQL', 'Prometheus', 'Docker'],
+    },
+    {
+      id: 'product-engineering',
+      title: 'Senior Product Software Engineer',
+      subtitle: 'Full-Stack Design Systems · Payments · GraphQL',
+      description: 'Master full-stack product engineering from micro-interactions and atomic design systems to multi-currency payment checkout integrations and sub-100ms APIs.',
+      duration: '12 Weeks Intensive',
+      cohortStatus: 'Cohort 04 Enrolling',
+      spotsLeft: '6 Spots Left',
+      isFeatured: false,
+      salaryRange: '₦18M – ₦30M',
+      avgPlacement: '19 Days to Offer',
+      matchScore: '96% Placement Rate',
+      icon: Layers,
+      keySkills: ['Next.js', 'React 19', 'GraphQL', 'Tailwind CSS', 'Distributed SQL', 'Stripe / Paystack APIs'],
     },
   ]
 
@@ -745,16 +793,16 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
           {/* Header Row */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-left">
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-2 text-[11px] font-mono text-ink tracking-wider uppercase font-semibold">
-                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+              <div className="inline-flex items-center gap-2 text-[11px] font-mono text-stone-950 tracking-wider uppercase font-bold">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                 <span>TOP NIGERIAN TECH UNICORNS & ENTERPRISES</span>
               </div>
-              <h3 className="font-body text-xl sm:text-2xl font-semibold text-ink tracking-tight">
+              <h3 className="font-body text-xl sm:text-2xl font-semibold text-stone-950 tracking-tight">
                 Where Wedin Fellows Build & Lead
               </h3>
             </div>
-            <p className="font-body text-xs sm:text-sm text-muted max-w-md">
-              Direct pipeline routing with Lagos & remote engineering squads. Zero agency recruiting markups.
+            <p className="font-body text-xs sm:text-sm text-stone-900 max-w-md font-medium">
+              Direct pipeline routing with Lagos &amp; remote engineering squads. Zero agency recruiting markups.
             </p>
           </div>
 
@@ -765,18 +813,18 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
               return (
                 <div
                   key={c.name}
-                  className="group relative rounded-2xl p-4 bg-surface/40 hover:bg-surface/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer flex flex-col justify-between h-[125px] overflow-hidden"
+                  className="group relative rounded-2xl p-4 bg-white/95 hover:bg-white shadow-xs hover:shadow-lg border border-stone-200/80 transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col justify-between h-[130px] overflow-hidden"
                 >
                   {/* Subtle Brand Ambient Glow on Hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-white/[0.02] group-hover:to-gold/5 pointer-events-none transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-amber-500/5 group-hover:to-amber-500/10 pointer-events-none transition-opacity" />
 
                   {/* Top: Logo + Live Hires Pill */}
                   <div className="flex items-center justify-between relative z-10">
                     <div className="w-8 h-8 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                       <Logo className="w-full h-full" />
                     </div>
-                    <span className="text-[10px] font-mono font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                    <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="w-1 h-1 rounded-full bg-emerald-600" />
                       {c.hires}
                     </span>
                   </div>
@@ -784,14 +832,14 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                   {/* Bottom: Name, Track & Compensation */}
                   <div className="space-y-0.5 relative z-10">
                     <div className="flex items-center justify-between">
-                      <h4 className="font-body font-semibold text-sm text-ink group-hover:text-gold transition-colors">
+                      <h4 className="font-body font-semibold text-sm text-stone-900 group-hover:text-amber-800 transition-colors">
                         {c.name}
                       </h4>
-                      <span className="font-mono text-xs font-semibold text-gold">
+                      <span className="font-mono text-xs font-bold text-[#9E6E00]">
                         {c.salary}
                       </span>
                     </div>
-                    <p className="font-body text-[11px] text-muted truncate">
+                    <p className="font-body text-[11px] text-stone-600 truncate">
                       {c.role}
                     </p>
                   </div>
@@ -801,17 +849,17 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
           </div>
 
           {/* Clean Borderless Proof Indicators */}
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-body text-muted">
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-body text-stone-900 font-medium">
             <span className="flex items-center gap-2">
-              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <Check className="w-3.5 h-3.5 text-emerald-800 stroke-[3]" />
               <span>Production GitHub PR Proof</span>
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <Check className="w-3.5 h-3.5 text-emerald-800 stroke-[3]" />
               <span>Pre-Screened by Senior Staff TAs</span>
             </span>
             <span className="flex items-center gap-2">
-              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <Check className="w-3.5 h-3.5 text-emerald-800 stroke-[3]" />
               <span>18-Day Average Time to Offer</span>
             </span>
           </div>
@@ -820,229 +868,725 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
       </section>
 
       {/* 2. THE CLOSED LOOP: Interactive 4-Stage Proof-of-Work Pipeline */}
-      <section id="closed-loop" className="py-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="active">THE CLOSED LOOP ARCHITECTURE</Badge>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
+      <section id="closed-loop" className="py-20 sm:py-28 max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-3.5 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+            <span>THE CLOSED LOOP ARCHITECTURE</span>
+          </div>
+          <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
             How Wedin Closes the Loop
           </h2>
-          <p className="font-body text-base text-muted leading-relaxed">
-            Every step feeds directly into the next. Your coursework automatically generates your
-            proof-of-work portfolio, which generates your ATS CV, which drives your placement.
+          <p className="font-body text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+            Every stage feeds directly into the next. Your coursework automatically compiles into verified proof-of-work, which generates your ATS resume, which triggers direct hiring pipeline routing.
           </p>
         </div>
 
-        {/* 4 Interactive Stepper Buttons */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {loopStages.map((stage, idx) => {
-            const isSelected = activeStage === idx
-            return (
-              <div
-                key={stage.step}
-                onClick={() => setActiveStage(idx)}
-                className={cn(
-                  'p-5 rounded-card border transition-all duration-200 cursor-pointer text-left select-none space-y-2',
-                  isSelected
-                    ? 'bg-surface border-gold ring-1 ring-gold/30 shadow-xs'
-                    : 'bg-surface/50 border-border hover:border-muted/60'
-                )}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={cn(
-                      'font-mono text-xs font-bold',
-                      isSelected ? 'text-gold' : 'text-muted'
-                    )}
-                  >
-                    STEP {stage.step}
-                  </span>
-                  {isSelected && <Check className="w-3.5 h-3.5 text-gold stroke-[3]" />}
-                </div>
-                <h4
+        {/* 4 Interactive Connected Stepper Circuit Ribbon */}
+        <div className="relative">
+          {/* Background Connecting Circuit Bus with Active Glowing Progress (Visible on lg+) */}
+          <div className="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-border/80 -translate-y-6 z-0 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-gold via-amber-400 to-gold transition-all duration-500 ease-out shadow-[0_0_12px_rgba(234,179,8,0.6)]"
+              style={{ width: `${(activeStage / 3) * 100}%` }}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 relative z-10">
+            {loopStages.map((stage, idx) => {
+              const isSelected = activeStage === idx
+              const isPassed = activeStage > idx
+              return (
+                <button
+                  key={stage.step}
+                  type="button"
+                  onClick={() => setActiveStage(idx)}
                   className={cn(
-                    'font-display font-medium text-sm transition-colors',
-                    isSelected ? 'text-ink font-bold' : 'text-muted'
+                    'p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer text-left select-none space-y-2.5 relative overflow-hidden backdrop-blur-md group w-full',
+                    isSelected
+                      ? 'bg-surface border-2 border-gold shadow-lg ring-2 ring-gold/20 text-ink scale-[1.02]'
+                      : 'bg-surface/60 hover:bg-surface/90 border-border/80 hover:border-gold/50 text-muted'
                   )}
                 >
-                  {stage.title}
-                </h4>
-                <p className="font-body text-[11px] text-muted line-clamp-1">
-                  {stage.subtitle}
-                </p>
-              </div>
-            )
-          })}
+                  {/* Active Card Top Accent Glow Line */}
+                  {isSelected && (
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-amber-300 to-gold" />
+                  )}
+
+                  {/* Top Node Indicator & Status */}
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={cn(
+                        'font-mono text-xs font-bold px-2.5 py-0.5 rounded-full border transition-colors',
+                        isSelected
+                          ? 'bg-gold text-[#0A0A0A] border-gold shadow-xs'
+                          : isPassed
+                          ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30'
+                          : 'bg-surface border-border text-muted group-hover:text-ink'
+                      )}
+                    >
+                      STEP {stage.step}
+                    </span>
+                    {isSelected ? (
+                      <span className="flex items-center gap-1.5 text-[11px] font-mono text-gold font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
+                        ACTIVE
+                      </span>
+                    ) : isPassed ? (
+                      <span className="flex items-center gap-1 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                        <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                        <span>VERIFIED</span>
+                      </span>
+                    ) : (
+                      <span className="text-[11px] font-mono text-muted/70 group-hover:text-muted">STAGE 0{idx + 1}</span>
+                    )}
+                  </div>
+
+                  {/* Title & Subtitle */}
+                  <div className="space-y-0.5">
+                    <h4
+                      className={cn(
+                        'font-body font-semibold text-sm sm:text-base transition-colors leading-snug',
+                        isSelected ? 'text-ink' : 'text-ink/85 group-hover:text-ink'
+                      )}
+                    >
+                      {stage.title}
+                    </h4>
+                    <p className="font-body text-xs text-muted truncate">
+                      {stage.subtitle}
+                    </p>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
-        {/* Active Stage Deep-Dive Inspector Panel */}
-        <div className="rounded-card bg-surface border border-border p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xl">
-          {/* Left Column: Stage Explanation */}
-          <div className="lg:col-span-6 space-y-5">
-            <div className="flex items-center gap-3">
-              <span className="w-8 h-8 rounded-full bg-gold text-black font-mono font-bold text-sm flex items-center justify-center shrink-0">
-                {loopStages[activeStage].step}
+        {/* Active Stage Deep-Dive Inspector Panel (Unified Glassmorphic Workspace) */}
+        <div className="rounded-3xl bg-surface/70 border border-border/90 p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center shadow-xl relative overflow-hidden backdrop-blur-md">
+          
+          {/* Ambient Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none" />
+
+          {/* Left Column: Stage Explanation & Concrete Value */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            {/* Step Counter + Tag */}
+            <div className="flex items-center justify-between">
+              <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-gold uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                <span>{loopStages[activeStage].tag}</span>
+              </div>
+              <span className="font-mono text-xs text-muted font-medium">
+                Stage {activeStage + 1} of 4 · Closed Loop Cycle
               </span>
-              <div>
-                <h3 className="font-display text-2xl font-bold text-ink">
-                  {loopStages[activeStage].title}
-                </h3>
-                <span className="font-mono text-xs text-gold">
-                  {loopStages[activeStage].subtitle}
-                </span>
-              </div>
             </div>
 
-            <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
-              {loopStages[activeStage].desc}
-            </p>
-
-            <div className="pt-2">
-              <Link href="/onboarding">
-                <Button variant="primary" size="sm" className="gap-2">
-                  <span>Enter This Track</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column: Live Artifact Mockup Card */}
-          <div className="lg:col-span-6">
-            <div className="rounded-card bg-bg border border-border p-5 space-y-4 font-mono">
-              <div className="flex items-center justify-between border-b border-border/80 pb-3 text-xs">
-                <div className="flex items-center gap-2 text-ink font-medium">
-                  <FileText className="w-4 h-4 text-gold" />
-                  <span>{loopStages[activeStage].artifact.title}</span>
-                </div>
-                <Badge variant="active">
-                  {loopStages[activeStage].artifact.type}
-                </Badge>
-              </div>
-
-              <div className="text-[11px] text-muted">
-                {loopStages[activeStage].artifact.meta}
-              </div>
-
-              <pre className="p-3.5 rounded-card bg-surface border border-border text-[11px] text-ink font-mono whitespace-pre-wrap leading-relaxed overflow-x-auto">
-                {loopStages[activeStage].artifact.content}
-              </pre>
-
-              <div className="flex items-center justify-between text-xs pt-1 border-t border-border/60">
-                <span className="text-muted">SYSTEM INTEGRITY</span>
-                <span className="text-success font-medium">
-                  {loopStages[activeStage].artifact.stat}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. CURRICULUM TRACKS: High-Density Curriculum Breakdown */}
-      <section id="tracks" className="py-24 border-t border-border/80 bg-surface/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-3 max-w-2xl">
-              <Badge variant="active">CURRICULUM TRACKS</Badge>
-              <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
-                Designed for Tier-1 Hiring Rubrics
-              </h2>
-              <p className="font-body text-base text-muted leading-relaxed">
-                We don&apos;t teach generic slide decks. Every curriculum is reverse-engineered
-                from the interview benchmarks of our 40+ partner employers.
+            <div className="space-y-2">
+              <h3 className="font-body text-2xl sm:text-3xl font-semibold text-ink tracking-tight leading-tight">
+                {loopStages[activeStage].title}
+              </h3>
+              <p className="font-mono text-xs text-gold font-medium">
+                {loopStages[activeStage].subtitle}
               </p>
             </div>
 
-            <Link href="/onboarding">
-              <Button variant="secondary" size="default" className="gap-2">
-                <span>Start Diagnostic Assessment</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
+            <p className="font-body text-sm text-muted leading-relaxed">
+              {loopStages[activeStage].desc}
+            </p>
+
+            {/* Concrete Proof Checklist */}
+            <div className="space-y-2.5 pt-2 border-t border-border/70">
+              {loopStages[activeStage].highlights.map((highlight) => (
+                <div key={highlight} className="flex items-start gap-2.5 text-xs font-body text-ink/90">
+                  <div className="w-4 h-4 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
+                  </div>
+                  <span className="leading-snug">{highlight}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Action Bar: Stage Navigation & CTA */}
+            <div className="pt-3 flex flex-wrap items-center gap-3">
+              <Link href="/onboarding" className="inline-block group">
+                <div className="h-11 sm:h-12 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold pl-5 pr-2 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer">
+                  <span className="tracking-wide">Explore This Track</span>
+                  <span className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                  </span>
+                </div>
+              </Link>
+
+              {/* Step Navigation Stepper Pill */}
+              <div className="flex items-center gap-1 bg-surface border border-border rounded-full p-1 shadow-xs">
+                <button
+                  type="button"
+                  onClick={() => setActiveStage((prev) => (prev > 0 ? prev - 1 : 3))}
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-elevated text-muted hover:text-ink transition-colors text-xs font-mono cursor-pointer"
+                  title="Previous Stage"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="font-mono text-xs px-2 text-ink font-semibold select-none">
+                  0{activeStage + 1} / 04
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setActiveStage((prev) => (prev < 3 ? prev + 1 : 0))}
+                  className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-elevated text-muted hover:text-ink transition-colors text-xs font-mono cursor-pointer"
+                  title="Next Stage"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: High-Fidelity Interactive Artifact Mockup */}
+          <div className="lg:col-span-7">
+            
+            {/* ARTIFACT 01: Interactive Code Editor / Capstone */}
+            {activeStage === 0 && (
+              <div className="rounded-2xl bg-[#0C0A09] border border-white/10 overflow-hidden shadow-2xl font-mono text-xs ring-1 ring-white/5">
+                {/* Editor Top Bar with macOS Window Dots & Tabs */}
+                <div className="px-4 py-2.5 bg-[#161412] border-b border-white/10 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                    <span className="w-3 h-3 rounded-full bg-green-500/80" />
+                    <div className="ml-3 flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white/10 border border-white/10 text-[11px] text-white font-medium">
+                      <Code2 className="w-3 h-3 text-gold" />
+                      <span>autonomous-agent-loop.ts</span>
+                    </div>
+                  </div>
+                  <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded">
+                    TS 5.5 · STRICT PASS
+                  </span>
+                </div>
+
+                {/* Breadcrumbs & Git Branch Bar */}
+                <div className="px-4 py-1.5 bg-[#110F0D] border-b border-white/5 flex items-center justify-between text-[10px] text-stone-400">
+                  <span className="flex items-center gap-1.5 truncate">
+                    <span className="text-stone-500">wedin-monorepo</span>
+                    <span>/</span>
+                    <span className="text-stone-500">packages</span>
+                    <span>/</span>
+                    <span className="text-stone-300">agent-core</span>
+                    <span>/</span>
+                    <span className="text-amber-400">cycle.ts</span>
+                  </span>
+                  <span className="text-gold font-mono flex items-center gap-1 shrink-0">
+                    <span>git:(main*)</span>
+                    <span className="text-emerald-400">+42</span>
+                    <span className="text-rose-400">-3</span>
+                  </span>
+                </div>
+
+                {/* Code Window with Line Numbers and Syntax Highlighting */}
+                <div className="p-4 space-y-1 text-[11px] leading-relaxed overflow-x-auto text-stone-300">
+                  <div className="text-stone-500">// Capstone Lab 03: Deterministic ReAct Decision Cycle</div>
+                  <div className="flex items-center">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">1</span>
+                    <div>
+                      <span className="text-purple-400 font-semibold">export async function</span>{' '}
+                      <span className="text-amber-300 font-semibold">executeAgentCycle</span>
+                      (task: <span className="text-cyan-400">AgentTask</span>):{' '}
+                      <span className="text-cyan-400">Promise&lt;CycleResult&gt;</span> {'{'}
+                    </div>
+                  </div>
+                  <div className="flex items-center pl-4">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">2</span>
+                    <div>
+                      <span className="text-purple-400">const</span> plan ={' '}
+                      <span className="text-purple-400">await</span> planner.
+                      <span className="text-amber-300">decompose</span>(task.objective, {'{'}
+                    </div>
+                  </div>
+                  <div className="flex items-center pl-8 text-stone-400">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">3</span>
+                    <div>
+                      model: <span className="text-emerald-300">&quot;claude-3-5-sonnet&quot;</span>,
+                    </div>
+                  </div>
+                  <div className="flex items-center pl-8 text-stone-400">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">4</span>
+                    <div>
+                      maxTokens: <span className="text-amber-400">4096</span>, strictSchema:{' '}
+                      <span className="text-purple-400">true</span>,
+                    </div>
+                  </div>
+                  <div className="flex items-center pl-4">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">5</span>
+                    <div>{'}'});</div>
+                  </div>
+                  <div className="flex items-center pl-4">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">6</span>
+                    <div>
+                      <span className="text-purple-400">const</span> execution ={' '}
+                      <span className="text-purple-400">await</span> executor.
+                      <span className="text-amber-300">runDeterministic</span>(plan.tools);
+                    </div>
+                  </div>
+                  <div className="flex items-center pl-4">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">7</span>
+                    <div>
+                      <span className="text-purple-400">return</span> memory.
+                      <span className="text-amber-300">checkpoint</span>({'{'} state: execution.state, passed:{' '}
+                      <span className="text-purple-400">true</span> {'}'});
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="w-6 text-stone-600 select-none text-right pr-2">8</span>
+                    <div>{'}'}</div>
+                  </div>
+                </div>
+
+                {/* Integrated Terminal Test Runner Drawer */}
+                <div className="px-4 py-2.5 bg-[#161412] border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-emerald-400 font-semibold">14/14 Integration Tests Passing (312ms)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-stone-400">
+                    <span>Lead TA Rubric:</span>
+                    <span className="px-2 py-0.5 rounded bg-gold/15 text-gold font-bold border border-gold/30">
+                      98/100 · Exceptional
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ARTIFACT 02: Enterprise Virtual Internship Sprint PR Review */}
+            {activeStage === 1 && (
+              <div className="rounded-2xl bg-[#0C0A09] border border-white/10 overflow-hidden shadow-2xl font-mono text-xs space-y-3 p-4 sm:p-5 ring-1 ring-white/5">
+                {/* PR Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2 truncate">
+                    <span className="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1.5 text-[11px] font-bold shrink-0">
+                      <GitMerge className="w-3.5 h-3.5" />
+                      <span>MERGED #84</span>
+                    </span>
+                    <span className="text-white font-semibold text-xs truncate">
+                      paystack-oss / core-checkout-service
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded font-semibold shrink-0">
+                    ALL 42 CI CHECKS PASS
+                  </span>
+                </div>
+
+                {/* PR Title & Author Info */}
+                <div className="space-y-1.5 font-body">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-stone-400">
+                    <span>Author: <strong className="text-stone-200">Amara Okonjo (Wedin Fellow #204)</strong></span>
+                    <span className="text-stone-500">Sprint 04 · Enterprise Squad</span>
+                  </div>
+                  <h5 className="font-semibold text-sm text-white leading-snug">
+                    feat(vector-search): Sub-50ms Hybrid Vector RAG on Postgres pgvector
+                  </h5>
+                  
+                  {/* Benchmarks Grid */}
+                  <div className="grid grid-cols-2 gap-2 text-[11px] font-mono pt-1">
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-0.5">
+                      <span className="text-stone-400 block text-[10px]">P99 LATENCY BENCHMARK</span>
+                      <span className="text-emerald-400 font-bold text-xs">240ms → 38ms (-84%)</span>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-0.5">
+                      <span className="text-stone-400 block text-[10px]">KEYWORD RECALL RECOVERY</span>
+                      <span className="text-gold font-bold text-xs">100% Zero-Loss Guaranteed</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mentor Code Review Quote Card */}
+                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-2 font-body text-xs">
+                  <div className="flex items-center justify-between text-[11px] font-mono">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-[10px] text-gold font-bold">
+                        KM
+                      </div>
+                      <span className="font-semibold text-gold">Kelechi M. (Lead Architect · ex-Paystack)</span>
+                    </div>
+                    <span className="text-stone-400">Verified Code Review</span>
+                  </div>
+                  <p className="text-stone-200 leading-relaxed italic text-[11px]">
+                    &quot;Amara demonstrated senior-level systems thinking. Vector indexing handles sparse keyword fallback without edge cases. Production-ready without handholding.&quot;
+                  </p>
+                </div>
+
+                {/* Footer Evaluation Grade */}
+                <div className="flex items-center justify-between text-[11px] pt-1 text-stone-400 font-mono">
+                  <span className="flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>ENTERPRISE RUBRIC SEAL</span>
+                  </span>
+                  <span className="text-emerald-400 font-bold">★ 9.8 / 10 Evaluation Score</span>
+                </div>
+              </div>
+            )}
+
+            {/* ARTIFACT 03: Cryptographic ATS Proof-of-Work CV */}
+            {activeStage === 2 && (
+              <div className="rounded-2xl bg-[#0C0A09] border border-white/10 overflow-hidden shadow-2xl font-mono text-xs space-y-3 p-4 sm:p-5 ring-1 ring-white/5">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <FileText className="w-4 h-4 text-gold" />
+                    <span className="text-white font-semibold text-xs">
+                      ATS PARSER REPUTATION ENGINE
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded font-semibold">
+                    TIER-1 ATS VERIFIED
+                  </span>
+                </div>
+
+                {/* Score Gauge & Filter Verification */}
+                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 flex items-center justify-between gap-4 font-body">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-mono text-stone-400 uppercase tracking-wider block">
+                      ALGORITHMIC COMPATIBILITY SCORE
+                    </span>
+                    <h5 className="font-bold text-base sm:text-lg text-white">
+                      Greenhouse &amp; Lever Optimized
+                    </h5>
+                    <p className="text-[11px] text-stone-300">
+                      Parses 100% of skills directly into hiring ATS systems without recruiter drop-off.
+                    </p>
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex flex-col items-center justify-center shrink-0">
+                    <span className="font-mono text-lg font-bold text-emerald-400">98</span>
+                    <span className="font-mono text-[8px] text-emerald-400 font-bold uppercase">SCORE</span>
+                  </div>
+                </div>
+
+                {/* Verified Bullet Points */}
+                <div className="space-y-2 text-[11px] font-body text-stone-200">
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 stroke-[3]" />
+                    <span>Architected ReAct loop with Claude 3.5 Sonnet (commit <code className="text-gold font-mono bg-gold/10 px-1.5 py-0.5 rounded">9d4f2a</code>)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 stroke-[3]" />
+                    <span>Cut database query latency by 84% on Paystack enterprise squad</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 stroke-[3]" />
+                    <span>Signed cryptographic SHA-256 seal by Lead Staff TA</span>
+                  </div>
+                </div>
+
+                {/* Public Verification Link with Copy Action */}
+                <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-stone-400 truncate">https://wedin.io/p/amara-okonjo</span>
+                  <button
+                    type="button"
+                    onClick={handleCopyProof}
+                    className="text-gold hover:text-amber-300 flex items-center gap-1.5 font-semibold cursor-pointer shrink-0 transition-colors"
+                  >
+                    {copiedProof ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-emerald-400">Copied Link!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy Proof Link</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* ARTIFACT 04: Real Nigerian Unicorn Partner Placement Dispatch */}
+            {activeStage === 3 && (
+              <div className="rounded-2xl bg-[#0C0A09] border border-white/10 overflow-hidden shadow-2xl font-mono text-xs space-y-3 p-4 sm:p-5 ring-1 ring-white/5">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-gold fill-gold" />
+                    <span className="text-white font-semibold text-xs">
+                      DIRECT PARTNER DISPATCH ENGINE
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-gold bg-gold/15 px-2.5 py-0.5 rounded font-semibold border border-gold/30 flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
+                    INTERVIEW DISPATCHED
+                  </span>
+                </div>
+
+                {/* Job Invitation Card 01 (Paystack) */}
+                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-gold/40 shadow-xs space-y-2 font-body">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-md bg-white/10 p-0.5 flex items-center justify-center">
+                        <PaystackLogo className="w-full h-full" />
+                      </div>
+                      <span className="font-semibold text-sm text-white">Paystack Core Platform Squad</span>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-emerald-400">₦28M / yr</span>
+                  </div>
+                  <p className="text-xs text-stone-300">
+                    Role: <strong className="text-white">Junior AI Systems Engineer (Lagos / Hybrid)</strong>
+                  </p>
+                  <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-stone-400">
+                    <span>Interview: Thursday, 2:00 PM WAT</span>
+                    <span className="text-emerald-400 font-semibold">98% Calibrated Fit</span>
+                  </div>
+                </div>
+
+                {/* Job Invitation Card 02 (Moniepoint) */}
+                <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/15 shadow-xs space-y-2 font-body">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-md bg-white/10 p-0.5 flex items-center justify-center">
+                        <MoniepointLogo className="w-full h-full" />
+                      </div>
+                      <span className="font-semibold text-sm text-white">Moniepoint Core Infrastructure</span>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-emerald-400">₦32M / yr</span>
+                  </div>
+                  <p className="text-xs text-stone-300">
+                    Role: <strong className="text-white">Backend Systems Fellow (Victoria Island / Hybrid)</strong>
+                  </p>
+                  <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-stone-400">
+                    <span>Interview: Monday, 11:00 AM WAT</span>
+                    <span className="text-emerald-400 font-semibold">96% Calibrated Fit</span>
+                  </div>
+                </div>
+
+                {/* Candidate Action Pill */}
+                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-body">
+                  <span className="text-stone-200 font-medium">
+                    Technical Screen Confirmed via Recruiter Fast-Track
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setAcceptedInterview(true)}
+                    className={cn(
+                      'px-3 py-1 rounded-full font-bold font-mono transition-all duration-200 cursor-pointer text-xs shrink-0',
+                      acceptedInterview
+                        ? 'bg-emerald-500 text-black shadow-md'
+                        : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-black border border-emerald-500/40'
+                    )}
+                  >
+                    {acceptedInterview ? '✓ Calendar Invite Added' : '1-Click Accept'}
+                  </button>
+                </div>
+
+                {/* Footer Stat */}
+                <div className="flex items-center justify-between text-[11px] font-mono text-stone-400 pt-1">
+                  <span>DISPATCH PIPELINE</span>
+                  <span className="text-gold font-semibold">18 Days Average to Placement</span>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+
+        {/* Continuous Loop Re-Calibration Ribbon (Demonstrating the Closed Loop) */}
+        <div className="rounded-2xl p-4 sm:p-6 bg-surface/60 border border-border/80 backdrop-blur-md flex flex-col lg:flex-row items-center justify-between gap-5 shadow-xs">
+          <div className="flex items-center gap-4 text-left">
+            <div className="w-11 h-11 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+              <RotateCcw className="w-5 h-5 animate-spin-slow" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <h4 className="font-body font-semibold text-sm sm:text-base text-ink">
+                  Continuous Closed-Loop Re-Calibration
+                </h4>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/30 font-semibold">
+                  LIVE LOOP
+                </span>
+              </div>
+              <p className="font-body text-xs sm:text-sm text-muted max-w-2xl">
+                Interview debriefs, rejection analytics, and hiring rubrics from Paystack, Moniepoint &amp; Flutterwave continuously re-train our weekly curriculum.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 font-mono text-xs text-gold shrink-0 bg-gold/10 border border-gold/20 px-3.5 py-2 rounded-xl">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-medium text-ink">Cohort 04 Admissions Open</span>
+            <Link href="/onboarding" className="text-gold font-bold hover:underline flex items-center gap-0.5">
+              <span>Apply</span>
+              <ChevronRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+
+      </section>
+
+      {/* 3. CURRICULUM TRACKS: High-Density Curriculum Breakdown */}
+      <section id="tracks" className="py-24 border-t border-border/80 bg-surface/20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-14">
+          
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                <span>CURRICULUM ARCHITECTURE</span>
+              </div>
+              <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
+                Designed for Tier-1 Hiring Rubrics
+              </h2>
+              <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
+                We don&apos;t teach generic slide decks. Every curriculum is reverse-engineered
+                from the actual interview benchmarks and codebase standards of Nigeria&apos;s leading tech employers.
+              </p>
+            </div>
+
+            {/* Diagnostic Assessment CTA pill */}
+            <Link href="/onboarding" className="inline-block group/hdr shrink-0">
+              <div className="h-11 sm:h-12 rounded-full bg-surface-elevated hover:bg-surface border border-border hover:border-gold/50 text-ink font-body text-xs sm:text-sm font-semibold pl-5 pr-2 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer">
+                <span className="tracking-wide">Start 5-Min Diagnostic</span>
+                <span className="relative w-8 h-8 rounded-full bg-gold flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/hdr:translate-x-4 group-hover/hdr:-translate-y-4" />
+                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/hdr:translate-x-0 group-hover/hdr:translate-y-0" />
+                </span>
+              </div>
             </Link>
           </div>
 
           {/* Tracks Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {CAREER_TRACKS.map((track) => (
-              <Card
-                key={track.id}
-                featured={track.isFeatured}
-                className="p-7 flex flex-col justify-between space-y-7 shadow-lg"
-              >
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <Badge variant={track.isFeatured ? 'active' : 'neutral'}>
-                      {track.isFeatured ? 'FLAGSHIP TRACK' : 'COHORT OPEN'}
-                    </Badge>
-                    <span className="font-mono text-xs text-muted flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-gold" />
-                      {track.duration}
-                    </span>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            {enrichedTracks.map((track) => {
+              const TrackIcon = track.icon
+              return (
+                <div
+                  key={track.id}
+                  className={cn(
+                    'rounded-3xl p-6 sm:p-7 bg-surface border transition-all duration-300 flex flex-col justify-between space-y-6 relative overflow-hidden backdrop-blur-md group hover:-translate-y-1 hover:shadow-xl',
+                    track.isFeatured
+                      ? 'border-2 border-gold shadow-lg ring-1 ring-gold/30'
+                      : 'border-border/90 hover:border-gold/50 shadow-sm'
+                  )}
+                >
+                  {/* Featured Track Glow Accent */}
+                  {track.isFeatured && (
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold via-amber-300 to-gold" />
+                  )}
 
-                  <div className="space-y-1.5">
-                    <h3 className="font-display text-2xl font-bold text-ink">
-                      {track.title}
-                    </h3>
-                    <p className="font-body text-xs text-gold font-medium">
-                      {track.subtitle}
-                    </p>
-                  </div>
+                  {/* Ambient Backdrop Glow */}
+                  <div
+                    className={cn(
+                      'absolute -top-16 -right-16 w-44 h-44 rounded-full blur-3xl pointer-events-none',
+                      track.isFeatured ? 'bg-gold/10' : 'bg-stone-500/5'
+                    )}
+                  />
 
-                  <p className="font-body text-xs sm:text-sm text-muted leading-relaxed">
-                    {track.description}
-                  </p>
-
-                  {/* Skills Grid */}
-                  <div className="space-y-2 pt-2 border-t border-border/60">
-                    <div className="text-[11px] font-mono text-muted uppercase">
-                      VERIFIED COMPETENCIES
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {track.keySkills.map((skill) => (
+                  {/* Card Body */}
+                  <div className="space-y-5 relative z-10">
+                    
+                    {/* Top Status & Duration Row */}
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-9 h-9 rounded-xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                          <TrackIcon className="w-4 h-4" />
+                        </div>
                         <span
-                          key={skill}
-                          className="font-mono text-xs px-2.5 py-1 rounded-pill bg-bg border border-border text-ink"
+                          className={cn(
+                            'font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full border',
+                            track.isFeatured
+                              ? 'bg-gold text-[#0A0A0A] border-gold shadow-2xs'
+                              : 'bg-surface-elevated border-border text-muted'
+                          )}
                         >
-                          {skill}
+                          {track.isFeatured ? 'FLAGSHIP TRACK' : 'COHORT OPEN'}
                         </span>
-                      ))}
+                      </div>
+                      <span className="font-mono text-xs text-muted flex items-center gap-1.5 shrink-0">
+                        <Clock className="w-3.5 h-3.5 text-gold" />
+                        <span>{track.duration}</span>
+                      </span>
                     </div>
+
+                    {/* Title & Subtitle */}
+                    <div className="space-y-1">
+                      <h3 className="font-body text-xl sm:text-2xl font-semibold text-ink tracking-tight group-hover:text-gold transition-colors">
+                        {track.title}
+                      </h3>
+                      <p className="font-mono text-xs text-gold font-medium">
+                        {track.subtitle}
+                      </p>
+                    </div>
+
+                    <p className="font-body text-xs sm:text-sm text-muted leading-relaxed">
+                      {track.description}
+                    </p>
+
+                    {/* Target Compensation & Velocity Metrics Chips */}
+                    <div className="grid grid-cols-2 gap-2 text-left font-mono">
+                      <div className="p-2.5 rounded-2xl bg-surface-elevated/70 border border-border/80 space-y-0.5">
+                        <span className="text-[10px] text-muted uppercase block">TARGET SALARY</span>
+                        <span className="text-xs sm:text-sm font-bold text-ink block">{track.salaryRange}</span>
+                        <span className="text-[10px] text-muted block truncate">Lagos / Remote Hybrid</span>
+                      </div>
+                      <div className="p-2.5 rounded-2xl bg-surface-elevated/70 border border-border/80 space-y-0.5">
+                        <span className="text-[10px] text-muted uppercase block">PLACEMENT VELOCITY</span>
+                        <span className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 block">{track.avgPlacement}</span>
+                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 block font-semibold truncate">{track.matchScore}</span>
+                      </div>
+                    </div>
+
+                    {/* Verified Competencies */}
+                    <div className="space-y-2 pt-2 border-t border-border/60">
+                      <div className="text-[11px] font-mono text-muted uppercase">
+                        VERIFIED COMPETENCIES
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {track.keySkills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="font-mono text-xs px-2.5 py-1 rounded-full bg-surface-elevated border border-border/80 text-ink font-medium hover:border-gold/40 transition-colors"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
 
-                  {/* Hiring Pipeline Partners */}
-                  <div className="space-y-2 pt-1">
-                    <div className="text-[11px] font-mono text-muted uppercase">
-                      HIRING PARTNERS
-                    </div>
-                    <div className="flex flex-wrap gap-2 text-xs font-mono text-ink">
-                      {track.hiringPartners.map((p) => (
-                        <span key={p} className="text-ink/90">
-                          {p} ·
+                  {/* Card Bottom CTA */}
+                  <div className="pt-4 border-t border-border/70 space-y-3 relative z-10">
+                    <Link href="/onboarding" className="block w-full group/btn">
+                      <div className={cn(
+                        'h-12 rounded-full font-body text-xs sm:text-sm font-semibold pl-5 pr-2 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer',
+                        track.isFeatured
+                          ? 'bg-gold hover:bg-gold-light text-[#0A0A0A]'
+                          : 'bg-surface-elevated hover:bg-surface border border-border hover:border-gold/50 text-ink'
+                      )}>
+                        <span className="tracking-wide">Take Track Diagnostic</span>
+                        <span className={cn(
+                          'relative w-8 h-8 rounded-full flex items-center justify-center overflow-hidden shadow-xs shrink-0 transition-transform',
+                          track.isFeatured ? 'bg-white text-[#0A0A0A]' : 'bg-gold text-[#0A0A0A]'
+                        )}>
+                          <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-4 group-hover/btn:-translate-y-4" />
+                          <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/btn:translate-x-0 group-hover/btn:translate-y-0" />
                         </span>
-                      ))}
+                      </div>
+                    </Link>
+
+                    <div className="flex items-center justify-between font-mono text-[11px] text-muted px-1">
+                      <span>Includes 2-Mo Enterprise Sprint</span>
+                      <span className="text-gold font-semibold">{track.spotsLeft}</span>
                     </div>
                   </div>
-                </div>
 
-                <div className="pt-4 border-t border-border/60 space-y-3">
-                  <Link href="/onboarding" className="block w-full">
-                    <Button
-                      variant={track.isFeatured ? 'primary' : 'secondary'}
-                      size="default"
-                      fullWidth
-                    >
-                      Take Diagnostic for this Track
-                    </Button>
-                  </Link>
-
-                  <div className="text-center font-mono text-[11px] text-muted">
-                    Includes 2-Month Virtual Internship & Placement Engine
-                  </div>
                 </div>
-              </Card>
-            ))}
+              )
+            })}
           </div>
+
         </div>
       </section>
 
