@@ -37,6 +37,10 @@ import {
   Copy,
   RotateCcw,
   Lock,
+  HelpCircle,
+  MessageSquare,
+  DollarSign,
+  Calendar,
 } from 'lucide-react'
 import { MarketingNav } from '@/components/marketing/marketing-nav'
 import { MarketingFooter } from '@/components/marketing/marketing-footer'
@@ -94,8 +98,14 @@ export default function MarketingLandingPage() {
   const [activeTrackIndex, setActiveTrackIndex] = React.useState<number>(0)
   // Hero Interactive Accordion Student State
   const [expandedStudent, setExpandedStudent] = React.useState<number>(0)
-  // FAQ state
+  // Employer interactive preview state
+  const [employerPreviewTab, setEmployerPreviewTab] = React.useState<'dossier' | 'benchmarks' | 'sla'>('dossier')
+  const [employerInterviewRequested, setEmployerInterviewRequested] = React.useState<boolean>(false)
+  // Pricing billing cycle state
+  const [pricingPeriod, setPricingPeriod] = React.useState<'installments' | 'full'>('installments')
+  // FAQ state & category filter
   const [openFaq, setOpenFaq] = React.useState<number | null>(0)
+  const [faqCategory, setFaqCategory] = React.useState<'all' | 'curriculum' | 'placements' | 'pricing'>('all')
   const toggleFaq = (idx: number) => setOpenFaq(openFaq === idx ? null : idx)
 
   const loopStages = [
@@ -283,23 +293,38 @@ export default function MarketingLandingPage() {
   const faqs = [
     {
       q: 'Do you guarantee a job placement upon graduation?',
-      a: 'We guarantee structured access, verified effort, and partner pipeline routing—not arbitrary job offers. In line with global ethics, we avoid misleading "100% job promises." Instead, our placement engine actively tailors your CV, matches you with pre-vetted employers, and submits applications on your behalf until you are placed.',
+      a: 'We guarantee structured access, verified effort, and partner pipeline routing—not arbitrary job offers. In line with global engineering hiring ethics, we avoid misleading "100% job guarantees." Instead, our placement engine actively tailors your CV, matches you with pre-vetted employers across Nigeria and globally, and submits applications on your behalf until you are placed.',
+      category: 'placements',
     },
     {
       q: 'Can I complete a cohort while working a full-time job?',
-      a: 'Yes. Our tracks are tailored for working professionals and career switchers. Live masterclasses occur on evenings and weekends, and all project capstones have asynchronous mentoring windows with 24/7 technical TA review.',
+      a: 'Yes. All our tracks are specifically engineered for working professionals and career switchers. Live masterclasses occur on weekday evenings (7 PM WAT) and Saturdays, with 24/7 asynchronous access to video archives, code sandbox labs, and TA office hours on Discord.',
+      category: 'curriculum',
     },
     {
-      q: 'How does the 2-month virtual internship work?',
-      a: 'The final 8 weeks of every flagship track transition you from student to practitioner. You receive simulated sprint briefs from actual enterprise engineering teams, submit pull requests, undergo real code reviews, and earn supervisor ratings on your public verified portfolio.',
+      q: 'How does the 8-week virtual enterprise internship work?',
+      a: 'The final 8 weeks of every flagship track transition you from student to practitioner. You are embedded into simulated engineering squads at companies like Paystack, Moniepoint, and Flutterwave. You receive real Jira-style sprint briefs, open pull requests, resolve merge conflicts, and earn lead engineer supervisor ratings.',
+      category: 'curriculum',
     },
     {
       q: 'How is my CV generated from verified coursework?',
-      a: 'Unlike generic AI resume builders that hallucinate skills, Wedin auto-generates your ATS-optimized CV directly from your completed GitHub repositories, project scores, and internship evaluations. When employers look at your CV, every bullet point links to verified proof-of-work.',
+      a: 'Unlike generic AI resume builders that hallucinate skills, Wedin auto-generates your ATS-optimized CV directly from your completed GitHub repositories, project benchmarks, and supervisor evaluations. When recruiters scan your CV, every bullet point contains a cryptographic proof-of-work link verifying your code.',
+      category: 'placements',
     },
     {
-      q: 'What are the tuition payment options?',
-      a: 'We offer localized monthly installment plans in Naira (₦) via Paystack/Flutterwave, as well as USD tuition for the diaspora. Installment plans allow you to pay as you learn rather than paying a prohibitive lump-sum fee upfront.',
+      q: 'What are the tuition payment options and installment plans?',
+      a: 'We believe finances should never lock out talent. We offer localized 4-month zero-interest installment plans in Naira (₦35,000 / month) via Paystack and Flutterwave, as well as one-time discounted options and USD payment rails for international learners.',
+      category: 'pricing',
+    },
+    {
+      q: 'What happens if I fall behind or miss a capstone deadline?',
+      a: 'Every student is paired with a dedicated technical mentor. If life happens, you can take advantage of our 1-time cohort pause policy to resume in the next cycle without paying any reactivation or restart fees.',
+      category: 'curriculum',
+    },
+    {
+      q: 'How do employers discover and interview Wedin fellows?',
+      a: 'Our partner network includes top African tech giants and remote US/UK scaleups. As you complete capstones, the Placement Engine flags your code benchmarks to relevant hiring managers, enabling 72-hour direct interview dispatches with zero agency markup.',
+      category: 'placements',
     },
   ]
 
@@ -1924,263 +1949,747 @@ export default function MarketingLandingPage() {
       </section>
 
       {/* 5. FOR EMPLOYERS: The Talent Pipeline */}
-      <section id="employers" className="py-24 border-t border-border/80 bg-surface/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-          <div className="p-8 sm:p-14 rounded-card bg-surface border border-gold/40 space-y-8 shadow-2xl relative">
-            <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-pill bg-bg border border-border text-xs font-mono text-gold">
+      <section id="employers" className="py-24 border-t border-border/80 bg-surface/30 relative overflow-hidden">
+        {/* Subtle background ambient light */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-14 relative z-10">
+          {/* Header Row */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
                 <Building2 className="w-3.5 h-3.5" />
                 <span>FOR HIRING PARTNERS & TECH TEAMS</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse ml-1" />
               </div>
-              <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
+              <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
                 Hire Pre-Vetted African Tech Talent in 72 Hours
               </h2>
-              <p className="font-body text-base text-muted leading-relaxed">
-                Recruiting junior-to-mid talent is noisy and time-consuming. Wedin delivers candidates
-                with verified code repositories, evaluated sprint reviews, and supervisor scores.
+              <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
+                Eliminate 95% of resume noise. Wedin connects your engineering leaders directly to candidates with pre-evaluated code repositories, enterprise sprint PRs, and verified lead supervisor ratings.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-border/60">
-              <div className="space-y-2">
-                <div className="font-display text-2xl font-bold text-ink">
-                  Zero Sourcing Noise
+            {/* Quick stats badge pill */}
+            <div className="flex items-center gap-3 self-start md:self-auto bg-surface border border-border/90 px-4 py-2.5 rounded-2xl shadow-xs">
+              <Clock className="w-4 h-4 text-gold shrink-0" />
+              <div className="text-xs font-body">
+                <span className="font-semibold text-ink">72-Hour Direct SLA</span>
+                <span className="text-muted block text-[11px]">From role brief to screened candidate shortlist</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Key SLA Metric Highlights */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="p-5 rounded-2xl bg-surface border border-border/80 space-y-1 shadow-xs">
+              <div className="font-body text-2xl sm:text-3xl font-semibold text-ink">72 Hours</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-gold font-medium">Time to First Screen</div>
+              <p className="text-xs text-muted pt-1">Pre-screened shortlists matched to your exact tech stack.</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface border border-border/80 space-y-1 shadow-xs">
+              <div className="font-body text-2xl sm:text-3xl font-semibold text-gold">₦0 Upfront</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-gold font-medium">Free Beta Postings</div>
+              <p className="text-xs text-muted pt-1">Post open requisitions and preview vetted portfolios with zero fees.</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface border border-border/80 space-y-1 shadow-xs">
+              <div className="font-body text-2xl sm:text-3xl font-semibold text-ink">94.2%</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-gold font-medium">12-Month Retention</div>
+              <p className="text-xs text-muted pt-1">Fellows pre-adapted to enterprise codebases & agile sprint pacing.</p>
+            </div>
+            <div className="p-5 rounded-2xl bg-surface border border-border/80 space-y-1 shadow-xs">
+              <div className="font-body text-2xl sm:text-3xl font-semibold text-emerald-500">100%</div>
+              <div className="text-xs font-mono uppercase tracking-wider text-emerald-500 font-medium">Verified Code Proof</div>
+              <p className="text-xs text-muted pt-1">Every skill backed by verifiable GitHub commits and supervisor sign-offs.</p>
+            </div>
+          </div>
+
+          {/* Interactive Candidate Shortlist Inspector Terminal */}
+          <div className="rounded-3xl bg-surface border border-border/90 shadow-xl overflow-hidden">
+            {/* Terminal Top Bar with Tabs */}
+            <div className="px-6 py-4 border-b border-border/80 bg-surface/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
                 </div>
-                <p className="font-body text-xs text-muted leading-relaxed">
-                  Every fellow has passed 4 rigorous capstones and completed an 8-week virtual internship.
-                </p>
+                <span className="text-xs font-mono text-muted pl-2 border-l border-border/80 flex items-center gap-1.5">
+                  <Terminal className="w-3.5 h-3.5 text-gold" />
+                  <span>WEDIN_TALENT_PIPELINE_ROUTER // VETTING_SLA</span>
+                </span>
               </div>
 
-              <div className="space-y-2">
-                <div className="font-display text-2xl font-bold text-gold">
-                  Free Job Postings
-                </div>
-                <p className="font-body text-xs text-muted leading-relaxed">
-                  Post open roles for free during our hiring partner beta and review curated shortlists.
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <div className="font-display text-2xl font-bold text-success">
-                  Success-Fee Model
-                </div>
-                <p className="font-body text-xs text-muted leading-relaxed">
-                  Pay standard placement fees only when you make a confirmed hire. No subscription lock-in.
-                </p>
+              {/* Tab Switcher */}
+              <div className="flex items-center gap-1 bg-bg p-1 rounded-full border border-border/80 text-xs font-body">
+                <button
+                  type="button"
+                  onClick={() => setEmployerPreviewTab('dossier')}
+                  className={cn(
+                    'px-3.5 py-1.5 rounded-full transition-all cursor-pointer font-medium',
+                    employerPreviewTab === 'dossier'
+                      ? 'bg-surface text-ink shadow-xs border border-border/80'
+                      : 'text-muted hover:text-ink'
+                  )}
+                >
+                  Candidate Dossier
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEmployerPreviewTab('benchmarks')}
+                  className={cn(
+                    'px-3.5 py-1.5 rounded-full transition-all cursor-pointer font-medium',
+                    employerPreviewTab === 'benchmarks'
+                      ? 'bg-surface text-ink shadow-xs border border-border/80'
+                      : 'text-muted hover:text-ink'
+                  )}
+                >
+                  Code Benchmarks
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEmployerPreviewTab('sla')}
+                  className={cn(
+                    'px-3.5 py-1.5 rounded-full transition-all cursor-pointer font-medium',
+                    employerPreviewTab === 'sla'
+                      ? 'bg-surface text-ink shadow-xs border border-border/80'
+                      : 'text-muted hover:text-ink'
+                  )}
+                >
+                  72h SLA Flow
+                </button>
               </div>
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <Link href="/onboarding">
-                <Button variant="primary" size="default" className="gap-2">
-                  <span>Join Hiring Partner Network</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
-              </Link>
-              <a href="mailto:partners@wedincareers.io">
-                <Button variant="secondary" size="default">
+            {/* Tab 1: Candidate Dossier */}
+            {employerPreviewTab === 'dossier' && (
+              <div className="p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-gold/15 border-2 border-gold/40 flex items-center justify-center text-gold font-mono font-bold text-xl shadow-inner shrink-0">
+                      AO
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-body text-xl font-semibold text-ink">Amara Okonjo</h4>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-500 border border-emerald-500/30 text-[10px] font-mono font-semibold">
+                          AVAILABLE IN 72H
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted font-body">Full-Stack AI Systems Fellow · Lagos, Nigeria (Open to Remote / Hybrid)</p>
+                      <div className="flex flex-wrap items-center gap-2 mt-1.5 text-[11px] font-mono text-muted">
+                        <span className="text-gold font-medium">Target Compensation: ₦24M – ₦32M / yr</span>
+                        <span>·</span>
+                        <span>Graduated Cohort 03</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-2 border-t border-border/60">
+                    <div className="text-xs font-mono uppercase tracking-wider text-muted font-medium">Verified Enterprise Experience</div>
+                    <div className="p-3.5 rounded-xl bg-bg/80 border border-border/80 space-y-2">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-body font-medium text-ink flex items-center gap-2">
+                          <Building2 className="w-3.5 h-3.5 text-gold" />
+                          <span>Simulated Enterprise Sprint: Moniepoint Squad</span>
+                        </span>
+                        <span className="text-[11px] font-mono text-emerald-500 font-medium">PR #84 Merged</span>
+                      </div>
+                      <p className="text-xs text-muted leading-relaxed">
+                        Architected streaming LLM semantic cache reducing p99 latency by 41% across 10,000 requests. Supervisor rating: 9.8/10 by Lead Infrastructure Architect.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Skills Badges */}
+                  <div className="space-y-2">
+                    <div className="text-xs font-mono uppercase tracking-wider text-muted font-medium">Verified Code Capabilities</div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {['Next.js 15', 'TypeScript', 'pgvector', 'FastAPI', 'Multi-Agent Routing', 'Docker', 'Jest (14/14 Passed)'].map((skill, sIdx) => (
+                        <span key={sIdx} className="px-2.5 py-1 rounded-md bg-surface border border-border/90 text-xs font-mono text-ink">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Action Panel */}
+                <div className="lg:col-span-5 bg-bg/70 border border-border/80 rounded-2xl p-6 space-y-5">
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-gold font-semibold">Pre-Screened Audit Score</span>
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-body text-4xl font-semibold text-ink">98.4</span>
+                      <span className="text-xs font-mono text-muted">/ 100 TA Index</span>
+                    </div>
+                    <p className="text-xs text-muted">Top 1% technical baseline benchmarked against Tier-1 African tech standards.</p>
+                  </div>
+
+                  <div className="space-y-2.5 text-xs font-body text-muted pt-2 border-t border-border/60">
+                    <div className="flex items-center justify-between">
+                      <span>Code Review Integrity</span>
+                      <span className="font-mono text-emerald-500 font-semibold">100% Original Commits</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Live Coding Interview Readiness</span>
+                      <span className="font-mono text-ink font-semibold">Pre-Vetted by Senior TAs</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span>Direct Sourcing Fee</span>
+                      <span className="font-mono text-gold font-semibold">₦0 Upfront (Contingent)</span>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 space-y-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEmployerInterviewRequested(true)
+                        setTimeout(() => setEmployerInterviewRequested(false), 3000)
+                      }}
+                      className="w-full h-11 rounded-xl bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs font-semibold px-4 flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer"
+                    >
+                      {employerInterviewRequested ? (
+                        <>
+                          <CheckCircle2 className="w-4 h-4 text-black" />
+                          <span>Interview Request Dispatched to Amara</span>
+                        </>
+                      ) : (
+                        <>
+                          <Calendar className="w-4 h-4 text-black" />
+                          <span>1-Click Request Candidate Interview</span>
+                        </>
+                      )}
+                    </button>
+                    <Link
+                      href="/onboarding"
+                      className="w-full h-10 rounded-xl bg-surface hover:bg-bg border border-border/90 text-ink font-body text-xs font-medium px-4 flex items-center justify-center gap-2 transition-colors block text-center"
+                    >
+                      <span>View Full Cryptographic Dossier & Repo</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-muted" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Tab 2: Code Benchmarks */}
+            {employerPreviewTab === 'benchmarks' && (
+              <div className="p-6 sm:p-8 space-y-6 font-mono text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="p-4 rounded-xl bg-bg/80 border border-border/80 space-y-1">
+                    <span className="text-[11px] text-muted">TEST SUITE COVERAGE</span>
+                    <div className="text-xl font-body font-semibold text-emerald-500">14 / 14 Passed</div>
+                    <p className="text-[11px] text-muted">Jest unit tests + PyTest API assertions verified via CI/CD.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-bg/80 border border-border/80 space-y-1">
+                    <span className="text-[11px] text-muted">P99 LATENCY BENCHMARK</span>
+                    <div className="text-xl font-body font-semibold text-ink">38ms</div>
+                    <p className="text-[11px] text-muted">Redis cache hits & pgvector index query execution times.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-bg/80 border border-border/80 space-y-1">
+                    <span className="text-[11px] text-muted">GIT LOG ACTIVITY</span>
+                    <div className="text-xl font-body font-semibold text-gold">42 Verified PRs</div>
+                    <p className="text-[11px] text-muted">Continuous feature branches, clean commit history & rebase discipline.</p>
+                  </div>
+                  <div className="p-4 rounded-xl bg-bg/80 border border-border/80 space-y-1">
+                    <span className="text-[11px] text-muted">LEAD TA REVIEW SCORE</span>
+                    <div className="text-xl font-body font-semibold text-ink">9.8 / 10</div>
+                    <p className="text-[11px] text-muted">Evaluated on system modularity, error handling & documentation.</p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-bg border border-border/80 text-[11px] text-muted font-mono space-y-1.5">
+                  <div className="text-gold font-semibold">$ wedin-verify --sha256 --strict --candidate amara-okonjo</div>
+                  <div className="text-emerald-400">✓ Repository integrity signed by Wedin Core Key (ED25519)</div>
+                  <div className="text-emerald-400">✓ Zero plagiarism detected across 1,840 evaluated capstone repositories</div>
+                  <div className="text-ink">✓ Ready for technical screen: Available for next-day calendar invite</div>
+                </div>
+              </div>
+            )}
+
+            {/* Tab 3: 72h SLA Flow */}
+            {employerPreviewTab === 'sla' && (
+              <div className="p-6 sm:p-8 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="p-5 rounded-2xl bg-bg/80 border border-border/80 space-y-2 relative">
+                    <div className="w-8 h-8 rounded-full bg-gold/20 border border-gold/40 text-gold flex items-center justify-center font-mono font-bold text-xs">
+                      01
+                    </div>
+                    <h5 className="font-body font-semibold text-base text-ink">Hour 0 – 24: Role Calibration</h5>
+                    <p className="font-body text-xs text-muted leading-relaxed">
+                      You specify your stack, seniority tier, and sprint requirements. Our algorithm instantly matches pre-evaluated fellows with matching capstone benchmarks.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-bg/80 border border-border/80 space-y-2 relative">
+                    <div className="w-8 h-8 rounded-full bg-gold/20 border border-gold/40 text-gold flex items-center justify-center font-mono font-bold text-xs">
+                      02
+                    </div>
+                    <h5 className="font-body font-semibold text-base text-ink">Hour 24 – 48: Verified Shortlist</h5>
+                    <p className="font-body text-xs text-muted leading-relaxed">
+                      Receive a curated shortlist of 3–5 candidates with full Git commit histories, TA review recordings, and supervisor sprint evaluations. No cold resumes.
+                    </p>
+                  </div>
+
+                  <div className="p-5 rounded-2xl bg-bg/80 border border-border/80 space-y-2 relative">
+                    <div className="w-8 h-8 rounded-full bg-gold/20 border border-gold/40 text-gold flex items-center justify-center font-mono font-bold text-xs">
+                      03
+                    </div>
+                    <h5 className="font-body font-semibold text-base text-ink">Hour 48 – 72: Direct Technical Screen</h5>
+                    <p className="font-body text-xs text-muted leading-relaxed">
+                      1-click schedule live interviews directly into your calendar. Make an offer with 100% confidence backed by our 12-month fellow retention support.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Bottom Actions Row */}
+            <div className="p-6 border-t border-border/80 bg-surface/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-3 text-xs text-muted font-body">
+                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Zero subscription lock-in. Pay standard placement fees only when you make a confirmed hire.</span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                <Link href="/onboarding" className="w-full sm:w-auto group">
+                  <div className="h-11 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs font-semibold pl-5 pr-1.5 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer">
+                    <span className="tracking-wide">Join Hiring Partner Network</span>
+                    <span className="relative w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                      <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                      <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                    </span>
+                  </div>
+                </Link>
+
+                <a
+                  href="mailto:partners@wedincareers.io"
+                  className="px-5 py-2.5 rounded-full bg-surface border border-border/90 hover:border-gold/60 text-ink text-xs font-body font-medium transition-colors w-full sm:w-auto text-center"
+                >
                   Request Candidate Shortlist
-                </Button>
-              </a>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 6. PRICING & LOCAL INSTALLMENTS */}
-      <section id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
+      <section id="pricing" className="py-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-16 relative">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="active">TRANSPARENT TUITION</Badge>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+            <DollarSign className="w-3.5 h-3.5" />
+            <span>TRANSPARENT TUITION · NO HIDDEN BARRIERS</span>
+          </div>
+          <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
             Invest in Your Career with Flexible Installments
           </h2>
-          <p className="font-body text-base text-muted leading-relaxed">
-            No punitive lump-sum barriers. Pay month-by-month as you build your verified portfolio
-            and prepare for placement.
+          <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
+            No punitive lump-sum barriers. Pay month-by-month as you build your verified portfolio and prepare for placement, or save with discounted upfront tuition.
           </p>
+
+          {/* Interactive Billing Selector Toggle */}
+          <div className="pt-4 flex items-center justify-center">
+            <div className="inline-flex items-center p-1 rounded-full bg-surface border border-border/90 shadow-xs">
+              <button
+                type="button"
+                onClick={() => setPricingPeriod('installments')}
+                className={cn(
+                  'px-4 py-2 rounded-full text-xs font-body font-semibold transition-all cursor-pointer flex items-center gap-1.5',
+                  pricingPeriod === 'installments'
+                    ? 'bg-gold text-[#0A0A0A] shadow-xs'
+                    : 'text-muted hover:text-ink'
+                )}
+              >
+                <span>Monthly Installments</span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-black/15 text-black">
+                  Zero Interest
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setPricingPeriod('full')}
+                className={cn(
+                  'px-4 py-2 rounded-full text-xs font-body font-semibold transition-all cursor-pointer flex items-center gap-1.5',
+                  pricingPeriod === 'full'
+                    ? 'bg-gold text-[#0A0A0A] shadow-xs'
+                    : 'text-muted hover:text-ink'
+                )}
+              >
+                <span>Pay Upfront</span>
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-semibold">
+                  Save 10%
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* 3 Tier Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          
           {/* Free Tier */}
-          <Card className="p-7 space-y-6 flex flex-col justify-between">
-            <div className="space-y-5">
+          <div className="p-8 rounded-3xl bg-surface border border-border/80 flex flex-col justify-between shadow-xs hover:border-border transition-all">
+            <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-muted">DIAGNOSTIC</span>
-                <Badge variant="neutral">FREE</Badge>
-              </div>
-              <div className="space-y-1">
-                <div className="font-display text-3xl font-bold text-ink">Free</div>
-                <p className="font-body text-xs text-muted">
-                  Assess your technical baseline and explore matched tracks.
-                </p>
-              </div>
-
-              <ul className="space-y-3 text-xs font-body text-muted pt-2 border-t border-border/60">
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>10-Minute Diagnostic Assessment</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Curriculum Syllabus Previews</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>1 Free ATS Resume Check</span>
-                </li>
-              </ul>
-            </div>
-
-            <Link href="/onboarding" className="block w-full">
-              <Button variant="secondary" size="default" fullWidth>
-                Start Free Diagnostic
-              </Button>
-            </Link>
-          </Card>
-
-          {/* Flagship Installment Plan */}
-          <Card featured className="p-7 space-y-6 flex flex-col justify-between relative shadow-2xl">
-            <div className="space-y-5">
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-gold font-bold">
-                  RECOMMENDED FOR LEARNERS
+                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">BASELINE ASSESSMENT</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-surface border border-border text-xs font-mono text-muted">
+                  FREE
                 </span>
-                <Badge variant="active">INSTALLMENTS</Badge>
               </div>
+
               <div className="space-y-1">
-                <div className="font-display text-3xl font-bold text-ink">
-                  ₦35,000{' '}
-                  <span className="text-xs font-mono font-normal text-muted">
-                    / month
-                  </span>
-                </div>
-                <p className="font-body text-xs text-muted">
-                  Full flagship track with live cohort & virtual internship.
+                <div className="font-body text-4xl font-semibold text-ink">₦0</div>
+                <div className="text-xs font-mono text-muted">Free forever · No credit card required</div>
+                <p className="font-body text-xs text-muted pt-2 leading-relaxed">
+                  Calibrate your technical baseline and explore matched career tracks before committing.
                 </p>
               </div>
 
-              <ul className="space-y-3 text-xs font-body text-muted pt-2 border-t border-border/60">
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Live Weekly Masterclasses & Labs</span>
+              <ul className="space-y-3.5 text-xs font-body text-muted pt-4 border-t border-border/60">
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>10-Minute Technical Baseline Diagnostic</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>4+ Evaluated Capstone Projects</span>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Personalized Track & Pathway Match Score</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>8-Week Virtual Internship Experience</span>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Curriculum Syllabus & Capstone Previews</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Verified Public Portfolio + QR Credential</span>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>1 Free Automated ATS Resume Audit Check</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Automated Placement Engine Routing</span>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Access to Starter Developer Community</span>
                 </li>
               </ul>
             </div>
 
-            <Link href="/onboarding" className="block w-full">
-              <Button variant="primary" size="default" fullWidth>
-                Enroll with Monthly Installments
-              </Button>
-            </Link>
-          </Card>
+            <div className="pt-8">
+              <Link
+                href="/onboarding"
+                className="w-full h-11 rounded-full bg-surface hover:bg-bg border border-border/90 hover:border-gold/60 text-ink font-body text-xs font-semibold px-4 flex items-center justify-center transition-all block text-center"
+              >
+                Start Free Diagnostic
+              </Link>
+            </div>
+          </div>
 
-          {/* Diaspora Tuition */}
-          <Card className="p-7 space-y-6 flex flex-col justify-between">
-            <div className="space-y-5">
+          {/* Flagship Installment Plan (FEATURED CARD) */}
+          <div className="p-8 rounded-3xl bg-surface border-2 border-gold ring-1 ring-gold/30 flex flex-col justify-between relative shadow-2xl scale-[1.02] z-10">
+            {/* Top Pill Highlight */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gold text-[#0A0A0A] font-body text-xs font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+              <Sparkles className="w-3 h-3 fill-black text-black" />
+              <span>MOST POPULAR · FLAGSHIP TRACK</span>
+            </div>
+
+            <div className="space-y-6 pt-2">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-muted">DIASPORA / GLOBAL</span>
-                <Badge variant="neutral">ONE-TIME</Badge>
+                <span className="font-mono text-xs uppercase tracking-wider text-gold font-bold">
+                  LOCALIZED FINANCING
+                </span>
+                <span className="px-2.5 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold">
+                  {pricingPeriod === 'installments' ? '4 MONTHS' : '10% DISCOUNT'}
+                </span>
               </div>
+
               <div className="space-y-1">
-                <div className="font-display text-3xl font-bold text-ink">
-                  $249{' '}
-                  <span className="text-xs font-mono font-normal text-muted">
-                    flat
-                  </span>
-                </div>
-                <p className="font-body text-xs text-muted">
-                  Direct full tuition with expedited 1-on-1 mentoring.
+                {pricingPeriod === 'installments' ? (
+                  <>
+                    <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
+                      ₦35,000
+                      <span className="text-xs font-mono font-normal text-muted">/ month</span>
+                    </div>
+                    <div className="text-xs font-mono text-gold font-medium">
+                      4 monthly payments of ₦35,000 · 0% Interest
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
+                      ₦126,000
+                      <span className="text-xs font-mono font-normal text-muted">one-time</span>
+                    </div>
+                    <div className="text-xs font-mono text-emerald-500 font-medium">
+                      Saved ₦14,000 upfront · Full cohort access
+                    </div>
+                  </>
+                )}
+                <p className="font-body text-xs text-muted pt-2 leading-relaxed">
+                  Full 16-week flagship engineering track, 4 evaluated capstones, and 8-week virtual enterprise internship.
                 </p>
               </div>
 
-              <ul className="space-y-3 text-xs font-body text-muted pt-2 border-t border-border/60">
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>All Flagship Cohort Inclusions</span>
+              <ul className="space-y-3.5 text-xs font-body text-muted pt-4 border-t border-border/60">
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="text-ink font-medium">16 Weeks Live Masterclasses & System Design Labs</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Dedicated 1-on-1 Placement Coaching</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="text-ink font-medium">4 Evaluated Production Capstones with Daily Code Review</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>Direct Routing to Remote US/UK Partners</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="text-ink font-medium">8-Week Virtual Enterprise Internship Squad Placement</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-3.5 h-3.5 text-gold shrink-0" />
-                  <span>International Card & Wire Accepted</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="text-ink font-medium">Cryptographic ATS Proof-of-Work CV & Public Portfolio</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span className="text-ink font-medium">Direct Placement Engine Routing to Partner Hiring Teams</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>1-on-1 TA Office Hours & Mock Technical Interview Prep</span>
                 </li>
               </ul>
             </div>
 
-            <Link href="/onboarding" className="block w-full">
-              <Button variant="secondary" size="default" fullWidth>
-                Enroll via USD
-              </Button>
-            </Link>
-          </Card>
+            <div className="pt-8">
+              <Link href="/onboarding" className="block w-full group">
+                <div className="h-12 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold pl-6 pr-2 flex items-center justify-between gap-3 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer">
+                  <span className="tracking-wide">
+                    {pricingPeriod === 'installments' ? 'Enroll with Monthly Installments' : 'Enroll with Upfront Discount'}
+                  </span>
+                  <span className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                    <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Diaspora / Global Tuition */}
+          <div className="p-8 rounded-3xl bg-surface border border-border/80 flex flex-col justify-between shadow-xs hover:border-border transition-all">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">DIASPORA & GLOBAL</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-surface border border-border text-xs font-mono text-muted">
+                  REMOTE US/UK
+                </span>
+              </div>
+
+              <div className="space-y-1">
+                {pricingPeriod === 'installments' ? (
+                  <>
+                    <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
+                      $65
+                      <span className="text-xs font-mono font-normal text-muted">/ month</span>
+                    </div>
+                    <div className="text-xs font-mono text-muted">4 installments of $65 · International cards accepted</div>
+                  </>
+                ) : (
+                  <>
+                    <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
+                      $225
+                      <span className="text-xs font-mono font-normal text-muted">one-time</span>
+                    </div>
+                    <div className="text-xs font-mono text-emerald-500 font-medium">Save 10% · Regular $249 flat</div>
+                  </>
+                )}
+                <p className="font-body text-xs text-muted pt-2 leading-relaxed">
+                  Full flagship curriculum with expedited 1-on-1 mentoring and routing to remote international teams.
+                </p>
+              </div>
+
+              <ul className="space-y-3.5 text-xs font-body text-muted pt-4 border-t border-border/60">
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>All Flagship Cohort Inclusions & Labs</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Dedicated 1-on-1 Global Placement Coach</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Direct Routing to US, UK & European Remote Sprints</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Timezone-Aligned Mentoring (WAT / GMT / EST)</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                  <span>Global Tax & Contractor Invoicing Advisory</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="pt-8">
+              <Link
+                href="/onboarding"
+                className="w-full h-11 rounded-full bg-surface hover:bg-bg border border-border/90 hover:border-gold/60 text-ink font-body text-xs font-semibold px-4 flex items-center justify-center transition-all block text-center"
+              >
+                Enroll via USD / International
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Financial Trust & Transparency Strip */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-border/80">
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="w-4 h-4 text-gold shrink-0" />
+            <div className="text-xs font-body">
+              <span className="font-semibold text-ink block">14-Day Guarantee</span>
+              <span className="text-muted text-[11px]">100% refund if not satisfied before Sprint 2</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Zap className="w-4 h-4 text-gold shrink-0" />
+            <div className="text-xs font-body">
+              <span className="font-semibold text-ink block">0% Interest Financing</span>
+              <span className="text-muted text-[11px]">Pay monthly as you complete project milestones</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Lock className="w-4 h-4 text-gold shrink-0" />
+            <div className="text-xs font-body">
+              <span className="font-semibold text-ink block">Secure Paystack Rails</span>
+              <span className="text-muted text-[11px]">Direct bank transfer, USSD, and debit cards</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <Award className="w-4 h-4 text-gold shrink-0" />
+            <div className="text-xs font-body">
+              <span className="font-semibold text-ink block">No ISA Lock-In</span>
+              <span className="text-muted text-[11px]">Keep 100% of your earnings when placed</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 7. FAQ ACCORDIONS */}
-      <section id="faq" className="py-24 border-t border-border/80 bg-surface/20">
+      <section id="faq" className="py-24 border-t border-border/80 bg-surface/20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 space-y-12">
+          {/* Header */}
           <div className="text-center space-y-4">
-            <Badge variant="active">FREQUENTLY ASKED QUESTIONS</Badge>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
-              Everything You Need to Know
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>TRANSPARENT ADMISSIONS & ANSWERS</span>
+            </div>
+            <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
+              Frequently Asked Questions
             </h2>
-            <p className="font-body text-base text-muted">
-              Direct, transparent answers regarding curriculum, placements, and time commitment.
+            <p className="font-body text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+              Direct, transparent answers regarding curriculum rigor, time commitments, payment installments, and partner placement routing.
             </p>
+
+            {/* Category Filter Tabs */}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-1.5">
+              {[
+                { key: 'all', label: 'All Questions' },
+                { key: 'curriculum', label: 'Curriculum & Sprints' },
+                { key: 'placements', label: 'Placements & ATS' },
+                { key: 'pricing', label: 'Tuition & Installments' },
+              ].map(cat => (
+                <button
+                  key={cat.key}
+                  type="button"
+                  onClick={() => setFaqCategory(cat.key as any)}
+                  className={cn(
+                    'px-4 py-1.5 rounded-full text-xs font-body transition-all cursor-pointer font-medium',
+                    faqCategory === cat.key
+                      ? 'bg-gold text-[#0A0A0A] font-semibold shadow-xs'
+                      : 'bg-surface border border-border/80 text-muted hover:text-ink'
+                  )}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
 
+          {/* Accordion Questions List */}
           <div className="space-y-3">
-            {faqs.map((faq, idx) => {
-              const isOpen = openFaq === idx
-              return (
-                <div
-                  key={idx}
-                  className="p-5 rounded-card bg-surface border border-border transition-colors select-none"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleFaq(idx)}
-                    className="w-full flex items-center justify-between text-left gap-4 cursor-pointer"
+            {faqs
+              .filter(faq => faqCategory === 'all' || faq.category === faqCategory)
+              .map((faq, idx) => {
+                const isOpen = openFaq === idx
+                return (
+                  <div
+                    key={idx}
+                    className={cn(
+                      'p-5 sm:p-6 rounded-2xl border transition-all select-none',
+                      isOpen
+                        ? 'bg-surface border-gold/60 shadow-sm'
+                        : 'bg-surface/80 border-border/80 hover:border-border'
+                    )}
                   >
-                    <h4 className="font-body font-medium text-sm sm:text-base text-ink">
-                      {faq.q}
-                    </h4>
-                    <ChevronDown
-                      className={`w-4 h-4 text-gold shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <p className="font-body text-xs sm:text-sm text-muted mt-3 leading-relaxed border-t border-border/60 pt-3">
-                      {faq.a}
-                    </p>
-                  )}
-                </div>
-              )
-            })}
+                    <button
+                      type="button"
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full flex items-center justify-between text-left gap-4 cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className={cn(
+                          'w-2 h-2 rounded-full transition-colors shrink-0',
+                          isOpen ? 'bg-gold animate-pulse' : 'bg-border'
+                        )} />
+                        <h4 className="font-body font-semibold text-sm sm:text-base text-ink leading-snug">
+                          {faq.q}
+                        </h4>
+                      </div>
+                      <div className={cn(
+                        'w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200',
+                        isOpen ? 'bg-gold/20 text-gold rotate-180' : 'bg-surface border border-border/80 text-muted'
+                      )}>
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      </div>
+                    </button>
+                    {isOpen && (
+                      <div className="pt-3.5 mt-3.5 border-t border-border/60 pl-5">
+                        <p className="font-body text-xs sm:text-sm text-muted leading-relaxed">
+                          {faq.a}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+          </div>
+
+          {/* Admissions Counselor Help Card */}
+          <div className="p-6 sm:p-8 rounded-3xl bg-surface border border-border/90 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                <MessageSquare className="w-5 h-5" />
+              </div>
+              <div className="space-y-1">
+                <h5 className="font-body font-semibold text-base text-ink">Still have questions about your fit?</h5>
+                <p className="font-body text-xs text-muted leading-relaxed">
+                  Our admissions engineering advisors can evaluate your background or walk you through the syllabus.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 w-full sm:w-auto shrink-0">
+              <a
+                href="mailto:admissions@wedincareers.io"
+                className="px-5 py-2.5 rounded-full bg-surface border border-border/90 hover:border-gold/60 text-ink text-xs font-body font-medium transition-colors w-full sm:w-auto text-center"
+              >
+                Contact Admissions
+              </a>
+              <Link href="/onboarding" className="w-full sm:w-auto">
+                <button
+                  type="button"
+                  className="px-5 py-2.5 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] text-xs font-body font-semibold transition-all w-full sm:w-auto cursor-pointer shadow-xs"
+                >
+                  Take 10-Min Diagnostic
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -2191,33 +2700,34 @@ export default function MarketingLandingPage() {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center space-y-8 relative z-10">
           <div className="space-y-4 max-w-2xl mx-auto">
-            <h2 className="font-display text-4xl sm:text-6xl font-bold text-ink tracking-tight leading-[1.08]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>THE CLOSED LOOP PLATFORM</span>
+            </div>
+            <h2 className="font-body text-3xl sm:text-5xl lg:text-6xl font-semibold text-ink tracking-tight leading-[1.12]">
               Stop Applying into the Black Hole.{' '}
               <span className="text-gold">Enter the Closed Loop.</span>
             </h2>
-            <p className="font-body text-base sm:text-lg text-muted leading-relaxed">
-              Your path to a world-class tech career starts with a 10-minute diagnostic.
-              We calibrate your technical baseline, match your track, and prepare you to get hired.
+            <p className="font-body text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto">
+              Your path to a world-class tech career starts with a 10-minute diagnostic. We calibrate your technical baseline, match your track, and prepare you to get hired.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Link href="/onboarding" className="w-full sm:w-auto">
-              <Button
-                variant="primary"
-                size="default"
-                fullWidth
-                className="gap-2 h-14 px-10 text-base shadow-glow"
-              >
-                <Sparkles className="w-4 h-4 fill-black text-black" />
-                <span>Start Your Free Assessment</span>
-              </Button>
+            <Link href="/onboarding" className="w-full sm:w-auto group">
+              <div className="h-14 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-sm sm:text-base font-semibold pl-8 pr-2.5 flex items-center justify-between gap-4 shadow-glow hover:shadow-xl transition-all duration-200 cursor-pointer">
+                <span className="tracking-wide">Start Your Free Assessment</span>
+                <span className="relative w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                </span>
+              </div>
             </Link>
 
             <Link href="/app/dashboard" className="w-full sm:w-auto">
-              <Button variant="secondary" size="default" fullWidth className="h-14 px-8">
+              <div className="h-14 rounded-full bg-surface hover:bg-bg border border-border/90 hover:border-gold/60 text-ink font-body text-sm font-semibold px-8 flex items-center justify-center transition-colors cursor-pointer shadow-xs">
                 Learner Dashboard
-              </Button>
+              </div>
             </Link>
           </div>
         </div>
