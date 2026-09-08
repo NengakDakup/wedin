@@ -48,24 +48,25 @@ function YoutubeIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function MarketingFooter() {
   const [langOpen, setLangOpen] = React.useState(false)
-  const [selectedLang, setSelectedLang] = React.useState('English (NG / Global)')
+  const [selectedLang, setSelectedLang] = React.useState('English (Nigeria / Global)')
 
   const languages = [
-    'English (NG / Global)',
-    'English (UK / Diaspora)',
-    'Français (Afrique)',
-    'Português',
+    'English (Nigeria / Global)',
+    'English (United Kingdom / Diaspora)',
+    'English (United States & Canada)',
+    'English (Kenya & East Africa)',
+    'English (Ghana & West Africa)',
   ]
 
   return (
-    <footer className="pt-2 pb-12 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full transition-colors duration-200">
-      {/* Floating Rounded Card Container matching concept */}
-      <div className="rounded-[32px] sm:rounded-[40px] bg-surface border border-border/80 p-8 sm:p-14 shadow-xs text-ink space-y-12 transition-colors">
+    <footer className="pt-2 pb-10 px-2.5 sm:px-4 lg:px-6 w-full transition-colors duration-200">
+      {/* Full-Width Floating Rounded Card Container with Website Gold Styling */}
+      <div className="rounded-[32px] sm:rounded-[44px] bg-surface border border-border/80 p-8 sm:p-14 lg:p-16 shadow-xs text-ink space-y-12 w-full transition-colors">
         {/* Top Row: Brand Logo & Tagline */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-border/60">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-border/60">
           <Link href="/" className="flex items-center gap-2.5 group">
-            {/* Custom Brand Logo Glyph */}
-            <div className="w-8 h-8 relative flex items-center justify-center text-[#1449BA] dark:text-gold group-hover:scale-105 transition-transform duration-200">
+            {/* Custom Brand Logo Glyph in Gold */}
+            <div className="w-8 h-8 relative flex items-center justify-center text-gold group-hover:scale-105 transition-transform duration-200">
               <svg
                 viewBox="0 0 32 32"
                 fill="none"
@@ -92,114 +93,129 @@ export function MarketingFooter() {
                 <circle cx="21" cy="16" r="1.5" fill="currentColor" />
               </svg>
             </div>
-            <span className="font-body font-bold text-2xl tracking-tight text-ink">
+            <span className="font-body font-bold text-2xl tracking-tight text-ink group-hover:text-gold transition-colors">
               wedin
             </span>
           </Link>
 
           <p className="font-body text-xs sm:text-sm text-muted">
-            Career transformation and verified placement that actually works.
+            The closed-loop talent infrastructure for African tech.
           </p>
         </div>
 
         {/* Middle Row: Navigation Columns & Contact */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
-          {/* Column 1: Empresa / Company (3 cols) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Column 1: Career Tracks (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="font-body font-semibold text-sm text-ink tracking-tight">
-              Company
+              Career Tracks
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-body text-muted">
               <li>
-                <Link href="/" className="hover:text-ink transition-colors">
-                  About Wedin
-                </Link>
-              </li>
-              <li>
-                <a href="#tracks" className="hover:text-ink transition-colors">
-                  Career Tracks
+                <a href="#tracks" className="hover:text-gold transition-colors">
+                  Full-Stack AI Systems
                 </a>
               </li>
               <li>
-                <a href="#closed-loop" className="hover:text-ink transition-colors">
-                  The Closed Loop
+                <a href="#tracks" className="hover:text-gold transition-colors">
+                  Distributed Cloud Architecture
                 </a>
               </li>
               <li>
-                <a href="#employers" className="hover:text-ink transition-colors">
-                  Hiring Partner Network
+                <a href="#tracks" className="hover:text-gold transition-colors">
+                  Senior Product Engineering
                 </a>
               </li>
               <li>
-                <Link href="/kitchen-sink" className="hover:text-ink transition-colors">
-                  Design System
-                </Link>
+                <a href="#tracks" className="hover:text-gold transition-colors">
+                  Data Systems & Analytics
+                </a>
+              </li>
+              <li>
+                <a href="#closed-loop" className="hover:text-gold transition-colors">
+                  Virtual Enterprise Internship
+                </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 2: Navegação / Navigation (3 cols) */}
+          {/* Column 2: Platform & Placement (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="font-body font-semibold text-sm text-ink tracking-tight">
-              Navigation
+              Platform
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-body text-muted">
               <li>
-                <Link href="/onboarding" className="hover:text-ink transition-colors">
-                  Free Diagnostic
+                <Link href="/onboarding" className="hover:text-gold transition-colors">
+                  10-Minute Diagnostic Assessment
                 </Link>
               </li>
               <li>
-                <a href="#toolkit" className="hover:text-ink transition-colors">
-                  ATS CV Generator
+                <a href="#closed-loop" className="hover:text-gold transition-colors">
+                  The Closed Loop Stepper
                 </a>
               </li>
               <li>
-                <a href="#tracks" className="hover:text-ink transition-colors">
-                  Virtual Enterprise Sprints
+                <a href="#toolkit" className="hover:text-gold transition-colors">
+                  Cryptographic ATS Proof Engine
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-ink transition-colors">
-                  Tuition & Installments
+                <a href="#employers" className="hover:text-gold transition-colors">
+                  72-Hour Employer Pipeline
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-ink transition-colors">
+                <a href="#pricing" className="hover:text-gold transition-colors">
+                  Transparent Tuition & Installments
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-gold transition-colors">
                   Frequently Asked Questions
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contacto / Contact (3 cols) */}
+          {/* Column 3: Contact & Campus (3 cols) */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="font-body font-semibold text-sm text-ink tracking-tight">
-              Contact
+              Contact & Campus
             </h4>
-            <div className="space-y-3 text-xs sm:text-sm font-body text-muted">
+            <div className="space-y-3.5 text-xs sm:text-sm font-body text-muted">
               <a
                 href="mailto:hello@wedincareers.io"
-                className="flex items-center gap-3 group hover:text-ink transition-colors"
+                className="flex items-center gap-3 group hover:text-gold transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/50 border border-blue-200/70 dark:border-blue-800/60 text-[#1449BA] dark:text-blue-400 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 text-gold flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span>hello@wedincareers.io</span>
               </a>
 
               <a
-                href="tel:+2348009334633"
-                className="flex items-center gap-3 group hover:text-ink transition-colors"
+                href="mailto:admissions@wedincareers.io"
+                className="flex items-center gap-3 group hover:text-gold transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/50 border border-blue-200/70 dark:border-blue-800/60 text-[#1449BA] dark:text-blue-400 flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+                <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 text-gold flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <span>admissions@wedincareers.io</span>
+              </a>
+
+              <a
+                href="tel:+2348009334633"
+                className="flex items-center gap-3 group hover:text-gold transition-colors"
+              >
+                <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 text-gold flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 transition-transform">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span>+234 (0) 800 933 4633</span>
               </a>
 
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/50 border border-blue-200/70 dark:border-blue-800/60 text-[#1449BA] dark:text-blue-400 flex items-center justify-center shrink-0 shadow-2xs">
+                <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 text-gold flex items-center justify-center shrink-0 shadow-2xs">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span>Lagos, Nigeria · London · Toronto</span>
@@ -207,25 +223,29 @@ export function MarketingFooter() {
             </div>
           </div>
 
-          {/* Column 4: Region & Social Media (3 cols) */}
+          {/* Column 4: Region Selector & Social Media (3 cols) */}
           <div className="lg:col-span-3 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
+              <h4 className="font-body font-semibold text-sm text-ink tracking-tight">
+                Region & Community
+              </h4>
+
               {/* Language / Region Dropdown */}
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setLangOpen(!langOpen)}
-                  className="w-full sm:w-auto min-w-[180px] h-10 px-3.5 rounded-xl bg-surface border border-border/90 hover:border-border text-ink text-xs font-body font-medium flex items-center justify-between gap-2.5 transition-colors cursor-pointer shadow-2xs"
+                  className="w-full sm:w-auto min-w-[200px] h-10 px-3.5 rounded-xl bg-surface border border-border/90 hover:border-gold/60 text-ink text-xs font-body font-medium flex items-center justify-between gap-2.5 transition-colors cursor-pointer shadow-2xs"
                 >
                   <div className="flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-muted" />
+                    <Globe className="w-4 h-4 text-gold" />
                     <span>{selectedLang}</span>
                   </div>
                   <ChevronDown className={`w-3.5 h-3.5 text-muted transition-transform duration-200 ${langOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {langOpen && (
-                  <div className="absolute top-12 left-0 right-0 sm:right-auto sm:w-56 bg-surface border border-border rounded-xl shadow-xl p-1.5 z-50 text-xs font-body space-y-0.5">
+                  <div className="absolute top-12 left-0 right-0 sm:right-auto sm:w-64 bg-surface border border-border rounded-xl shadow-xl p-1.5 z-50 text-xs font-body space-y-0.5">
                     {languages.map(lang => (
                       <button
                         key={lang}
@@ -237,21 +257,21 @@ export function MarketingFooter() {
                         className="w-full px-3 py-2 rounded-lg text-left text-ink hover:bg-bg flex items-center justify-between transition-colors cursor-pointer"
                       >
                         <span>{lang}</span>
-                        {selectedLang === lang && <Check className="w-3.5 h-3.5 text-[#1449BA] dark:text-gold" />}
+                        {selectedLang === lang && <Check className="w-3.5 h-3.5 text-gold" />}
                       </button>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Social Media Icon Row matching screenshot: LinkedIn, Instagram, Facebook, YouTube */}
+              {/* Social Media Icon Row in Website Styling */}
               <div className="flex items-center gap-2 pt-1">
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-[#1449BA] hover:text-[#1449BA] text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
+                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-gold hover:text-gold text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
                 >
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
@@ -260,16 +280,16 @@ export function MarketingFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-[#1449BA] hover:text-[#1449BA] text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
+                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-gold hover:text-gold text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
                 >
                   <InstagramIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-[#1449BA] hover:text-[#1449BA] text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
+                  aria-label="Twitter / X"
+                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-gold hover:text-gold text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
                 >
                   <FacebookIcon className="w-4 h-4" />
                 </a>
@@ -278,7 +298,7 @@ export function MarketingFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
-                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-[#1449BA] hover:text-[#1449BA] text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
+                  className="w-9 h-9 rounded-lg border border-border/80 bg-surface hover:border-gold hover:text-gold text-muted flex items-center justify-center transition-all shadow-2xs cursor-pointer"
                 >
                   <YoutubeIcon className="w-4 h-4" />
                 </a>
@@ -292,20 +312,23 @@ export function MarketingFooter() {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Legal */}
+        {/* Bottom Bar: Copyright & English Legal Links */}
         <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-muted">
           <div>
-            © {new Date().getFullYear()} Wedin. Todos os direitos reservados.
+            © {new Date().getFullYear()} Wedin Inc. All rights reserved.
           </div>
-          <div className="flex items-center gap-5 sm:gap-6">
-            <Link href="/" className="hover:text-ink transition-colors">
-              Termos e Condições
+          <div className="flex flex-wrap items-center gap-5 sm:gap-6">
+            <Link href="/" className="hover:text-gold transition-colors">
+              Terms & Conditions
             </Link>
-            <Link href="/" className="hover:text-ink transition-colors">
-              Política de Privacidade
+            <Link href="/" className="hover:text-gold transition-colors">
+              Privacy Policy
             </Link>
-            <Link href="/" className="hover:text-ink transition-colors">
-              Cookies
+            <Link href="/" className="hover:text-gold transition-colors">
+              Cookie Policy
+            </Link>
+            <Link href="/" className="hover:text-gold transition-colors">
+              Honor Code & Verification
             </Link>
           </div>
         </div>

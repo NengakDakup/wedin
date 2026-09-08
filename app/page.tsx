@@ -2694,29 +2694,44 @@ export default function MarketingLandingPage() {
         </div>
       </section>
 
-      {/* 8. HIGH-IMPACT CLOSING CALL TO ACTION (Floating Rounded Card matching Concept) */}
-      <section className="pt-16 pb-6 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="rounded-[32px] sm:rounded-[40px] bg-gradient-to-b from-[#1449BA] via-[#0E3596] to-[#072064] border border-blue-400/20 text-white py-20 sm:py-28 px-6 sm:px-16 text-center relative overflow-hidden shadow-2xl">
-          {/* Ambient Top Specular Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-2xl h-44 bg-gradient-to-b from-white/25 via-white/5 to-transparent blur-2xl pointer-events-none" />
+      {/* 8. HIGH-IMPACT CLOSING CALL TO ACTION (Full-Width Floating Rounded Card with Website Gold Colors) */}
+      <section className="pt-16 pb-6 px-2.5 sm:px-4 lg:px-6 w-full">
+        <div className="rounded-[32px] sm:rounded-[44px] bg-[#0A0B0E] border border-gold/40 text-white py-20 sm:py-28 px-6 sm:px-16 text-center relative overflow-hidden shadow-2xl w-full">
+          {/* Ambient Top Specular Gold Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-3xl h-52 bg-[radial-gradient(ellipse_at_top,_rgba(221,168,50,0.35),_transparent_70%)] blur-2xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-            <h2 className="font-body text-3xl sm:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
-              Ready to transform your tech career?
+          <div className="relative z-10 max-w-3xl mx-auto space-y-5">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>THE CLOSED LOOP TALENT PLATFORM</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse ml-1" />
+            </div>
+
+            <h2 className="font-body text-3xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.12]">
+              Stop Applying into the Black Hole.{' '}
+              <span className="text-gold">Enter the Closed Loop.</span>
             </h2>
-            <p className="font-body text-sm sm:text-base text-white/80 leading-relaxed max-w-lg mx-auto">
-              Schedule a free 10-minute diagnostic assessment and discover how Wedin can calibrate your skills and match you to top tech employers.
+
+            <p className="font-body text-sm sm:text-base text-white/80 leading-relaxed max-w-xl mx-auto">
+              Schedule a free 10-minute diagnostic assessment. We calibrate your technical baseline, match your track, build cryptographic proof-of-work, and route you to top tech employers.
             </p>
 
-            <div className="pt-5 flex items-center justify-center">
-              <Link href="/onboarding">
-                <button
-                  type="button"
-                  className="h-12 sm:h-13 px-8 sm:px-10 rounded-xl bg-white hover:bg-slate-100 text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <span>Schedule a free assessment</span>
-                </button>
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/onboarding" className="w-full sm:w-auto group">
+                <div className="h-13 sm:h-14 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold pl-8 pr-2.5 flex items-center justify-between gap-4 shadow-glow hover:shadow-xl transition-all duration-200 cursor-pointer">
+                  <span className="tracking-wide">Start Your Free Assessment</span>
+                  <span className="relative w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                    <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                    <ArrowUpRight className="w-4 h-4 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                  </span>
+                </div>
               </Link>
+
+              <a href="#employers" className="w-full sm:w-auto">
+                <div className="h-13 sm:h-14 px-7 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-body text-xs sm:text-sm font-semibold flex items-center justify-center transition-colors cursor-pointer shadow-xs">
+                  Hire Pre-Vetted Engineers
+                </div>
+              </a>
             </div>
           </div>
         </div>
