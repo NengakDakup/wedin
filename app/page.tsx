@@ -42,6 +42,16 @@ import { StatusIcon } from '@/components/primitives/status-icon'
 import { Avatar } from '@/components/primitives/avatar'
 import { CAREER_TRACKS } from '@/lib/mock-data'
 import { cn } from '@/lib/utils'
+import {
+  PaystackLogo,
+  MoniepointLogo,
+  FlutterwaveLogo,
+  PiggyvestLogo,
+  KudaLogo,
+  OpayLogo,
+  NombaLogo,
+  CowrywiseLogo,
+} from '@/components/marketing/nigerian-tech-logos'
 
 export default function MarketingLandingPage() {
   // Interactive Loop Stage State
@@ -131,12 +141,78 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
   ]
 
   const hiringCompanies = [
-    { name: 'Anthropic', role: 'AI Systems', salary: '$45k - $65k' },
-    { name: 'Scale AI', role: 'Data Eval Lead', salary: '$40k - $55k' },
-    { name: 'Ramp', role: 'Full-Stack Eng', salary: '$50k - $70k' },
-    { name: 'Paystack', role: 'Product Engineer', salary: '₦18M - ₦28M' },
-    { name: 'Supabase', role: 'Backend / SQL', salary: '$45k - $60k' },
-    { name: 'Moniepoint', role: 'Systems Analyst', salary: '₦15M - ₦24M' },
+    {
+      name: 'Paystack',
+      category: 'Developer Payments',
+      role: 'Core Systems / TypeScript',
+      salary: '₦22M - ₦36M',
+      hires: '14 Hired',
+      logo: PaystackLogo,
+      accent: 'text-[#00C3F7]',
+    },
+    {
+      name: 'Moniepoint',
+      category: 'Banking Infrastructure',
+      role: 'Cloud Architecture & SRE',
+      salary: '₦24M - ₦38M',
+      hires: '18 Hired',
+      logo: MoniepointLogo,
+      accent: 'text-[#0357EE]',
+    },
+    {
+      name: 'Flutterwave',
+      category: 'African Payments',
+      role: 'Distributed Backend & Go',
+      salary: '₦20M - ₦34M',
+      hires: '12 Hired',
+      logo: FlutterwaveLogo,
+      accent: 'text-[#FB9129]',
+    },
+    {
+      name: 'Piggyvest',
+      category: 'Automated Wealth',
+      role: 'Data & Feature Store Ops',
+      salary: '₦18M - ₦28M',
+      hires: '10 Hired',
+      logo: PiggyvestLogo,
+      accent: 'text-[#0D60D8]',
+    },
+    {
+      name: 'Kuda Bank',
+      category: 'Neo-Banking App',
+      role: 'Microservices & Platform',
+      salary: '₦18M - ₦30M',
+      hires: '9 Hired',
+      logo: KudaLogo,
+      accent: 'text-[#9333EA]',
+    },
+    {
+      name: 'OPay',
+      category: 'Consumer Fintech',
+      role: 'High-Throughput Engineering',
+      salary: '₦22M - ₦36M',
+      hires: '15 Hired',
+      logo: OpayLogo,
+      accent: 'text-[#14B566]',
+    },
+    {
+      name: 'Nomba',
+      category: 'Merchant Solutions',
+      role: 'Full-Stack & POS Systems',
+      salary: '₦16M - ₦26M',
+      hires: '8 Hired',
+      logo: NombaLogo,
+      accent: 'text-[#EAB308]',
+    },
+    {
+      name: 'Cowrywise',
+      category: 'Algorithmic Savings',
+      role: 'Security & Backend Python',
+      salary: '₦18M - ₦28M',
+      hires: '8 Hired',
+      logo: CowrywiseLogo,
+      accent: 'text-[#0066F5]',
+    },
   ]
 
   const faqs = [
@@ -552,7 +628,7 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
 
                     {/* 4 Fellows: Images, Names & Badges directly on White Background */}
                     <div className="grid grid-cols-4 gap-2 pt-1 pb-0.5">
-                      {/* Match 1: Amara -> Anthropic */}
+                      {/* Match 1: Amara -> Paystack */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -564,12 +640,12 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Amara O.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-[#8C6200] bg-gold/15 border border-gold/30 rounded px-1 py-0.5 truncate">
-                          Anthropic
+                        <span className="block text-[8px] font-mono font-semibold text-[#008BB8] bg-[#00C3F7]/12 border border-[#00C3F7]/30 rounded px-1 py-0.5 truncate">
+                          Paystack
                         </span>
                       </div>
 
-                      {/* Match 2: Tunde -> Paystack */}
+                      {/* Match 2: Tunde -> Moniepoint */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -581,12 +657,12 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Tunde A.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded px-1 py-0.5 truncate">
-                          Paystack
+                        <span className="block text-[8px] font-mono font-semibold text-[#0247C5] bg-[#0357EE]/12 border border-[#0357EE]/30 rounded px-1 py-0.5 truncate">
+                          Moniepoint
                         </span>
                       </div>
 
-                      {/* Match 3: Chioma -> Scale AI */}
+                      {/* Match 3: Chioma -> Piggyvest */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -598,12 +674,12 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Chioma E.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-sky-700 bg-sky-50 border border-sky-200 rounded px-1 py-0.5 truncate">
-                          Scale AI
+                        <span className="block text-[8px] font-mono font-semibold text-[#0B4DB0] bg-[#0D60D8]/12 border border-[#0D60D8]/30 rounded px-1 py-0.5 truncate">
+                          Piggyvest
                         </span>
                       </div>
 
-                      {/* Match 4: Kenji -> Supabase */}
+                      {/* Match 4: Kenji -> Flutterwave */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -615,8 +691,8 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Kenji M.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded px-1 py-0.5 truncate">
-                          Supabase
+                        <span className="block text-[8px] font-mono font-semibold text-[#C4680A] bg-[#FB9129]/12 border border-[#FB9129]/30 rounded px-1 py-0.5 truncate">
+                          Flutterwave
                         </span>
                       </div>
                     </div>
@@ -663,24 +739,83 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
           </div>
         </div>
 
-        {/* Hiring Partners Logo Bar */}
-        <div className="pt-8 pb-4 space-y-2 text-center relative z-10 max-w-7xl mx-auto px-4 sm:px-8 w-full border-b border-border/60">
-          <p className="text-[11px] font-mono text-muted uppercase tracking-widest">
-            HIRING PARTNERS RECRUITING WEDIN TALENT ACROSS NIGERIA, UK & US REMOTE
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 pt-1">
-            {hiringCompanies.map((c) => (
-              <div
-                key={c.name}
-                className="px-3 py-1 rounded-card bg-surface/80 border border-border flex items-center gap-1.5 text-[11px] font-mono text-ink shadow-xs"
-              >
-                <Building2 className="w-3 h-3 text-gold" />
-                <span className="font-bold">{c.name}</span>
-                <span className="text-muted">· {c.role}</span>
-                <span className="text-success font-semibold">({c.salary})</span>
+        {/* Creative Borderless Hiring Partners Showcase with Real Logos */}
+        <div className="pt-10 pb-8 relative z-10 max-w-7xl mx-auto px-4 sm:px-8 w-full space-y-6">
+          
+          {/* Header Row */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-left">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-2 text-[11px] font-mono text-ink tracking-wider uppercase font-semibold">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                <span>TOP NIGERIAN TECH UNICORNS & ENTERPRISES</span>
               </div>
-            ))}
+              <h3 className="font-body text-xl sm:text-2xl font-semibold text-ink tracking-tight">
+                Where Wedin Fellows Build & Lead
+              </h3>
+            </div>
+            <p className="font-body text-xs sm:text-sm text-muted max-w-md">
+              Direct pipeline routing with Lagos & remote engineering squads. Zero agency recruiting markups.
+            </p>
           </div>
+
+          {/* Borderless Floating Grid of Real Logos */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            {hiringCompanies.map((c) => {
+              const Logo = c.logo
+              return (
+                <div
+                  key={c.name}
+                  className="group relative rounded-2xl p-4 bg-surface/40 hover:bg-surface/90 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer flex flex-col justify-between h-[125px] overflow-hidden"
+                >
+                  {/* Subtle Brand Ambient Glow on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-white/[0.02] group-hover:to-gold/5 pointer-events-none transition-opacity" />
+
+                  {/* Top: Logo + Live Hires Pill */}
+                  <div className="flex items-center justify-between relative z-10">
+                    <div className="w-8 h-8 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                      <Logo className="w-full h-full" />
+                    </div>
+                    <span className="text-[10px] font-mono font-medium text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <span className="w-1 h-1 rounded-full bg-emerald-400" />
+                      {c.hires}
+                    </span>
+                  </div>
+
+                  {/* Bottom: Name, Track & Compensation */}
+                  <div className="space-y-0.5 relative z-10">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-body font-semibold text-sm text-ink group-hover:text-gold transition-colors">
+                        {c.name}
+                      </h4>
+                      <span className="font-mono text-xs font-semibold text-gold">
+                        {c.salary}
+                      </span>
+                    </div>
+                    <p className="font-body text-[11px] text-muted truncate">
+                      {c.role}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Clean Borderless Proof Indicators */}
+          <div className="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-body text-muted">
+            <span className="flex items-center gap-2">
+              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <span>Production GitHub PR Proof</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <span>Pre-Screened by Senior Staff TAs</span>
+            </span>
+            <span className="flex items-center gap-2">
+              <Check className="w-3.5 h-3.5 text-success stroke-[2.5]" />
+              <span>18-Day Average Time to Offer</span>
+            </span>
+          </div>
+
         </div>
       </section>
 
