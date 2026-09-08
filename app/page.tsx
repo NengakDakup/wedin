@@ -36,6 +36,7 @@ import {
   GitMerge,
   Copy,
   RotateCcw,
+  Lock,
 } from 'lucide-react'
 import { MarketingNav } from '@/components/marketing/marketing-nav'
 import { MarketingFooter } from '@/components/marketing/marketing-footer'
@@ -71,8 +72,24 @@ export default function MarketingLandingPage() {
       setTimeout(() => setCopiedProof(false), 2200)
     }
   }
-  // Interactive ATS Comparison State
+  // Interactive ATS Comparison & Scanner State
   const [atsComparisonMode, setAtsComparisonMode] = React.useState<'generic' | 'wedin'>('wedin')
+  const [isScanning, setIsScanning] = React.useState<boolean>(false)
+  const [verifiedSeal, setVerifiedSeal] = React.useState<boolean>(false)
+
+  const handleRunAtsScan = () => {
+    setIsScanning(true)
+    setTimeout(() => {
+      setIsScanning(false)
+    }, 1100)
+  }
+
+  const handleVerifySeal = () => {
+    setVerifiedSeal(true)
+    setTimeout(() => {
+      setVerifiedSeal(false)
+    }, 2400)
+  }
   // Interactive Track Selector
   const [activeTrackIndex, setActiveTrackIndex] = React.useState<number>(0)
   // Hero Interactive Accordion Student State
@@ -1590,133 +1607,320 @@ export default function MarketingLandingPage() {
         </div>
       </section>
 
-      {/* 4. INTERACTIVE ATS STUDIO & COMPARISON: Proof Over Fluff */}
-      <section id="toolkit" className="py-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-16">
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <Badge variant="active">THE CAREER TOOLKIT</Badge>
-          <h2 className="font-display text-3xl sm:text-5xl font-bold text-ink tracking-tight">
+      {/* 4. THE CAREER TOOLKIT: Interactive Proof Engine & Live ATS Simulator */}
+      <section id="toolkit" className="py-24 max-w-7xl mx-auto px-4 sm:px-8 space-y-16 relative">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-3.5 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+            <span>THE CAREER TOOLKIT</span>
+          </div>
+          <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
             Stop Guessing. Build Proof.
           </h2>
-          <p className="font-body text-base text-muted leading-relaxed">
-            See the difference between an unverified AI resume that gets rejected by ATS filters,
-            and a Wedin Verified Profile that unlocks interviews.
+          <p className="font-body text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
+            Over 90% of self-taught applicants get silently auto-filtered by algorithmic ATS bots. Wedin equips you with the three instruments that turn enterprise hiring heuristics into your unfair advantage.
           </p>
         </div>
 
-        {/* Interactive Comparison Toggle */}
-        <div className="flex justify-center">
-          <div className="p-1 rounded-pill bg-surface border border-border inline-flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setAtsComparisonMode('generic')}
-              className={cn(
-                'px-5 py-2 rounded-pill text-xs font-mono font-medium transition-all duration-150 cursor-pointer',
-                atsComparisonMode === 'generic'
-                  ? 'bg-danger text-ink shadow-xs'
-                  : 'text-muted hover:text-ink'
-              )}
-            >
-              Generic AI Resume (41% ATS Score)
-            </button>
-            <button
-              type="button"
-              onClick={() => setAtsComparisonMode('wedin')}
-              className={cn(
-                'px-5 py-2 rounded-pill text-xs font-mono font-medium transition-all duration-150 cursor-pointer',
-                atsComparisonMode === 'wedin'
-                  ? 'bg-gold text-black shadow-xs font-bold'
-                  : 'text-muted hover:text-ink'
-              )}
-            >
-              Wedin Verified Profile (98% ATS Score)
-            </button>
+        {/* Row 1: The 3 Core Toolkit Instruments */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Instrument 1 */}
+          <div className="p-6 rounded-3xl bg-surface border border-border/80 hover:border-gold/50 transition-all duration-300 shadow-sm space-y-4 relative overflow-hidden group">
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold">
+                <FileText className="w-5 h-5" />
+              </div>
+              <span className="font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/30">
+                INSTRUMENT 01
+              </span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="font-body font-semibold text-lg text-ink">
+                Algorithmic ATS Compiler
+              </h3>
+              <p className="font-mono text-xs text-gold font-medium">
+                98/100 Lever &amp; Greenhouse Pass
+              </p>
+            </div>
+            <p className="font-body text-xs text-muted leading-relaxed">
+              Reverse-engineered for corporate parsing bots. Automatically converts your evaluated code commits, pull requests, and benchmarks into ATS-compliant records without recruiter drop-off.
+            </p>
+            <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold border-t border-border/60">
+              <Check className="w-3.5 h-3.5 stroke-[3]" />
+              <span>Semantic Parser Compatible</span>
+            </div>
+          </div>
+
+          {/* Instrument 2 */}
+          <div className="p-6 rounded-3xl bg-surface border-2 border-gold shadow-md ring-1 ring-gold/20 space-y-4 relative overflow-hidden group">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-amber-300 to-gold" />
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <span className="font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-gold text-[#0A0A0A] shadow-xs">
+                INSTRUMENT 02
+              </span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="font-body font-semibold text-lg text-ink">
+                Cryptographic Proof URL
+              </h3>
+              <p className="font-mono text-xs text-gold font-medium">
+                SHA-256 Ledger Verification
+              </p>
+            </div>
+            <p className="font-body text-xs text-muted leading-relaxed">
+              An immutable, public proof dossier at <code className="text-gold font-mono">wedin.io/p/[name]</code> displaying verified GitHub repositories, supervisor evaluation rubrics, and benchmark proofs.
+            </p>
+            <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-gold font-semibold border-t border-border/60">
+              <Lock className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>Zero-Hallucination Guarantee</span>
+            </div>
+          </div>
+
+          {/* Instrument 3 */}
+          <div className="p-6 rounded-3xl bg-surface border border-border/80 hover:border-gold/50 transition-all duration-300 shadow-sm space-y-4 relative overflow-hidden group">
+            <div className="flex items-center justify-between">
+              <div className="w-10 h-10 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold">
+                <Zap className="w-5 h-5 fill-gold" />
+              </div>
+              <span className="font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/30">
+                INSTRUMENT 03
+              </span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="font-body font-semibold text-lg text-ink">
+                Direct Unicorn Dispatcher
+              </h3>
+              <p className="font-mono text-xs text-gold font-medium">
+                18-Day Average Time to Offer
+              </p>
+            </div>
+            <p className="font-body text-xs text-muted leading-relaxed">
+              Bypasses public job boards and automated rejection black holes. Routes your verified technical dossier straight into engineering manager inboxes at Paystack, Moniepoint &amp; Flutterwave.
+            </p>
+            <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold border-t border-border/60">
+              <Check className="w-3.5 h-3.5 stroke-[3]" />
+              <span>Direct Fast-Track Pipeline</span>
+            </div>
           </div>
         </div>
 
-        {/* Dynamic Interactive Card Display */}
-        <div className="max-w-4xl mx-auto">
-          {atsComparisonMode === 'generic' ? (
-            <Card className="p-8 space-y-6 border-danger/40 bg-surface/90 shadow-xl">
-              <div className="flex items-center justify-between border-b border-border/80 pb-4">
-                <div>
-                  <div className="font-display font-bold text-lg text-danger flex items-center gap-2">
-                    <XCircle className="w-5 h-5 text-danger" />
-                    <span>Generic Resume · High ATS Rejection Risk</span>
-                  </div>
-                  <p className="font-body text-xs text-muted mt-1">
-                    Generated with generic prompts. No verifiable proof links or evaluated code.
-                  </p>
-                </div>
-                <Badge variant="danger">SCORE: 41 / 100</Badge>
+        {/* Row 2: The Interactive ATS Audit Simulator Console */}
+        <div className="rounded-3xl bg-surface/70 border border-border/90 p-6 sm:p-9 shadow-xl relative overflow-hidden backdrop-blur-md space-y-6">
+          
+          {/* Console Header Bar */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border/70">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-mono text-xs font-bold text-ink uppercase tracking-wider">
+                  LIVE ATS AUDIT SIMULATOR · LEVER &amp; GREENHOUSE HEURISTIC ENGINE
+                </span>
               </div>
+              <p className="font-body text-xs text-muted">
+                Simulate how enterprise applicant tracking algorithms evaluate generic resumes versus Wedin verified proof dossiers.
+              </p>
+            </div>
 
-              <div className="space-y-4 font-mono text-xs">
-                <div className="p-4 rounded-card bg-bg border border-danger/30 space-y-2">
-                  <div className="text-danger font-semibold">
-                    FAIL: Keyword stuffing without repository verification
-                  </div>
-                  <p className="text-muted leading-relaxed">
-                    &quot;Experienced in building massive AI models, cloud distributed systems, and cutting-edge software with 100% accuracy.&quot;
-                  </p>
-                  <div className="text-[11px] text-danger">
-                    ⚠ Flagged by Lever ATS: Hallucinated metrics, unlinked assertions.
-                  </div>
-                </div>
+            {/* Run Scan Action Button */}
+            <button
+              type="button"
+              onClick={handleRunAtsScan}
+              disabled={isScanning}
+              className="h-10 px-4 rounded-full font-mono text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer shrink-0 bg-gold hover:bg-gold-light text-[#0A0A0A] shadow-xs active:scale-95 disabled:opacity-75"
+            >
+              <RotateCcw className={cn('w-3.5 h-3.5', isScanning && 'animate-spin')} />
+              <span>{isScanning ? 'Parsing Code Repos...' : 'Run Simulated ATS Audit'}</span>
+            </button>
+          </div>
 
-                <div className="p-4 rounded-card bg-bg border border-danger/30 space-y-2">
-                  <div className="text-danger font-semibold">
-                    FAIL: Zero proof-of-work or supervisor evaluations
-                  </div>
-                  <p className="text-muted leading-relaxed">
-                    No public code repository, no sprint commits, no verifiable supervisor rating.
-                  </p>
-                </div>
+          {/* Scanning Progress Pulse Indicator */}
+          {isScanning && (
+            <div className="p-3 rounded-2xl bg-gold/10 border border-gold/30 flex items-center justify-between text-xs font-mono text-gold animate-pulse">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-gold animate-spin" />
+                <span>Executing Lever Heuristic Scan: Verifying commit signatures &amp; query benchmarks...</span>
               </div>
-            </Card>
-          ) : (
-            <Card featured className="p-8 space-y-6 shadow-2xl bg-surface">
-              <div className="flex items-center justify-between border-b border-border/80 pb-4">
-                <div>
-                  <div className="font-display font-bold text-lg text-ink flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-gold" />
-                    <span>Wedin Verified Profile · Interview Fast-Track</span>
-                  </div>
-                  <p className="font-body text-xs text-muted mt-1">
-                    Auto-generated from evaluated coursework, supervisor reviews, and live GitHub commits.
-                  </p>
-                </div>
-                <Badge variant="success">SCORE: 98 / 100</Badge>
-              </div>
-
-              <div className="space-y-4 font-mono text-xs">
-                <div className="p-4 rounded-card bg-bg border border-border space-y-2">
-                  <div className="text-gold font-semibold flex items-center justify-between">
-                    <span>✓ CAPSTONE: ReAct Autonomous Agent Architecture</span>
-                    <span className="text-success">VERIFIED 98/100</span>
-                  </div>
-                  <p className="text-muted leading-relaxed">
-                    Architected recursive state machine handling 15 API tools with schema validation.
-                    Reduced token consumption by 32% via contextual window compression.
-                  </p>
-                  <div className="text-[11px] text-gold underline cursor-pointer">
-                    github.com/wedin-fellows/react-agent-loop (Evaluated by Staff TA)
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-card bg-bg border border-border space-y-2">
-                  <div className="text-gold font-semibold flex items-center justify-between">
-                    <span>✓ VIRTUAL INTERNSHIP: Vector Search Optimization</span>
-                    <span className="text-success">EXCEEDS BAR</span>
-                  </div>
-                  <p className="text-muted leading-relaxed">
-                    8 weeks embedded in simulated squad. Merged 14 PRs to production benchmark.
-                    Rated top 5% of cohort by lead engineering supervisor.
-                  </p>
-                </div>
-              </div>
-            </Card>
+              <span className="font-bold">78%</span>
+            </div>
           )}
+
+          {/* Side-by-Side Dual Audit Inspector */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            {/* Left Card: Unverified Generic Resume */}
+            <div className="rounded-2xl p-5 sm:p-6 bg-red-500/[0.03] border-2 border-red-500/25 space-y-4 relative overflow-hidden">
+              <div className="flex items-center justify-between gap-2 border-b border-red-500/20 pb-3">
+                <div className="flex items-center gap-2">
+                  <XCircle className="w-4 h-4 text-red-500 shrink-0" />
+                  <span className="font-body font-semibold text-sm text-red-600 dark:text-red-400">
+                    Generic Prompted AI Resume
+                  </span>
+                </div>
+                <span className="font-mono text-xs font-bold px-2.5 py-0.5 rounded-full bg-red-500/15 text-red-600 dark:text-red-400 border border-red-500/30">
+                  SCORE: 38 / 100
+                </span>
+              </div>
+
+              <div className="space-y-3.5 font-body text-xs">
+                {/* Item 1 */}
+                <div className="p-3 rounded-xl bg-surface border border-red-500/20 space-y-1.5">
+                  <p className="text-muted italic leading-relaxed">
+                    &quot;Experienced Full-Stack AI Engineer with expertise in architecting massive cloud systems and building production-grade LLM applications with 100% accuracy.&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-red-600 dark:text-red-400 pt-1 border-t border-border/60">
+                    <XCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                    <span>FLAG: Zero repository proof or verifiable commits. Flagged as hallucination by Lever Heuristic Gate.</span>
+                  </div>
+                </div>
+
+                {/* Item 2 */}
+                <div className="p-3 rounded-xl bg-surface border border-red-500/20 space-y-1.5">
+                  <p className="text-muted italic leading-relaxed">
+                    &quot;Key Skills: Python, TypeScript, Docker, Kubernetes, Next.js, LangChain, PyTorch, Blockchain, GraphQL, Redis, Rust, pgvector.&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-red-600 dark:text-red-400 pt-1 border-t border-border/60">
+                    <XCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                    <span>FLAG: Unstructured keyword stuffing detected. Lacks contextual repository evidence.</span>
+                  </div>
+                </div>
+
+                {/* Item 3 */}
+                <div className="p-3 rounded-xl bg-surface border border-red-500/20 space-y-1.5">
+                  <p className="text-muted italic leading-relaxed">
+                    &quot;Delivered 500% performance optimization and cut latency across microservices ecosystem.&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-red-600 dark:text-red-400 pt-1 border-t border-border/60">
+                    <XCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                    <span>FLAG: Unsubstantiated metrics. No supervisor rubric score or production telemetry attached.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bot Rejection Verdict */}
+              <div className="p-2.5 rounded-xl bg-red-500/10 border border-red-500/25 flex items-center justify-between text-[11px] font-mono text-red-600 dark:text-red-400">
+                <span>PARSER DECISION:</span>
+                <span className="font-bold">Auto-Archived (Filtered Pre-Screen)</span>
+              </div>
+            </div>
+
+            {/* Right Card: Wedin Verified Proof Dossier */}
+            <div className="rounded-2xl p-5 sm:p-6 bg-surface border-2 border-gold shadow-lg ring-1 ring-gold/30 space-y-4 relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-gold via-amber-300 to-gold" />
+              
+              <div className="flex items-center justify-between gap-2 border-b border-border/80 pb-3">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                  <span className="font-body font-semibold text-sm text-ink">
+                    Wedin Verified Proof Dossier
+                  </span>
+                </div>
+                <span className="font-mono text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+                  SCORE: 98 / 100
+                </span>
+              </div>
+
+              <div className="space-y-3.5 font-body text-xs">
+                {/* Item 1 */}
+                <div className="p-3 rounded-xl bg-surface-elevated/70 border border-border/80 space-y-1.5">
+                  <p className="text-ink leading-relaxed">
+                    &quot;Architected deterministic ReAct loop with Claude 3.5 Sonnet handling 15 API tools with schema validation. Reduced token consumption by 32% via context window compression.&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 pt-1 border-t border-border/60">
+                    <Check className="w-3.5 h-3.5 stroke-[3] shrink-0 mt-0.5" />
+                    <span>VERIFIED: Commit <code className="text-gold font-bold">9d4f2a1</code> on GitHub · Evaluated by Staff TA (98/100).</span>
+                  </div>
+                </div>
+
+                {/* Item 2 */}
+                <div className="p-3 rounded-xl bg-surface-elevated/70 border border-border/80 space-y-1.5">
+                  <p className="text-ink leading-relaxed">
+                    &quot;Paystack Enterprise Squad Virtual Internship: Implemented sub-50ms hybrid vector search on Postgres pgvector; cut P99 query latency from 240ms to 38ms (-84%).&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 pt-1 border-t border-border/60">
+                    <Check className="w-3.5 h-3.5 stroke-[3] shrink-0 mt-0.5" />
+                    <span>VERIFIED: Evaluated by Lead Systems Architect (ex-Paystack) · Merged PR #84.</span>
+                  </div>
+                </div>
+
+                {/* Item 3 */}
+                <div className="p-3 rounded-xl bg-surface-elevated/70 border border-border/80 space-y-1.5">
+                  <p className="text-ink leading-relaxed">
+                    &quot;Immutable Cryptographic Ledger: Signed SHA-256 seal issued upon graduation with publicly verifiable proof link.&quot;
+                  </p>
+                  <div className="flex items-start gap-1.5 font-mono text-[11px] text-gold pt-1 border-t border-border/60">
+                    <Lock className="w-3.5 h-3.5 stroke-[2.5] shrink-0 mt-0.5" />
+                    <span>VERIFIED: SHA-256: <code className="font-bold">8f92e3...c914</code> · 100% Zero-Hallucination Integrity.</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bot Fast-Track Verdict */}
+              <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                <span>PARSER DECISION:</span>
+                <span className="font-bold">Tier-1 Interview Fast-Track Dispatched</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Public Proof URL Interactive Verification Bar */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-surface border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5 text-left">
+              <div className="w-10 h-10 rounded-2xl bg-gold/15 border border-gold/30 flex items-center justify-center text-gold shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2 font-mono text-xs">
+                  <span className="text-ink font-bold">wedin.io/p/amara-okonjo</span>
+                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded-full font-bold">
+                    LIVE DOSSIER
+                  </span>
+                </div>
+                <p className="font-body text-xs text-muted">
+                  Every Wedin fellow receives a public cryptographic verification link that hiring managers can audit with zero login required.
+                </p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleVerifySeal}
+              className="h-10 px-4 rounded-full font-mono text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer shrink-0 bg-surface-elevated hover:bg-surface border border-border hover:border-gold/50 text-ink shadow-xs"
+            >
+              {verifiedSeal ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-500 stroke-[3]" />
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">SHA-256 Ledger Verified!</span>
+                </>
+              ) : (
+                <>
+                  <Lock className="w-3.5 h-3.5 text-gold" />
+                  <span>Audit SHA-256 Signature</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Bottom Action CTA */}
+          <div className="pt-2 text-center">
+            <Link href="/onboarding" className="inline-block group">
+              <div className="h-12 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold pl-6 pr-2 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer">
+                <span className="tracking-wide">Generate Your Verified ATS Profile</span>
+                <span className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                  <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                </span>
+              </div>
+            </Link>
+          </div>
+
         </div>
+
       </section>
 
       {/* 5. FOR EMPLOYERS: The Talent Pipeline */}
