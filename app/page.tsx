@@ -2694,41 +2694,30 @@ export default function MarketingLandingPage() {
         </div>
       </section>
 
-      {/* 8. HIGH-IMPACT CLOSING CALL TO ACTION */}
-      <section className="py-28 border-t border-border/80 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-gold/10 via-transparent to-transparent pointer-events-none" />
+      {/* 8. HIGH-IMPACT CLOSING CALL TO ACTION (Floating Rounded Card matching Concept) */}
+      <section className="pt-16 pb-6 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div className="rounded-[32px] sm:rounded-[40px] bg-gradient-to-b from-[#1449BA] via-[#0E3596] to-[#072064] border border-blue-400/20 text-white py-20 sm:py-28 px-6 sm:px-16 text-center relative overflow-hidden shadow-2xl">
+          {/* Ambient Top Specular Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 max-w-2xl h-44 bg-gradient-to-b from-white/25 via-white/5 to-transparent blur-2xl pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-8 text-center space-y-8 relative z-10">
-          <div className="space-y-4 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>THE CLOSED LOOP PLATFORM</span>
-            </div>
-            <h2 className="font-body text-3xl sm:text-5xl lg:text-6xl font-semibold text-ink tracking-tight leading-[1.12]">
-              Stop Applying into the Black Hole.{' '}
-              <span className="text-gold">Enter the Closed Loop.</span>
+          <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+            <h2 className="font-body text-3xl sm:text-5xl font-semibold text-white tracking-tight leading-[1.18]">
+              Ready to transform your tech career?
             </h2>
-            <p className="font-body text-sm sm:text-base text-muted leading-relaxed max-w-xl mx-auto">
-              Your path to a world-class tech career starts with a 10-minute diagnostic. We calibrate your technical baseline, match your track, and prepare you to get hired.
+            <p className="font-body text-sm sm:text-base text-white/80 leading-relaxed max-w-lg mx-auto">
+              Schedule a free 10-minute diagnostic assessment and discover how Wedin can calibrate your skills and match you to top tech employers.
             </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
-            <Link href="/onboarding" className="w-full sm:w-auto group">
-              <div className="h-14 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-sm sm:text-base font-semibold pl-8 pr-2.5 flex items-center justify-between gap-4 shadow-glow hover:shadow-xl transition-all duration-200 cursor-pointer">
-                <span className="tracking-wide">Start Your Free Assessment</span>
-                <span className="relative w-9 h-9 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
-                </span>
-              </div>
-            </Link>
-
-            <Link href="/app/dashboard" className="w-full sm:w-auto">
-              <div className="h-14 rounded-full bg-surface hover:bg-bg border border-border/90 hover:border-gold/60 text-ink font-body text-sm font-semibold px-8 flex items-center justify-center transition-colors cursor-pointer shadow-xs">
-                Learner Dashboard
-              </div>
-            </Link>
+            <div className="pt-5 flex items-center justify-center">
+              <Link href="/onboarding">
+                <button
+                  type="button"
+                  className="h-12 sm:h-13 px-8 sm:px-10 rounded-xl bg-white hover:bg-slate-100 text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+                >
+                  <span>Schedule a free assessment</span>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
