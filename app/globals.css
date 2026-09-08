@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --bg: #0A0A0A;
   --surface: #161412;
   --border: #2B2620;
-  --gold: #E8B94D;
+  --gold: #F5CF6E;
   --ink: #F5F2EA;
   --muted: #948E7E;
 
@@ -13,7 +15,7 @@
   --warning: #E5953C;
   --info: #5EA5C6;
 
-  --shadow-glow: 0 0 40px rgba(232, 185, 77, 0.25);
+  --shadow-glow: 0 0 40px rgba(245, 207, 110, 0.28);
   --shadow-glow-success: 0 0 40px rgba(78, 170, 120, 0.25);
   --shadow-glow-danger: 0 0 40px rgba(224, 90, 71, 0.25);
   --shadow-glow-warning: 0 0 40px rgba(229, 149, 60, 0.25);
@@ -27,7 +29,7 @@ html.light {
   --bg: #F8F6F0;
   --surface: #FFFFFF;
   --border: #E2DDD4;
-  --gold: #C28E1D;
+  --gold: #DDA832;
   --ink: #151311;
   --muted: #7A7365;
 
@@ -36,7 +38,7 @@ html.light {
   --warning: #BF6E16;
   --info: #357796;
 
-  --shadow-glow: 0 0 35px rgba(194, 142, 29, 0.2);
+  --shadow-glow: 0 0 35px rgba(221, 168, 50, 0.22);
   --shadow-glow-success: 0 0 35px rgba(46, 125, 86, 0.2);
   --shadow-glow-danger: 0 0 35px rgba(201, 64, 46, 0.2);
   --shadow-glow-warning: 0 0 35px rgba(191, 110, 22, 0.2);
@@ -85,13 +87,13 @@ body {
 
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 0 rgba(232, 185, 77, 0);
+    box-shadow: 0 0 0 rgba(245, 207, 110, 0);
   }
   50% {
-    box-shadow: 0 0 50px rgba(232, 185, 77, 0.4);
+    box-shadow: 0 0 50px rgba(245, 207, 110, 0.4);
   }
   100% {
-    box-shadow: 0 0 40px rgba(232, 185, 77, 0.25);
+    box-shadow: 0 0 40px rgba(245, 207, 110, 0.28);
   }
 }
 

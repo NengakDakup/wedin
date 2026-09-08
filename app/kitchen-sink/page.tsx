@@ -97,7 +97,7 @@ export default function KitchenSinkPage() {
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-card bg-surface border border-border text-xs">
               <span className="w-3 h-3 rounded-full bg-gold shrink-0" />
               <span className="text-muted">gold:</span>
-              <span className="font-mono text-ink">{isLight ? '#C28E1D' : '#E8B94D'}</span>
+              <span className="font-mono text-ink">{isLight ? '#DDA832' : '#F5CF6E'}</span>
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-card bg-surface border border-border text-xs">
               <span className="w-3 h-3 rounded-full bg-ink shrink-0" />

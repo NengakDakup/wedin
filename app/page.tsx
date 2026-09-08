@@ -50,6 +50,8 @@ export default function MarketingLandingPage() {
   const [atsComparisonMode, setAtsComparisonMode] = React.useState<'generic' | 'wedin'>('wedin')
   // Interactive Track Selector
   const [activeTrackIndex, setActiveTrackIndex] = React.useState<number>(0)
+  // Hero Interactive Accordion Student State
+  const [expandedStudent, setExpandedStudent] = React.useState<number>(0)
   // FAQ state
   const [openFaq, setOpenFaq] = React.useState<number | null>(0)
   const toggleFaq = (idx: number) => setOpenFaq(openFaq === idx ? null : idx)
@@ -166,21 +168,24 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
 
       {/* 1. HERO SECTION: Full-Width Rounded-Top Container with Side Padding */}
       <section className="relative pt-16 sm:pt-[72px] w-full px-2.5 sm:px-4 lg:px-6 overflow-hidden">
-        {/* Rounded Top Hero Container with Background Fading to Bottom */}
+        {/* Rounded Top Hero Container with Background Pattern */}
         <div
           style={{
-            background: 'linear-gradient(180deg, var(--hero-card-from) 0%, var(--hero-card-via) 65%, transparent 100%)',
+            backgroundColor: '#DDA832',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23dfad36' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23e3b342' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23e6b94e' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23e9bf5a' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3Cpath fill='%23ecc567' d='M181.8 259.4c98.2 6 191.9 35.2 281.3 72.1c2.8 1.1 5.5 2.3 8.3 3.4c171 71.6 342.7 158.5 531.3 207.7c198.8 51.8 403.4 40.8 597.3-14.8V0H0v283.2C59 263.6 120.6 255.7 181.8 259.4z'/%3E%3Cpath fill='%23efcb73' d='M1600 0H0v136.3c62.3-20.9 127.7-27.5 192.2-19.2c93.6 12.1 180.5 47.7 263.3 89.6c2.6 1.3 5.1 2.6 7.7 3.9c158.4 81.1 319.7 170.9 500.3 223.2c210.5 61 430.8 49 636.6-16.6V0z'/%3E%3Cpath fill='%23f2d180' d='M454.9 86.3C600.7 177 751.6 269.3 924.1 325c208.6 67.4 431.3 60.8 637.9-5.3c12.8-4.1 25.4-8.4 38.1-12.9V0H288.1c56 21.3 108.7 50.6 159.7 82C450.2 83.4 452.5 84.9 454.9 86.3z'/%3E%3Cpath fill='%23f5d78c' d='M1600 0H498c118.1 85.8 243.5 164.5 386.8 216.2c191.8 69.2 400 74.7 595 21.1c40.8-11.2 81.1-25.2 120.3-41.7V0z'/%3E%3Cpath fill='%23f7dc99' d='M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z'/%3E%3Cpath fill='%23fae2a6' d='M1315.3 72.4c75.3-12.6 148.9-37.1 216.8-72.4h-723C966.8 71 1144.7 101 1315.3 72.4z'/%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
           }}
-          className="rounded-t-[32px] sm:rounded-t-[44px] border-t border-x border-border/80 pt-10 sm:pt-14 pb-8 px-4 sm:px-8 relative overflow-hidden min-h-[calc(100vh-6rem)] flex flex-col justify-between transition-colors duration-200"
+          className="rounded-t-[32px] sm:rounded-t-[44px] border-t border-x border-border/80 pt-6 sm:pt-10 pb-6 px-4 sm:px-8 relative overflow-hidden min-h-[calc(100vh-5rem)] flex flex-col justify-between transition-colors duration-200"
         >
           
-          <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10 gap-6">
+          <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between relative z-10 gap-4 sm:gap-5">
             
             {/* TOP / CENTER: Master Editorial Headline, Squiggle, Category Filter, and Pill CTAs */}
-            <div className="text-center space-y-3 pt-2 max-w-4xl mx-auto">
+            <div className="text-center space-y-2.5 pt-1 max-w-4xl mx-auto">
               
               {/* Master Headline with Inline Search/Explore Pill (Exact Anatomy) */}
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-tight text-ink leading-[1.14]">
+              <h1 className="font-body text-2xl sm:text-4xl lg:text-[44px] font-semibold tracking-[-0.03em] text-ink leading-[1.18]">
                 Don&apos;t just learn.
                 <br />
                 Get{' '}
@@ -192,7 +197,7 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
                   <span className="font-mono text-xs text-muted uppercase tracking-wider">
                     SEARCH SKILL TRACKS
                   </span>
-                  <span className="w-5 h-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-[10px] font-mono text-gold font-bold">
+                  <span className="w-5 h-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-[10px] font-mono text-gold font-semibold">
                     AO
                   </span>
                 </Link>{' '}
@@ -302,182 +307,354 @@ Match Confidence: 98% based on Capstone Lab 03 performance`,
               </div>
             </div>
 
-            {/* BOTTOM OF VIEWPORT: Horizontal 3-Step Journey Flow Cards (Learn -> Certified -> Matched to Job) */}
-            <div className="w-full pt-2">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 lg:gap-4.5">
+            {/* BOTTOM OF VIEWPORT: 3-Column Interactive Flow (Inputs -> Calibration Engine -> Matching & Outcomes) */}
+            <div className="w-full pt-3 pb-2 relative">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-2">
                 
-                {/* CARD 1: STEP 01 · LEARN ON PLATFORM (Circular Artwork Centerpiece) */}
-                <div className="rounded-[24px] p-4 sm:p-5 bg-[#FAF7F0] dark:bg-[#141210] border border-border/80 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-3 transition-all hover:border-gold/50">
-                  {/* Header Row */}
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <h3 className="font-display font-semibold text-xs sm:text-sm tracking-wider uppercase text-ink">
-                        AMARA OKONJO
+                {/* 1. LEFT COLUMN: Students in Different Tracks (Interactive Expandable Accordion) */}
+                <div className="w-full lg:w-[29%] flex flex-col gap-2.5 h-[360px] sm:h-[370px] justify-between overflow-hidden">
+                  {[
+                    {
+                      id: 0,
+                      name: 'Amara Okonjo',
+                      track: 'Full-Stack AI & LLM Systems',
+                      photo: '/fellows/amara.jpg',
+                      dot: 'bg-gold',
+                      activeBorder: 'border-gold/80',
+                      badge: '16W Cohort',
+                      badgeStyle: 'text-[#8C6200] bg-gold/15 border-gold/30',
+                      capstone: 'Autonomous ReAct Agent Loop',
+                      grade: '98/100 · Verified Repo',
+                      pr: 'PR #84: Cosine Distance on pgvector',
+                      skills: ['Claude 3.5', 'pgvector', 'Next.js 16', 'TypeScript'],
+                    },
+                    {
+                      id: 1,
+                      name: 'Tunde Adebayo',
+                      track: 'Cloud Architecture & DevOps',
+                      photo: '/fellows/tunde.jpg',
+                      dot: 'bg-info',
+                      activeBorder: 'border-info/80',
+                      badge: '8W Internship',
+                      badgeStyle: 'text-info bg-info/15 border-info/30',
+                      capstone: 'Multi-Region Kubernetes Cluster',
+                      grade: '14 PRs Merged · 100% Pass',
+                      pr: 'PR #42: Terraform Zero-Downtime Rollout',
+                      skills: ['AWS EKS', 'Terraform', 'Docker', 'Prometheus'],
+                    },
+                    {
+                      id: 2,
+                      name: 'Chioma Eze',
+                      track: 'Data Engineering & ML Ops',
+                      photo: '/fellows/chioma.jpg',
+                      dot: 'bg-success',
+                      activeBorder: 'border-success/80',
+                      badge: 'Enterprise Lab',
+                      badgeStyle: 'text-success bg-success/15 border-success/30',
+                      capstone: 'Real-Time Feature Store Pipeline',
+                      grade: '9.9 / 10 · Lead TA Score',
+                      pr: 'PR #19: Low-Latency Feature Ingestion',
+                      skills: ['Python', 'Kafka', 'pgvector', 'SQL'],
+                    },
+                  ].map((student) => {
+                    const isExpanded = expandedStudent === student.id
+                    return (
+                      <div
+                        key={student.id}
+                        onClick={() => setExpandedStudent(student.id)}
+                        className={cn(
+                          'rounded-[22px] transition-all duration-300 ease-in-out cursor-pointer select-none overflow-hidden relative shadow-sm',
+                          isExpanded
+                            ? `flex-1 p-3 sm:p-3.5 bg-white border-2 ${student.activeBorder} shadow-md flex flex-col justify-between`
+                            : 'h-[64px] shrink-0 p-2.5 sm:p-3 bg-white/95 border border-stone-200/90 hover:border-gold/60 flex items-center justify-between'
+                        )}
+                      >
+                        {/* Always visible header summary */}
+                        <div className="flex items-center gap-2.5 w-full">
+                          <div
+                            className={cn(
+                              'rounded-xl overflow-hidden shrink-0 transition-all duration-300',
+                              isExpanded
+                                ? 'w-10 h-10 border-2 border-gold/40 shadow-xs'
+                                : 'w-9 h-9 border border-stone-200'
+                            )}
+                          >
+                            <img
+                              src={student.photo}
+                              alt={student.name}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </div>
+                          <div className="space-y-0.5 flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <h4 className="font-body font-semibold text-xs sm:text-sm text-stone-900 leading-tight truncate">
+                                {student.name}
+                              </h4>
+                              <span className={cn('w-1.5 h-1.5 rounded-full shrink-0', student.dot)} />
+                            </div>
+                            <p className="font-body text-[11px] text-stone-600 leading-tight truncate">
+                              {student.track}
+                            </p>
+                          </div>
+                          {!isExpanded && (
+                            <div className="flex items-center gap-1 shrink-0 pl-1">
+                              <span className="text-[10px] font-mono font-medium text-stone-500 hidden sm:inline">
+                                View
+                              </span>
+                              <ChevronDown className="w-3.5 h-3.5 text-stone-500 -rotate-90" />
+                            </div>
+                          )}
+                          {isExpanded && (
+                            <span
+                              className={cn(
+                                'text-[9px] font-mono font-semibold px-2 py-0.5 rounded-full border shrink-0 uppercase tracking-wider',
+                                student.badgeStyle
+                              )}
+                            >
+                              {student.badge}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Expanded details (only visible when expanded) */}
+                        {isExpanded && (
+                          <div className="space-y-2 pt-2 border-t border-stone-200/70 animate-in fade-in-50 duration-200">
+                            <div className="rounded-xl bg-stone-50 border border-stone-200/80 p-2 space-y-1">
+                              <div className="flex items-center justify-between text-[10px] font-mono">
+                                <span className="text-stone-500 uppercase tracking-wider">Capstone Lab</span>
+                                <span className="text-success font-semibold">{student.grade}</span>
+                              </div>
+                              <p className="font-body text-xs font-medium text-stone-900 truncate">
+                                {student.capstone}
+                              </p>
+                              <p className="text-[10px] font-mono text-stone-500 truncate">
+                                {student.pr}
+                              </p>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-1">
+                              {student.skills.map((skill) => (
+                                <span
+                                  key={skill}
+                                  className="text-[9px] font-mono px-1.5 py-0.5 rounded-md bg-white border border-stone-200 text-stone-700 font-medium shadow-2xs"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+
+                {/* LEFT CONNECTOR CURVES (Visible on lg+): Obvious Black Hardware Trace Lines */}
+                <div className="hidden lg:flex flex-col items-center justify-center w-8 shrink-0 py-1 h-[360px] sm:h-[370px] select-none pointer-events-none">
+                  <svg viewBox="0 0 32 370" fill="none" className="w-full h-full text-[#0F0D0B]">
+                    <path d="M 0 60 C 18 60, 18 185, 32 185" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                    <path d="M 0 185 L 32 185" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                    <path d="M 0 310 C 18 310, 18 185, 32 185" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                    <circle cx="3" cy="60" r="3" fill="currentColor" />
+                    <circle cx="3" cy="185" r="3" fill="currentColor" />
+                    <circle cx="3" cy="310" r="3" fill="currentColor" />
+                    <circle cx="29" cy="185" r="3.5" fill="currentColor" />
+                  </svg>
+                </div>
+
+                {/* 2. CENTER COLUMN: The Wedin Platform (Pure White Background + Navbar Button Style) */}
+                <div className="w-full lg:w-[38%] h-[360px] sm:h-[370px]">
+                  <div className="w-full h-full rounded-[28px] sm:rounded-[32px] p-6 sm:p-7 bg-white border border-stone-200/90 shadow-xl relative overflow-hidden flex flex-col items-center text-center justify-between">
+                    
+                    {/* Ambient Subtle Warmth */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Top Glowing Brand Emblem Badge */}
+                    <div className="w-12 h-12 sm:w-13 sm:h-13 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold shadow-sm relative z-10 mt-0.5">
+                      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6">
+                        <path
+                          d="M11 11C8.24 11 6 13.24 6 16C6 18.76 8.24 21 11 21C14.5 21 17.5 11 21 11C23.76 11 26 13.24 26 16C26 18.76 23.76 21 21 21C17.5 21 14.5 11 11 11Z"
+                          stroke="currentColor"
+                          strokeWidth="2.4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <circle cx="11" cy="16" r="1.5" fill="currentColor" />
+                        <circle cx="21" cy="16" r="1.5" fill="currentColor" />
+                      </svg>
+                    </div>
+
+                    {/* Central Headline & Copy (Modern Sans with Reduced Weight) */}
+                    <div className="space-y-2 relative z-10 my-auto py-1">
+                      <h3 className="font-body text-xl sm:text-2xl font-semibold text-stone-900 leading-snug tracking-tight">
+                        The Wedin <br />
+                        <span className="text-[#C89420]">Placement Platform</span>
                       </h3>
-                      <p className="font-body text-[11px] text-muted flex items-center gap-1">
-                        <span>Full-Stack AI Cohort</span>
-                        <span className="text-border select-none">——</span>
-                        <span>16W</span>
+                      <p className="font-body text-xs sm:text-[13px] text-stone-600 max-w-[290px] mx-auto leading-relaxed">
+                        We transition students to practitioners through live cohorts, evaluate production capstones, and compile unforgeable proof-of-work.
                       </p>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-gold/20 border-2 border-gold/50 flex items-center justify-center font-mono font-bold text-gold text-xs shadow-xs">
-                      AO
-                    </div>
-                  </div>
 
-                  {/* Centerpiece: Circular Artwork Frame with Gold Calligraphy and Capstone Code Loop */}
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full relative p-2 border border-gold/40 bg-gradient-to-tr from-surface/90 via-surface-elevated to-surface/40 flex items-center justify-center shadow-inner overflow-hidden group">
-                    <div className="absolute inset-1 rounded-full border border-gold/20 border-dashed animate-[spin_40s_linear_infinite]" />
-                    <div className="relative text-center space-y-1 z-10">
-                      <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-gold/15 text-[9px] font-mono font-bold text-gold tracking-wider uppercase">
-                        <Sparkles className="w-2.5 h-2.5" />
-                        <span>STEP 01</span>
-                      </div>
-                      <div className="font-display font-bold text-xs text-ink tracking-tight italic">
-                        wedin fellow
-                      </div>
-                      <div className="text-[10px] font-mono text-success font-semibold">
-                        9.9 / 10 Score
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom Row Controls */}
-                  <div className="flex items-center justify-between gap-1.5 pt-1">
-                    <span className="bg-ink text-bg font-mono text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full">
-                      STEP 01 · 9.9 SCORE
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <Link
-                        href="/onboarding"
-                        className="inline-flex items-center bg-surface hover:bg-surface-elevated border border-border rounded-full text-[10px] sm:text-xs font-mono uppercase px-3 py-1 text-ink font-medium transition-colors"
-                      >
-                        Get In Course
+                    {/* Primary Button (Matching Navbar Button Anatomy) & Meta */}
+                    <div className="w-full space-y-2 relative z-10 pt-1">
+                      <Link href="/onboarding" className="block w-full group">
+                        <div className="w-full h-11 sm:h-12 rounded-full bg-gold hover:bg-gold-light text-[#0A0A0A] font-body text-xs sm:text-sm font-semibold pl-5 pr-1.5 sm:pr-2 flex items-center justify-between shadow-xs hover:shadow-md transition-all duration-200 cursor-pointer">
+                          <span className="tracking-wide">Calibrate & Match Talent</span>
+                          {/* White Circular Icon Container Matching Button Radius */}
+                          <span className="relative w-8 h-8 rounded-full bg-white flex items-center justify-center text-[#0A0A0A] overflow-hidden shadow-xs shrink-0">
+                            {/* Primary Icon: Slides out diagonally top-right */}
+                            <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:-translate-y-4" />
+                            {/* Incoming Icon: Slides in smoothly from bottom-left */}
+                            <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] absolute -translate-x-4 translate-y-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0 group-hover:translate-y-0" />
+                          </span>
+                        </div>
                       </Link>
-                      <Link
-                        href="/onboarding"
-                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface border border-border flex items-center justify-center text-ink hover:text-gold hover:border-gold transition-colors shadow-xs"
-                        aria-label="Start Learning"
-                      >
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </Link>
+                      <p className="font-mono text-[10px] text-stone-500 uppercase tracking-wider">
+                        100% VERIFIED GITHUB REPOSITORIES · ZERO AI FLUFF
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                {/* CARD 2: STEP 02 · GET CERTIFIED (Hexagonal Graphic Centerpiece & Virtual Internship) */}
-                <div className="rounded-[24px] p-4 sm:p-5 bg-[#F4F8F4] dark:bg-[#111613] border border-border/80 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-3 transition-all hover:border-success/50">
-                  {/* Header Row */}
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <h3 className="font-display font-semibold text-xs sm:text-sm tracking-wider uppercase text-ink">
-                        TUNDE ADEBAYO
-                      </h3>
-                      <p className="font-body text-[11px] text-muted flex items-center gap-1">
-                        <span>Virtual Internship</span>
-                        <span className="text-border select-none">——</span>
-                        <span>8W</span>
-                      </p>
-                    </div>
-                    <div className="w-9 h-9 rounded-full bg-success/20 border-2 border-success/50 flex items-center justify-center font-mono font-bold text-success text-xs shadow-xs">
-                      TA
-                    </div>
-                  </div>
-
-                  {/* Centerpiece: Hexagonal Artwork Frame with Code Audit Inspection Graphic */}
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto relative flex items-center justify-center">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[20px] rotate-45 border border-success/40 bg-gradient-to-br from-surface/90 via-surface-elevated to-surface/40 flex items-center justify-center shadow-inner overflow-hidden">
-                      <div className="-rotate-45 text-center space-y-1 p-1">
-                        <div className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-success/15 text-[9px] font-mono font-bold text-success tracking-wider uppercase">
-                          <CheckCircle2 className="w-2.5 h-2.5" />
-                          <span>STEP 02</span>
-                        </div>
-                        <div className="font-mono text-[10px] font-bold text-ink leading-tight">
-                          14 PRs Merged
-                        </div>
-                        <div className="text-[9px] font-mono text-success">
-                          Verified by TA
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom Row Controls */}
-                  <div className="flex items-center justify-between gap-1.5 pt-1">
-                    <span className="bg-ink text-bg font-mono text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full">
-                      STEP 02 · 14 PRS
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <a
-                        href="#closed-loop"
-                        className="inline-flex items-center bg-surface hover:bg-surface-elevated border border-border rounded-full text-[10px] sm:text-xs font-mono uppercase px-3 py-1 text-ink font-medium transition-colors"
-                      >
-                        Inspect Proof
-                      </a>
-                      <a
-                        href="#closed-loop"
-                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface border border-border flex items-center justify-center text-ink hover:text-success hover:border-success transition-colors shadow-xs"
-                        aria-label="Inspect Proof"
-                      >
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
+                {/* RIGHT CONNECTOR CURVES (Visible on lg+): Obvious Black Hardware Trace Lines */}
+                <div className="hidden lg:flex flex-col items-center justify-center w-8 shrink-0 py-1 h-[360px] sm:h-[370px] select-none pointer-events-none">
+                  <svg viewBox="0 0 32 370" fill="none" className="w-full h-full text-[#0F0D0B]">
+                    <path d="M 0 185 C 14 185, 14 70, 32 70" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                    <path d="M 0 185 C 14 185, 14 275, 32 275" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                    <circle cx="3" cy="185" r="3.5" fill="currentColor" />
+                    <circle cx="29" cy="70" r="3" fill="currentColor" />
+                    <circle cx="29" cy="275" r="3" fill="currentColor" />
+                  </svg>
                 </div>
 
-                {/* CARD 3: STEP 03 · MATCHED TO A JOB (Placement Engine Routing & Direct Offer) */}
-                <div className="rounded-[24px] p-4 sm:p-5 bg-[#F7F4FA] dark:bg-[#141117] border border-border/80 shadow-sm relative overflow-hidden flex flex-col justify-between space-y-3 transition-all hover:border-info/50">
-                  {/* Header Row */}
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <h3 className="font-display font-semibold text-xs sm:text-sm tracking-wider uppercase text-ink">
-                        ANTHROPIC & PAYSTACK
-                      </h3>
-                      <p className="font-body text-[11px] text-muted flex items-center gap-1">
-                        <span>Placement Engine</span>
-                        <span className="text-border select-none">——</span>
-                        <span>≤ 30D</span>
+                {/* 3. RIGHT COLUMN: Unified White Card with Top Black Header Card & White Background for Images/Names */}
+                <div className="w-full lg:w-[29%] h-[360px] sm:h-[370px]">
+                  <div className="w-full h-full rounded-[28px] sm:rounded-[32px] p-3 sm:p-3.5 bg-white border border-stone-200/90 shadow-xl flex flex-col justify-between overflow-hidden relative">
+                    
+                    {/* Top Inside Black Card with Text */}
+                    <div className="rounded-2xl p-2.5 sm:p-3 bg-[#0F0D0B] border border-black/40 text-white shadow-xs space-y-1">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 font-body font-semibold text-xs tracking-wider text-white">
+                          <Building2 className="w-3.5 h-3.5 text-gold" />
+                          <span>MATCHED TO JOBS</span>
+                        </div>
+                        {/* 3 Dots */}
+                        <div className="flex items-center gap-1 opacity-60">
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
+                        </div>
+                      </div>
+                      <p className="font-mono text-[9px] font-bold text-emerald-400 tracking-widest uppercase">
+                        DIRECT PARTNER HIRES
                       </p>
                     </div>
-                    <div className="w-9 h-9 rounded-full bg-info/20 border-2 border-info/50 flex items-center justify-center font-mono font-bold text-info text-xs shadow-xs">
-                      AP
-                    </div>
-                  </div>
 
-                  {/* Centerpiece: Stadium / Shield Artwork Frame with Offer Dispatch Details */}
-                  <div className="w-full max-w-[220px] mx-auto p-2.5 rounded-card bg-surface/90 border border-info/40 shadow-inner space-y-1 text-center">
-                    <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-info/15 text-[9px] font-mono font-bold text-info tracking-wider uppercase">
-                      <Briefcase className="w-2.5 h-2.5" />
-                      <span>STEP 03 · MATCHED</span>
-                    </div>
-                    <div className="font-display font-bold text-xs text-ink">
-                      Interview Dispatched
-                    </div>
-                    <div className="font-mono text-[10px] text-success font-semibold">
-                      $48,000 / ₦38M Compensation
-                    </div>
-                  </div>
+                    {/* 4 Fellows: Images, Names & Badges directly on White Background */}
+                    <div className="grid grid-cols-4 gap-2 pt-1 pb-0.5">
+                      {/* Match 1: Amara -> Anthropic */}
+                      <div className="space-y-1 text-center">
+                        <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
+                          <img
+                            src="/fellows/amara.jpg"
+                            alt="Amara O."
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                          />
+                        </div>
+                        <p className="font-body text-[10px] font-medium text-stone-900 truncate">
+                          Amara O.
+                        </p>
+                        <span className="block text-[8px] font-mono font-semibold text-[#8C6200] bg-gold/15 border border-gold/30 rounded px-1 py-0.5 truncate">
+                          Anthropic
+                        </span>
+                      </div>
 
-                  {/* Bottom Row Controls */}
-                  <div className="flex items-center justify-between gap-1.5 pt-1">
-                    <span className="bg-ink text-bg font-mono text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-full">
-                      STEP 03 · OFFER
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <a
-                        href="#employers"
-                        className="inline-flex items-center bg-surface hover:bg-surface-elevated border border-border rounded-full text-[10px] sm:text-xs font-mono uppercase px-3 py-1 text-ink font-medium transition-colors"
-                      >
-                        Explore Network
-                      </a>
-                      <a
-                        href="#employers"
-                        className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-surface border border-border flex items-center justify-center text-ink hover:text-info hover:border-info transition-colors shadow-xs"
-                        aria-label="Explore Hiring Network"
-                      >
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                      {/* Match 2: Tunde -> Paystack */}
+                      <div className="space-y-1 text-center">
+                        <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
+                          <img
+                            src="/fellows/tunde.jpg"
+                            alt="Tunde A."
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                          />
+                        </div>
+                        <p className="font-body text-[10px] font-medium text-stone-900 truncate">
+                          Tunde A.
+                        </p>
+                        <span className="block text-[8px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded px-1 py-0.5 truncate">
+                          Paystack
+                        </span>
+                      </div>
+
+                      {/* Match 3: Chioma -> Scale AI */}
+                      <div className="space-y-1 text-center">
+                        <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
+                          <img
+                            src="/fellows/chioma.jpg"
+                            alt="Chioma E."
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                          />
+                        </div>
+                        <p className="font-body text-[10px] font-medium text-stone-900 truncate">
+                          Chioma E.
+                        </p>
+                        <span className="block text-[8px] font-mono font-semibold text-sky-700 bg-sky-50 border border-sky-200 rounded px-1 py-0.5 truncate">
+                          Scale AI
+                        </span>
+                      </div>
+
+                      {/* Match 4: Kenji -> Supabase */}
+                      <div className="space-y-1 text-center">
+                        <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
+                          <img
+                            src="/fellows/kenji.jpg"
+                            alt="Kenji M."
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-200"
+                          />
+                        </div>
+                        <p className="font-body text-[10px] font-medium text-stone-900 truncate">
+                          Kenji M.
+                        </p>
+                        <span className="block text-[8px] font-mono font-semibold text-amber-700 bg-amber-50 border border-amber-200 rounded px-1 py-0.5 truncate">
+                          Supabase
+                        </span>
+                      </div>
                     </div>
+
+                    {/* Bottom Section inside White Card: Key Live Metrics */}
+                    <div className="rounded-2xl p-2 sm:p-2.5 bg-stone-50 border border-stone-200/80 space-y-1">
+                      {/* Row 1: Direct Interviews */}
+                      <div className="flex items-center justify-between text-[11px] py-0.5 border-b border-stone-200/60">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-4 h-4 rounded-md bg-gold/15 flex items-center justify-center text-gold text-[9px]">
+                            💼
+                          </span>
+                          <span className="font-body font-medium text-stone-800">Partner Interviews</span>
+                        </div>
+                        <span className="font-mono text-[11px] text-stone-500 font-medium">38 Dispatched</span>
+                      </div>
+
+                      {/* Row 2: Verified Offers */}
+                      <div className="flex items-center justify-between text-[11px] py-0.5 border-b border-stone-200/60">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20 ml-1 mr-0.5" />
+                          <span className="font-body font-medium text-stone-800">PR-Verified Hires</span>
+                        </div>
+                        <span className="font-mono text-[11px] text-emerald-600 font-bold">150+ Direct Offers</span>
+                      </div>
+
+                      {/* Row 3: Starting Package */}
+                      <div className="flex items-center justify-between text-[11px] py-0.5">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-4 h-4 rounded-md bg-gold/15 flex items-center justify-center text-gold text-[9px]">
+                            💎
+                          </span>
+                          <span className="font-body font-medium text-stone-800">Starting Package</span>
+                        </div>
+                        <span className="font-mono text-[11px] text-[#A37410] font-bold">₦18M - ₦38M / $48k</span>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
 
