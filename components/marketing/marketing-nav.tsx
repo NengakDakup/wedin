@@ -23,26 +23,20 @@ export function MarketingNav() {
           >
             Home
           </Link>
+          <Link
+            href="/courses"
+            className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
+          >
+            Courses
+          </Link>
           <a
-            href="#tracks"
+            href="/#tracks"
             className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
           >
             Tracks
           </a>
           <a
-            href="#closed-loop"
-            className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
-          >
-            The Closed Loop
-          </a>
-          <a
-            href="#employers"
-            className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
-          >
-            Placements
-          </a>
-          <a
-            href="#pricing"
+            href="/#pricing"
             className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
           >
             Pricing
@@ -139,29 +133,25 @@ export function MarketingNav() {
             >
               Home
             </Link>
+            <Link
+              href="/courses"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-muted hover:text-ink py-1.5 transition-colors font-medium flex items-center justify-between"
+            >
+              <span>Explore All Courses</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-gold/15 text-gold border border-gold/30">
+                12 Tracks
+              </span>
+            </Link>
             <a
-              href="#tracks"
+              href="/#tracks"
               onClick={() => setMobileMenuOpen(false)}
               className="text-muted hover:text-ink py-1.5 transition-colors"
             >
               Curriculum Tracks
             </a>
             <a
-              href="#closed-loop"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-muted hover:text-ink py-1.5 transition-colors"
-            >
-              The Closed Loop
-            </a>
-            <a
-              href="#employers"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-muted hover:text-ink py-1.5 transition-colors"
-            >
-              Employer Placements
-            </a>
-            <a
-              href="#pricing"
+              href="/#pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="text-muted hover:text-ink py-1.5 transition-colors"
             >

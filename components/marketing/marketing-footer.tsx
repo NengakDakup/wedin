@@ -112,6 +112,14 @@ export function MarketingFooter() {
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-body text-muted">
               <li>
+                <Link href="/courses" className="text-gold font-medium hover:underline flex items-center gap-1.5">
+                  <span>All Courses & Programs</span>
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.2 rounded bg-gold/15 text-gold border border-gold/30">
+                    12 Tracks
+                  </span>
+                </Link>
+              </li>
+              <li>
                 <a href="#tracks" className="hover:text-gold transition-colors">
                   Full-Stack AI Systems
                 </a>
