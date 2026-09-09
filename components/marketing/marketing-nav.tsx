@@ -15,8 +15,8 @@ export function MarketingNav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-bg/85 backdrop-blur-md transition-colors duration-200 px-4 lg:px-16">
       <div className="mx-auto px-4 sm:px-8 h-16 sm:h-[72px] flex items-center justify-between relative">
-        {/* LEFT: Nav links with Home pill button (Clean Sans-Serif font-body) */}
-        <div className="hidden md:flex items-center gap-1 text-[13px] font-body">
+        {/* LEFT: Nav links with Home pill button (hidden at <= 1300px width) */}
+        <div className="hidden min-[1300px]:flex items-center gap-1 text-[13px] font-body">
           <Link
             href="/"
             className="px-3.5 py-1.5 rounded-full bg-surface border border-border/90 text-ink font-medium shadow-xs hover:border-gold/50 transition-colors"
@@ -49,8 +49,8 @@ export function MarketingNav() {
           </a>
         </div>
 
-        {/* CENTER: Mathematically dead-centered Brand Logo & Wordmark */}
-        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center pointer-events-auto">
+        {/* Brand Logo & Wordmark: Left on <= 1300px widths, mathematically centered on > 1300px */}
+        <div className="flex items-center min-[1300px]:absolute min-[1300px]:left-1/2 min-[1300px]:-translate-x-1/2 pointer-events-auto shrink-0">
           <Link href="/" className="flex items-center gap-2.5 group">
             {/* Precision Closed-Loop Geometric Logo Glyph */}
             <div className="w-7 h-7 relative flex items-center justify-center text-gold group-hover:scale-105 transition-transform duration-200">
@@ -116,11 +116,11 @@ export function MarketingNav() {
             </span>
           </Link>
 
-          {/* Mobile menu toggle button */}
+          {/* Mobile menu toggle button (visible at <= 1300px) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 text-muted hover:text-ink transition-colors cursor-pointer"
+            className="min-[1300px]:hidden p-1.5 text-muted hover:text-ink transition-colors cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -128,9 +128,9 @@ export function MarketingNav() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile / Tablet / Compact Drawer (below 1300px) */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-surface border-b border-border p-5 space-y-3.5 animate-sheet-up">
+        <div className="min-[1300px]:hidden bg-surface border-b border-border p-5 space-y-3.5 animate-sheet-up">
           <div className="flex flex-col gap-2 font-body text-sm font-medium">
             <Link
               href="/"
