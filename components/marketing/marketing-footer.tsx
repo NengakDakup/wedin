@@ -99,7 +99,7 @@ export function MarketingFooter() {
           </Link>
 
           <p className="font-body text-xs sm:text-sm text-muted">
-            The closed-loop talent infrastructure for African tech.
+            The closed-loop talent infrastructure for high-growth tech.
           </p>
         </div>
 

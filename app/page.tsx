@@ -1963,7 +1963,7 @@ export default function MarketingLandingPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse ml-1" />
               </div>
               <h2 className="font-body text-3xl sm:text-5xl font-semibold text-ink tracking-tight">
-                Hire Pre-Vetted African Tech Talent in 72 Hours
+                Hire Pre-Vetted Global Tech Talent in 72 Hours
               </h2>
               <p className="font-body text-sm sm:text-base text-muted leading-relaxed">
                 Eliminate 95% of resume noise. Wedin connects your engineering leaders directly to candidates with pre-evaluated code repositories, enterprise sprint PRs, and verified lead supervisor ratings.
