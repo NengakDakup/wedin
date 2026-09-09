@@ -30,16 +30,16 @@ export function MarketingNav() {
             Courses
           </Link>
           <a
-            href="/#tracks"
-            className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
-          >
-            Tracks
-          </a>
-          <a
             href="/#pricing"
             className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
           >
             Pricing
+          </a>
+          <a
+            href="/#faq"
+            className="px-3 py-1.5 rounded-full text-muted hover:text-ink font-medium transition-colors"
+          >
+            FAQ
           </a>
         </div>
 
@@ -144,18 +144,18 @@ export function MarketingNav() {
               </span>
             </Link>
             <a
-              href="/#tracks"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-muted hover:text-ink py-1.5 transition-colors"
-            >
-              Curriculum Tracks
-            </a>
-            <a
               href="/#pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="text-muted hover:text-ink py-1.5 transition-colors"
             >
               Installment Pricing
+            </a>
+            <a
+              href="/#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-muted hover:text-ink py-1.5 transition-colors"
+            >
+              FAQ
             </a>
             <Link
               href="/app/dashboard"
