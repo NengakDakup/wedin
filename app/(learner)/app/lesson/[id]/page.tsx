@@ -776,7 +776,7 @@ Execution completed in 24ms. Memory footprint: 14.2MB.`
               <Avatar fallback="TO" verified size="default" className="shrink-0" />
               <div>
                 <h4 className="font-body text-sm font-semibold text-ink">Tunde Onakoya</h4>
-                <p className="text-[11px] font-mono text-gold">Lead AI Architect @ Moniepoint</p>
+                <p className="text-[11px] font-mono text-gold">Lead AI Systems Architect · ex-Google / Stripe</p>
                 <p className="text-xs font-body text-muted mt-1 leading-relaxed">
                   Directing autonomous agent pipelines, vector database clustering, and high-scale financial ML systems.
                 </p>

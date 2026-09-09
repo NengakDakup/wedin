@@ -898,7 +898,7 @@ export default function DashboardPage() {
               <div className="flex items-center gap-3 text-xs font-mono text-muted mt-2 flex-wrap">
                 <span>TA SCORE: <strong className="text-gold font-semibold">98.4 / 100</strong></span>
                 <span>•</span>
-                <span>TARGET: <strong className="text-ink font-semibold">₦24M – ₦36M / $45k - $70k</strong></span>
+                <span>TARGET: <strong className="text-ink font-semibold">$95,000 – $165,000 / yr Remote</strong></span>
                 <span>•</span>
                 <span>VERIFIED BY: <strong className="text-muted">Wedin ATS Engine</strong></span>
               </div>

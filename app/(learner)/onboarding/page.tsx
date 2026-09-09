@@ -61,7 +61,7 @@ export default function OnboardingPage() {
               Hiring Partner Pipeline Routing
             </h3>
             <p className="font-body text-xs sm:text-sm text-muted leading-relaxed">
-              Graduating fellows receive 72-hour direct interview dispatches with hiring teams at Moniepoint, Paystack, and Flutterwave.
+              Graduating fellows receive 72-hour direct interview dispatches with hiring teams at Stripe, Linear, Vercel, and high-growth global teams.
             </p>
           </div>
         </div>

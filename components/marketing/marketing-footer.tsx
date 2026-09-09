@@ -48,14 +48,14 @@ function YoutubeIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export function MarketingFooter() {
   const [langOpen, setLangOpen] = React.useState(false)
-  const [selectedLang, setSelectedLang] = React.useState('English (Nigeria / Global)')
+  const [selectedLang, setSelectedLang] = React.useState('English (Global / International)')
 
   const languages = [
-    'English (Nigeria / Global)',
-    'English (United Kingdom / Diaspora)',
+    'English (Global / International)',
     'English (United States & Canada)',
-    'English (Kenya & East Africa)',
-    'English (Ghana & West Africa)',
+    'English (United Kingdom & Europe)',
+    'English (Asia-Pacific & Remote)',
+    'English (Africa & Middle East)',
   ]
 
   return (
@@ -218,7 +218,7 @@ export function MarketingFooter() {
                 <div className="w-8 h-8 rounded-lg bg-gold/15 border border-gold/30 text-gold flex items-center justify-center shrink-0 shadow-2xs">
                   <MapPin className="w-4 h-4" />
                 </div>
-                <span>Lagos, Nigeria · London · Toronto</span>
+                <span>San Francisco · London · Lagos · Toronto</span>
               </div>
             </div>
           </div>

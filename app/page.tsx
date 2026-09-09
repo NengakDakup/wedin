@@ -53,14 +53,14 @@ import { Avatar } from '@/components/primitives/avatar'
 import { CAREER_TRACKS } from '@/lib/mock-data'
 import { cn } from '@/lib/utils'
 import {
-  PaystackLogo,
-  MoniepointLogo,
-  FlutterwaveLogo,
-  PiggyvestLogo,
-  KudaLogo,
-  OpayLogo,
-  NombaLogo,
-  CowrywiseLogo,
+  StripeLogo,
+  VercelLogo,
+  LinearLogo,
+  OpenAILogo,
+  SupabaseLogo,
+  CloudflareLogo,
+  DatadogLogo,
+  ShopifyLogo,
 } from '@/components/marketing/nigerian-tech-logos'
 
 export default function MarketingLandingPage() {
@@ -127,11 +127,11 @@ export default function MarketingLandingPage() {
       step: '02',
       title: 'Virtual Internship',
       subtitle: '8 Weeks of Enterprise Sprints',
-      desc: 'You transition from student to practitioner. Embedded into simulated enterprise engineering squads at companies like Paystack & Moniepoint, you receive real sprint briefs, submit pull requests, resolve merge conflicts, and get rated by industry leads.',
+      desc: 'You transition from student to practitioner. Embedded into simulated enterprise engineering squads at companies like Stripe & Vercel, you receive real sprint briefs, submit pull requests, resolve merge conflicts, and get rated by industry leads.',
       highlights: [
         'Simulated sprint boards on enterprise repos',
         'Sub-50ms database benchmarks & pgvector migrations',
-        '1-on-1 code reviews from ex-Paystack / Flutterwave Leads',
+        '1-on-1 code reviews from ex-Stripe / Vercel Leads',
       ],
       tag: 'ENTERPRISE SPRINT',
       statsLabel: 'SUPERVISOR EVALUATION',
@@ -155,7 +155,7 @@ export default function MarketingLandingPage() {
       step: '04',
       title: 'Automated Placement Engine',
       subtitle: 'Direct Partner Pipeline Routing',
-      desc: 'The engine actively analyzes hiring manager criteria at Nigeria & global tech unicorns, matches your verified skills, auto-submits tailored applications, and delivers pre-screened technical interview invitations directly to your dashboard.',
+      desc: 'The engine actively analyzes hiring manager criteria at global tech unicorns & engineering teams, matches your verified skills, auto-submits tailored applications, and delivers pre-screened technical interview invitations directly to your dashboard.',
       highlights: [
         'Direct recruiter routing with zero agency markup',
         '98% algorithmic calibration match on capstones',
@@ -169,76 +169,76 @@ export default function MarketingLandingPage() {
 
   const hiringCompanies = [
     {
-      name: 'Paystack',
-      category: 'Developer Payments',
+      name: 'Stripe',
+      category: 'Global Payments Infra',
       role: 'Core Systems / TypeScript',
-      salary: '₦22M - ₦36M',
+      salary: '$130k - $190k',
+      hires: '28 Hired',
+      logo: StripeLogo,
+      accent: 'text-[#635BFF]',
+    },
+    {
+      name: 'Vercel',
+      category: 'Frontend Cloud & AI',
+      role: 'Cloud Architecture & Next.js',
+      salary: '$135k - $195k',
+      hires: '22 Hired',
+      logo: VercelLogo,
+      accent: 'text-ink',
+    },
+    {
+      name: 'Linear',
+      category: 'Modern Engineering Tools',
+      role: 'Full-Stack Product & Sync',
+      salary: '$125k - $185k',
+      hires: '16 Hired',
+      logo: LinearLogo,
+      accent: 'text-[#5E6AD2]',
+    },
+    {
+      name: 'OpenAI',
+      category: 'Frontier AI & API Platform',
+      role: 'Agentic Workflows & Python',
+      salary: '$140k - $210k',
       hires: '14 Hired',
-      logo: PaystackLogo,
-      accent: 'text-[#00C3F7]',
+      logo: OpenAILogo,
+      accent: 'text-[#10A37F]',
     },
     {
-      name: 'Moniepoint',
-      category: 'Banking Infrastructure',
-      role: 'Cloud Architecture & SRE',
-      salary: '₦24M - ₦38M',
+      name: 'Supabase',
+      category: 'Open Source Postgres',
+      role: 'Distributed Database Systems',
+      salary: '$120k - $175k',
+      hires: '19 Hired',
+      logo: SupabaseLogo,
+      accent: 'text-[#3ECF8E]',
+    },
+    {
+      name: 'Cloudflare',
+      category: 'Edge & Global Network',
+      role: 'High-Throughput Edge Compute',
+      salary: '$130k - $185k',
+      hires: '21 Hired',
+      logo: CloudflareLogo,
+      accent: 'text-[#F38020]',
+    },
+    {
+      name: 'Datadog',
+      category: 'Observability & Cloud Ops',
+      role: 'SRE & Distributed Systems',
+      salary: '$125k - $180k',
+      hires: '17 Hired',
+      logo: DatadogLogo,
+      accent: 'text-[#632CA6]',
+    },
+    {
+      name: 'Shopify',
+      category: 'Global Commerce Platform',
+      role: 'Platform Engineering & Ruby/Go',
+      salary: '$120k - $175k',
       hires: '18 Hired',
-      logo: MoniepointLogo,
-      accent: 'text-[#0357EE]',
-    },
-    {
-      name: 'Flutterwave',
-      category: 'African Payments',
-      role: 'Distributed Backend & Go',
-      salary: '₦20M - ₦34M',
-      hires: '12 Hired',
-      logo: FlutterwaveLogo,
-      accent: 'text-[#FB9129]',
-    },
-    {
-      name: 'Piggyvest',
-      category: 'Automated Wealth',
-      role: 'Data & Feature Store Ops',
-      salary: '₦18M - ₦28M',
-      hires: '10 Hired',
-      logo: PiggyvestLogo,
-      accent: 'text-[#0D60D8]',
-    },
-    {
-      name: 'Kuda Bank',
-      category: 'Neo-Banking App',
-      role: 'Microservices & Platform',
-      salary: '₦18M - ₦30M',
-      hires: '9 Hired',
-      logo: KudaLogo,
-      accent: 'text-[#9333EA]',
-    },
-    {
-      name: 'OPay',
-      category: 'Consumer Fintech',
-      role: 'High-Throughput Engineering',
-      salary: '₦22M - ₦36M',
-      hires: '15 Hired',
-      logo: OpayLogo,
-      accent: 'text-[#14B566]',
-    },
-    {
-      name: 'Nomba',
-      category: 'Merchant Solutions',
-      role: 'Full-Stack & POS Systems',
-      salary: '₦16M - ₦26M',
-      hires: '8 Hired',
-      logo: NombaLogo,
-      accent: 'text-[#EAB308]',
-    },
-    {
-      name: 'Cowrywise',
-      category: 'Algorithmic Savings',
-      role: 'Security & Backend Python',
-      salary: '₦18M - ₦28M',
-      hires: '8 Hired',
-      logo: CowrywiseLogo,
-      accent: 'text-[#0066F5]',
+      logo: ShopifyLogo,
+      accent: 'text-[#95BF47]',
     },
   ]
 
@@ -252,7 +252,7 @@ export default function MarketingLandingPage() {
       cohortStatus: 'Cohort 04 Enrolling',
       spotsLeft: '8 Spots Left',
       isFeatured: true,
-      salaryRange: '₦22M – ₦36M',
+      salaryRange: '$120,000 – $180,000 / yr',
       avgPlacement: '18 Days to Offer',
       matchScore: '98% Placement Rate',
       icon: Sparkles,
@@ -267,7 +267,7 @@ export default function MarketingLandingPage() {
       cohortStatus: 'Cohort 04 Enrolling',
       spotsLeft: '11 Spots Left',
       isFeatured: false,
-      salaryRange: '₦20M – ₦34M',
+      salaryRange: '$110,000 – $170,000 / yr',
       avgPlacement: '21 Days to Offer',
       matchScore: '94% Placement Rate',
       icon: Database,
@@ -282,28 +282,28 @@ export default function MarketingLandingPage() {
       cohortStatus: 'Cohort 04 Enrolling',
       spotsLeft: '6 Spots Left',
       isFeatured: false,
-      salaryRange: '₦18M – ₦30M',
+      salaryRange: '$95,000 – $155,000 / yr',
       avgPlacement: '19 Days to Offer',
       matchScore: '96% Placement Rate',
       icon: Layers,
-      keySkills: ['Next.js', 'React 19', 'GraphQL', 'Tailwind CSS', 'Distributed SQL', 'Stripe / Paystack APIs'],
+      keySkills: ['Next.js', 'React 19', 'GraphQL', 'Tailwind CSS', 'Distributed SQL', 'Stripe APIs'],
     },
   ]
 
   const faqs = [
     {
       q: 'Do you guarantee a job placement upon graduation?',
-      a: 'We guarantee structured access, verified effort, and partner pipeline routing—not arbitrary job offers. In line with global engineering hiring ethics, we avoid misleading "100% job guarantees." Instead, our placement engine actively tailors your CV, matches you with pre-vetted employers across Nigeria and globally, and submits applications on your behalf until you are placed.',
+      a: 'We guarantee structured access, verified effort, and partner pipeline routing—not arbitrary job offers. In line with global engineering hiring ethics, we avoid misleading "100% job guarantees." Instead, our placement engine actively tailors your CV, matches you with pre-vetted employers across the US, Europe, and global remote markets, and submits applications on your behalf until you are placed.',
       category: 'placements',
     },
     {
       q: 'Can I complete a cohort while working a full-time job?',
-      a: 'Yes. All our tracks are specifically engineered for working professionals and career switchers. Live masterclasses occur on weekday evenings (7 PM WAT) and Saturdays, with 24/7 asynchronous access to video archives, code sandbox labs, and TA office hours on Discord.',
+      a: 'Yes. All our tracks are specifically engineered for working professionals and career switchers. Live masterclasses occur on weekday evenings and weekends across multiple timezone options (US/EST, UK/GMT, and WAT), with 24/7 asynchronous access to video archives, code sandbox labs, and TA office hours on Discord.',
       category: 'curriculum',
     },
     {
       q: 'How does the 8-week virtual enterprise internship work?',
-      a: 'The final 8 weeks of every flagship track transition you from student to practitioner. You are embedded into simulated engineering squads at companies like Paystack, Moniepoint, and Flutterwave. You receive real Jira-style sprint briefs, open pull requests, resolve merge conflicts, and earn lead engineer supervisor ratings.',
+      a: 'The final 8 weeks of every flagship track transition you from student to practitioner. You are embedded into simulated engineering squads at companies like Stripe, Linear, and Vercel. You receive real Jira-style sprint briefs, open pull requests, resolve merge conflicts, and earn lead engineer supervisor ratings.',
       category: 'curriculum',
     },
     {
@@ -313,7 +313,7 @@ export default function MarketingLandingPage() {
     },
     {
       q: 'What are the tuition payment options and installment plans?',
-      a: 'We believe finances should never lock out talent. We offer localized 4-month zero-interest installment plans in Naira (₦35,000 / month) via Paystack and Flutterwave, as well as one-time discounted options and USD payment rails for international learners.',
+      a: 'We believe finances should never lock out talent. We offer zero-interest 4-month installment plans ($89 / month) as well as one-time discounted options ($299) via Stripe, Apple Pay, and all major international credit/debit cards.',
       category: 'pricing',
     },
     {
@@ -323,7 +323,7 @@ export default function MarketingLandingPage() {
     },
     {
       q: 'How do employers discover and interview Wedin fellows?',
-      a: 'Our partner network includes top African tech giants and remote US/UK scaleups. As you complete capstones, the Placement Engine flags your code benchmarks to relevant hiring managers, enabling 72-hour direct interview dispatches with zero agency markup.',
+      a: 'Our partner network includes top remote scaleups and global enterprises across North America, Europe, and emerging tech hubs. As you complete capstones, the Placement Engine flags your code benchmarks to relevant hiring managers, enabling 72-hour direct interview dispatches with zero agency markup.',
       category: 'placements',
     },
   ]
@@ -452,12 +452,12 @@ export default function MarketingLandingPage() {
                   <span className="font-bold text-ink">150+ PLACEMENTS</span>
                 </div>
 
-                {/* Middle Pill: FROM ₦35k / MO */}
+                {/* Middle Pill: FROM $89 / MO */}
                 <a
                   href="#pricing"
                   className="inline-flex items-center bg-surface hover:bg-surface-elevated border border-border text-ink rounded-full px-4 py-1.5 text-xs font-mono font-medium tracking-wide shadow-xs transition-colors"
                 >
-                  FROM ₦35k / MO
+                  FROM $89 / MO
                 </a>
 
                 {/* Right Primary Pill: DISCOVER ↗ (in Wedin Gold) */}
@@ -718,7 +718,7 @@ export default function MarketingLandingPage() {
 
                     {/* 4 Fellows: Images, Names & Badges directly on White Background */}
                     <div className="grid grid-cols-4 gap-2 pt-1 pb-0.5">
-                      {/* Match 1: Amara -> Paystack */}
+                      {/* Match 1: Amara -> Stripe */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -730,12 +730,12 @@ export default function MarketingLandingPage() {
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Amara O.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-[#008BB8] bg-[#00C3F7]/12 border border-[#00C3F7]/30 rounded px-1 py-0.5 truncate">
-                          Paystack
+                        <span className="block text-[8px] font-mono font-semibold text-[#534be8] bg-[#635BFF]/12 border border-[#635BFF]/30 rounded px-1 py-0.5 truncate">
+                          Stripe
                         </span>
                       </div>
 
-                      {/* Match 2: Tunde -> Moniepoint */}
+                      {/* Match 2: Tunde -> Linear */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -747,12 +747,12 @@ export default function MarketingLandingPage() {
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Tunde A.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-[#0247C5] bg-[#0357EE]/12 border border-[#0357EE]/30 rounded px-1 py-0.5 truncate">
-                          Moniepoint
+                        <span className="block text-[8px] font-mono font-semibold text-[#4853b8] bg-[#5E6AD2]/12 border border-[#5E6AD2]/30 rounded px-1 py-0.5 truncate">
+                          Linear
                         </span>
                       </div>
 
-                      {/* Match 3: Chioma -> Piggyvest */}
+                      {/* Match 3: Chioma -> Vercel */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -764,12 +764,12 @@ export default function MarketingLandingPage() {
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Chioma E.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-[#0B4DB0] bg-[#0D60D8]/12 border border-[#0D60D8]/30 rounded px-1 py-0.5 truncate">
-                          Piggyvest
+                        <span className="block text-[8px] font-mono font-semibold text-stone-900 bg-stone-200 border border-stone-300 rounded px-1 py-0.5 truncate">
+                          Vercel
                         </span>
                       </div>
 
-                      {/* Match 4: Kenji -> Flutterwave */}
+                      {/* Match 4: Kenji -> OpenAI */}
                       <div className="space-y-1 text-center">
                         <div className="aspect-[3/4] rounded-xl overflow-hidden bg-stone-100 border border-stone-200 relative shadow-2xs group">
                           <img
@@ -781,8 +781,8 @@ export default function MarketingLandingPage() {
                         <p className="font-body text-[10px] font-medium text-stone-900 truncate">
                           Kenji M.
                         </p>
-                        <span className="block text-[8px] font-mono font-semibold text-[#C4680A] bg-[#FB9129]/12 border border-[#FB9129]/30 rounded px-1 py-0.5 truncate">
-                          Flutterwave
+                        <span className="block text-[8px] font-mono font-semibold text-[#0d7d61] bg-[#10A37F]/12 border border-[#10A37F]/30 rounded px-1 py-0.5 truncate">
+                          OpenAI
                         </span>
                       </div>
                     </div>
@@ -817,7 +817,7 @@ export default function MarketingLandingPage() {
                           </span>
                           <span className="font-body font-medium text-stone-800">Starting Package</span>
                         </div>
-                        <span className="font-mono text-[11px] text-[#A37410] font-bold">₦18M - ₦38M / $48k</span>
+                        <span className="font-mono text-[11px] text-[#A37410] font-bold">$95,000 – $165,000 / yr</span>
                       </div>
                     </div>
 
@@ -837,14 +837,14 @@ export default function MarketingLandingPage() {
             <div className="space-y-1">
               <div className="inline-flex items-center gap-2 text-[11px] font-mono text-stone-950 tracking-wider uppercase font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                <span>TOP NIGERIAN TECH UNICORNS & ENTERPRISES</span>
+                <span>TOP GLOBAL TECH UNICORNS & ENTERPRISES</span>
               </div>
               <h3 className="font-body text-xl sm:text-2xl font-semibold text-stone-950 tracking-tight">
                 Where Wedin Fellows Build & Lead
               </h3>
             </div>
             <p className="font-body text-xs sm:text-sm text-stone-900 max-w-md font-medium">
-              Direct pipeline routing with Lagos &amp; remote engineering squads. Zero agency recruiting markups.
+              Direct pipeline routing with remote, US, European, and global engineering squads. Zero agency recruiting markups.
             </p>
           </div>
 
@@ -1214,7 +1214,7 @@ export default function MarketingLandingPage() {
                       <span>MERGED #84</span>
                     </span>
                     <span className="text-white font-semibold text-xs truncate">
-                      paystack-oss / core-checkout-service
+                      stripe-oss / core-checkout-service
                     </span>
                   </div>
                   <span className="text-[10px] text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded font-semibold shrink-0">
@@ -1252,7 +1252,7 @@ export default function MarketingLandingPage() {
                       <div className="w-5 h-5 rounded-full bg-gold/20 border border-gold/40 flex items-center justify-center text-[10px] text-gold font-bold">
                         KM
                       </div>
-                      <span className="font-semibold text-gold">Kelechi M. (Lead Architect · ex-Paystack)</span>
+                      <span className="font-semibold text-gold">Kelechi M. (Staff Infrastructure Architect · ex-Stripe)</span>
                     </div>
                     <span className="text-stone-400">Verified Code Review</span>
                   </div>
@@ -1315,7 +1315,7 @@ export default function MarketingLandingPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 stroke-[3]" />
-                    <span>Cut database query latency by 84% on Paystack enterprise squad</span>
+                    <span>Cut database query latency by 84% on enterprise payments squad</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 stroke-[3]" />
@@ -1347,7 +1347,7 @@ export default function MarketingLandingPage() {
               </div>
             )}
 
-            {/* ARTIFACT 04: Real Nigerian Unicorn Partner Placement Dispatch */}
+            {/* ARTIFACT 04: Real Global Tech Partner Placement Dispatch */}
             {activeStage === 3 && (
               <div className="rounded-2xl bg-[#0C0A09] border border-white/10 overflow-hidden shadow-2xl font-mono text-xs space-y-3 p-4 sm:p-5 ring-1 ring-white/5">
                 {/* Header */}
@@ -1364,42 +1364,42 @@ export default function MarketingLandingPage() {
                   </span>
                 </div>
 
-                {/* Job Invitation Card 01 (Paystack) */}
+                {/* Job Invitation Card 01 (Stripe) */}
                 <div className="p-3.5 rounded-xl bg-white/[0.04] border border-gold/40 shadow-xs space-y-2 font-body">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 rounded-md bg-white/10 p-0.5 flex items-center justify-center">
-                        <PaystackLogo className="w-full h-full" />
+                        <StripeLogo className="w-full h-full" />
                       </div>
-                      <span className="font-semibold text-sm text-white">Paystack Core Platform Squad</span>
+                      <span className="font-semibold text-sm text-white">Stripe Core Platform Squad</span>
                     </div>
-                    <span className="text-xs font-mono font-bold text-emerald-400">₦28M / yr</span>
+                    <span className="text-xs font-mono font-bold text-emerald-400">$145,000 / yr</span>
                   </div>
                   <p className="text-xs text-stone-300">
-                    Role: <strong className="text-white">Junior AI Systems Engineer (Lagos / Hybrid)</strong>
+                    Role: <strong className="text-white">Junior AI Systems Engineer (Remote / Global)</strong>
                   </p>
                   <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-stone-400">
-                    <span>Interview: Thursday, 2:00 PM WAT</span>
+                    <span>Interview: Thursday, 2:00 PM EST</span>
                     <span className="text-emerald-400 font-semibold">98% Calibrated Fit</span>
                   </div>
                 </div>
 
-                {/* Job Invitation Card 02 (Moniepoint) */}
+                {/* Job Invitation Card 02 (Linear) */}
                 <div className="p-3.5 rounded-xl bg-white/[0.04] border border-white/15 shadow-xs space-y-2 font-body">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 rounded-md bg-white/10 p-0.5 flex items-center justify-center">
-                        <MoniepointLogo className="w-full h-full" />
+                        <LinearLogo className="w-full h-full" />
                       </div>
-                      <span className="font-semibold text-sm text-white">Moniepoint Core Infrastructure</span>
+                      <span className="font-semibold text-sm text-white">Linear Core Infrastructure</span>
                     </div>
-                    <span className="text-xs font-mono font-bold text-emerald-400">₦32M / yr</span>
+                    <span className="text-xs font-mono font-bold text-emerald-400">$160,000 / yr</span>
                   </div>
                   <p className="text-xs text-stone-300">
-                    Role: <strong className="text-white">Backend Systems Fellow (Victoria Island / Hybrid)</strong>
+                    Role: <strong className="text-white">Backend Systems Fellow (Remote / Hybrid)</strong>
                   </p>
                   <div className="flex items-center justify-between text-[11px] font-mono pt-1 text-stone-400">
-                    <span>Interview: Monday, 11:00 AM WAT</span>
+                    <span>Interview: Monday, 11:00 AM EST</span>
                     <span className="text-emerald-400 font-semibold">96% Calibrated Fit</span>
                   </div>
                 </div>
@@ -1450,7 +1450,7 @@ export default function MarketingLandingPage() {
                 </span>
               </div>
               <p className="font-body text-xs sm:text-sm text-muted max-w-2xl">
-                Interview debriefs, rejection analytics, and hiring rubrics from Paystack, Moniepoint &amp; Flutterwave continuously re-train our weekly curriculum.
+                Interview debriefs, rejection analytics, and hiring rubrics from Stripe, Linear &amp; Vercel continuously re-train our weekly curriculum.
               </p>
             </div>
           </div>
@@ -1725,7 +1725,7 @@ export default function MarketingLandingPage() {
               </p>
             </div>
             <p className="font-body text-xs text-muted leading-relaxed">
-              Bypasses public job boards and automated rejection black holes. Routes your verified technical dossier straight into engineering manager inboxes at Paystack, Moniepoint &amp; Flutterwave.
+              Bypasses public job boards and automated rejection black holes. Routes your verified technical dossier straight into engineering manager inboxes at Stripe, Linear, Vercel, and high-growth global teams.
             </p>
             <div className="pt-2 flex items-center gap-2 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold border-t border-border/60">
               <Check className="w-3.5 h-3.5 stroke-[3]" />
@@ -1864,11 +1864,11 @@ export default function MarketingLandingPage() {
                 {/* Item 2 */}
                 <div className="p-3 rounded-xl bg-surface-elevated/70 border border-border/80 space-y-1.5">
                   <p className="text-ink leading-relaxed">
-                    &quot;Paystack Enterprise Squad Virtual Internship: Implemented sub-50ms hybrid vector search on Postgres pgvector; cut P99 query latency from 240ms to 38ms (-84%).&quot;
+                    &quot;Stripe Core Platform Squad Virtual Internship: Implemented sub-50ms hybrid vector search on Postgres pgvector; cut P99 query latency from 240ms to 38ms (-84%).&quot;
                   </p>
                   <div className="flex items-start gap-1.5 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 pt-1 border-t border-border/60">
                     <Check className="w-3.5 h-3.5 stroke-[3] shrink-0 mt-0.5" />
-                    <span>VERIFIED: Evaluated by Lead Systems Architect (ex-Paystack) · Merged PR #84.</span>
+                    <span>VERIFIED: Evaluated by Lead Systems Architect (ex-Stripe) · Merged PR #84.</span>
                   </div>
                 </div>
 
@@ -1988,7 +1988,7 @@ export default function MarketingLandingPage() {
               <p className="text-xs text-muted pt-1">Pre-screened shortlists matched to your exact tech stack.</p>
             </div>
             <div className="p-5 rounded-2xl bg-surface border border-border/80 space-y-1 shadow-xs">
-              <div className="font-body text-2xl sm:text-3xl font-semibold text-gold">₦0 Upfront</div>
+              <div className="font-body text-2xl sm:text-3xl font-semibold text-gold">$0 Upfront</div>
               <div className="text-xs font-mono uppercase tracking-wider text-gold font-medium">Free Beta Postings</div>
               <p className="text-xs text-muted pt-1">Post open requisitions and preview vetted portfolios with zero fees.</p>
             </div>
@@ -2076,9 +2076,9 @@ export default function MarketingLandingPage() {
                           AVAILABLE IN 72H
                         </span>
                       </div>
-                      <p className="text-xs text-muted font-body">Full-Stack AI Systems Fellow · Lagos, Nigeria (Open to Remote / Hybrid)</p>
+                      <p className="text-xs text-muted font-body">Full-Stack AI Systems Fellow · Open to Global Remote / Hybrid (US, EMEA, LatAm)</p>
                       <div className="flex flex-wrap items-center gap-2 mt-1.5 text-[11px] font-mono text-muted">
-                        <span className="text-gold font-medium">Target Compensation: ₦24M – ₦32M / yr</span>
+                        <span className="text-gold font-medium">Target Compensation: $115,000 – $165,000 / yr</span>
                         <span>·</span>
                         <span>Graduated Cohort 03</span>
                       </div>
@@ -2091,7 +2091,7 @@ export default function MarketingLandingPage() {
                       <div className="flex items-center justify-between text-xs">
                         <span className="font-body font-medium text-ink flex items-center gap-2">
                           <Building2 className="w-3.5 h-3.5 text-gold" />
-                          <span>Simulated Enterprise Sprint: Moniepoint Squad</span>
+                          <span>Simulated Enterprise Sprint: Stripe Infrastructure Squad</span>
                         </span>
                         <span className="text-[11px] font-mono text-emerald-500 font-medium">PR #84 Merged</span>
                       </div>
@@ -2122,7 +2122,7 @@ export default function MarketingLandingPage() {
                       <span className="font-body text-4xl font-semibold text-ink">98.4</span>
                       <span className="text-xs font-mono text-muted">/ 100 TA Index</span>
                     </div>
-                    <p className="text-xs text-muted">Top 1% technical baseline benchmarked against Tier-1 African tech standards.</p>
+                    <p className="text-xs text-muted">Top 1% technical baseline benchmarked against Tier-1 global engineering standards.</p>
                   </div>
 
                   <div className="space-y-2.5 text-xs font-body text-muted pt-2 border-t border-border/60">
@@ -2136,7 +2136,7 @@ export default function MarketingLandingPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span>Direct Sourcing Fee</span>
-                      <span className="font-mono text-gold font-semibold">₦0 Upfront (Contingent)</span>
+                      <span className="font-mono text-gold font-semibold">$0 Upfront (Contingent)</span>
                     </div>
                   </div>
 
@@ -2340,7 +2340,7 @@ export default function MarketingLandingPage() {
               </div>
 
               <div className="space-y-1">
-                <div className="font-body text-4xl font-semibold text-ink">₦0</div>
+                <div className="font-body text-4xl font-semibold text-ink">$0</div>
                 <div className="text-xs font-mono text-muted">Free forever · No credit card required</div>
                 <p className="font-body text-xs text-muted pt-2 leading-relaxed">
                   Calibrate your technical baseline and explore matched career tracks before committing.
@@ -2392,10 +2392,10 @@ export default function MarketingLandingPage() {
             <div className="space-y-6 pt-2">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs uppercase tracking-wider text-gold font-bold">
-                  LOCALIZED FINANCING
+                  GLOBAL FINANCING
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full bg-gold/15 text-gold border border-gold/30 text-xs font-mono font-semibold">
-                  {pricingPeriod === 'installments' ? '4 MONTHS' : '10% DISCOUNT'}
+                  {pricingPeriod === 'installments' ? '4 MONTHS' : '15% DISCOUNT'}
                 </span>
               </div>
 
@@ -2403,21 +2403,21 @@ export default function MarketingLandingPage() {
                 {pricingPeriod === 'installments' ? (
                   <>
                     <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
-                      ₦35,000
+                      $89
                       <span className="text-xs font-mono font-normal text-muted">/ month</span>
                     </div>
                     <div className="text-xs font-mono text-gold font-medium">
-                      4 monthly payments of ₦35,000 · 0% Interest
+                      4 monthly payments of $89 · 0% Interest
                     </div>
                   </>
                 ) : (
                   <>
                     <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
-                      ₦126,000
+                      $299
                       <span className="text-xs font-mono font-normal text-muted">one-time</span>
                     </div>
                     <div className="text-xs font-mono text-emerald-500 font-medium">
-                      Saved ₦14,000 upfront · Full cohort access
+                      Saved $57 upfront · Full cohort access
                     </div>
                   </>
                 )}
@@ -2473,9 +2473,9 @@ export default function MarketingLandingPage() {
           <div className="p-8 rounded-3xl bg-surface border border-border/80 flex flex-col justify-between shadow-xs hover:border-border transition-all">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">DIASPORA & GLOBAL</span>
+                <span className="font-mono text-xs uppercase tracking-wider text-muted font-semibold">GLOBAL ENTERPRISE MENTORSHIP</span>
                 <span className="px-2.5 py-0.5 rounded-full bg-surface border border-border text-xs font-mono text-muted">
-                  REMOTE US/UK
+                  REMOTE US/EMEA
                 </span>
               </div>
 
@@ -2483,18 +2483,18 @@ export default function MarketingLandingPage() {
                 {pricingPeriod === 'installments' ? (
                   <>
                     <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
-                      $65
+                      $149
                       <span className="text-xs font-mono font-normal text-muted">/ month</span>
                     </div>
-                    <div className="text-xs font-mono text-muted">4 installments of $65 · International cards accepted</div>
+                    <div className="text-xs font-mono text-muted">4 installments of $149 · International cards accepted</div>
                   </>
                 ) : (
                   <>
                     <div className="font-body text-4xl font-semibold text-ink flex items-baseline gap-1">
-                      $225
+                      $499
                       <span className="text-xs font-mono font-normal text-muted">one-time</span>
                     </div>
-                    <div className="text-xs font-mono text-emerald-500 font-medium">Save 10% · Regular $249 flat</div>
+                    <div className="text-xs font-mono text-emerald-500 font-medium">Save $97 · Regular $596 flat</div>
                   </>
                 )}
                 <p className="font-body text-xs text-muted pt-2 leading-relaxed">
@@ -2556,8 +2556,8 @@ export default function MarketingLandingPage() {
           <div className="flex items-center gap-3">
             <Lock className="w-4 h-4 text-gold shrink-0" />
             <div className="text-xs font-body">
-              <span className="font-semibold text-ink block">Secure Paystack Rails</span>
-              <span className="text-muted text-[11px]">Direct bank transfer, USSD, and debit cards</span>
+              <span className="font-semibold text-ink block">Secure Stripe Rails</span>
+              <span className="text-muted text-[11px]">Global credit cards, Apple Pay, and direct wire</span>
             </div>
           </div>
           <div className="flex items-center gap-3">
