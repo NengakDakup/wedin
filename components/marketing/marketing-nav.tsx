@@ -87,7 +87,7 @@ export function MarketingNav() {
         {/* RIGHT: Login + Theme Toggle + Get Started Pill Button */}
         <div className="flex items-center gap-2 sm:gap-3.5 ml-auto">
           <Link
-            href="/app/dashboard"
+            href="/login"
             className="hidden sm:inline-flex items-center text-[13px] font-body font-medium text-muted hover:text-ink px-3 py-2 rounded-full hover:bg-surface/80 transition-colors"
           >
             Login
@@ -158,7 +158,7 @@ export function MarketingNav() {
               FAQ
             </a>
             <Link
-              href="/app/dashboard"
+              href="/login"
               onClick={() => setMobileMenuOpen(false)}
               className="text-muted hover:text-ink py-1.5 transition-colors"
             >

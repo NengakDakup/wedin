@@ -179,6 +179,16 @@ export function MarketingFooter() {
                 </a>
               </li>
               <li>
+                <Link href="/login" className="hover:text-gold transition-colors font-medium text-ink">
+                  Sign In to Learner Portal
+                </Link>
+              </li>
+              <li>
+                <Link href="/signup" className="hover:text-gold transition-colors font-medium text-ink">
+                  Create Learner Account
+                </Link>
+              </li>
+              <li>
                 <a href="#faq" className="hover:text-gold transition-colors">
                   Frequently Asked Questions
                 </a>
